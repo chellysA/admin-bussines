@@ -3,7 +3,7 @@ import { HTMLInputTypeAttribute } from "react";
 type Props = {
   label?: string;
   id?: string;
-  extra?: any;
+  className?: string;
   type?: HTMLInputTypeAttribute;
   placeholder?: string;
   variant?: any;
@@ -17,7 +17,7 @@ function InputField(props: Props) {
   const {
     label,
     id,
-    extra,
+    className = "",
     type,
     placeholder,
     variant,
@@ -27,7 +27,7 @@ function InputField(props: Props) {
   } = props;
 
   return (
-    <div className={`${extra}`}>
+    <div className={className}>
       <label
         htmlFor={id}
         className={`text-sm text-navy-700 dark:text-white ${

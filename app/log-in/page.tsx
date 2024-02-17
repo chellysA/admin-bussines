@@ -24,7 +24,7 @@ const LogIn: FC<Props> = () => {
             {/* Email */}
             <InputField
               variant="auth"
-              extra="mb-3"
+              className="mb-3"
               label="Email*"
               placeholder="mail@simmmple.com"
               id="email"
@@ -34,7 +34,7 @@ const LogIn: FC<Props> = () => {
             {/* Password */}
             <InputField
               variant="auth"
-              extra="mb-3"
+              className="mb-3"
               label="Contraseña*"
               placeholder="Min. 8 caracteres"
               id="password"
