@@ -2,6 +2,7 @@ import { FC } from "react";
 import InputField from "@/components/fields/InputField";
 import Checkbox from "@/components/checkbox";
 import FixedPlugin from "@/components/fixedPlugin/FixedPlugin";
+import Button from "@/components/button";
 
 type Props = {};
 
@@ -35,7 +36,7 @@ const LogIn: FC<Props> = () => {
               variant="auth"
               extra="mb-3"
               label="Contraseña*"
-              placeholder="Min. 8 characters"
+              placeholder="Min. 8 caracteres"
               id="password"
               type="password"
             />
@@ -51,27 +52,24 @@ const LogIn: FC<Props> = () => {
                   Mantener sesion abierta
                 </label>
               </div>
-              <a
-                className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
-                href=""
-              >
-                Olvidaste tu contraseña?
-              </a>
             </div>
-
-            <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200">
-              Ingresar
-            </button>
+            <a
+              className="block mt-6 text-sm text-center font-medium text-brand-500 hover:text-brand-600 dark:text-brand-400"
+              href=""
+            >
+              Olvidaste tu contraseña?
+            </a>
+            <Button label="Ingresar" variant="full" />
 
             <div className="mt-4">
               <span className=" text-sm font-medium text-navy-700 dark:text-gray-600">
-                Not registered yet?
+                No estas registrado aún?
               </span>
               <a
                 href=" "
                 className="ml-1 text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-brand-400"
               >
-                Create an account
+                Crea una cuenta
               </a>
             </div>
           </div>
