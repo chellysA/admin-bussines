@@ -1,5 +1,5 @@
 // Custom components
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 
 type Props = {
   label: string;
@@ -11,6 +11,8 @@ type Props = {
   isError: boolean;
   isSuccess: boolean;
   disabled: boolean;
+  value?: string;
+  onChange: ChangeEventHandler<HTMLTextAreaElement>;
 };
 
 function InputArea(props: Props) {
@@ -24,6 +26,8 @@ function InputArea(props: Props) {
     isError,
     isSuccess,
     disabled,
+    value,
+    onChange,
   } = props;
 
   return (
@@ -38,6 +42,8 @@ function InputArea(props: Props) {
         <textarea
           cols={cols}
           rows={rows}
+          value={value}
+          onChange={onChange}
           placeholder={placeholder}
           className={`flex w-full items-center justify-center rounded-xl border bg-white/0 pl-3 pt-3 text-sm outline-none ${
             disabled

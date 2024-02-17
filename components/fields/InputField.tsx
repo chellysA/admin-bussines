@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from "react";
+import { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
 
 type Props = {
   label?: string;
@@ -10,6 +10,8 @@ type Props = {
   isError?: boolean;
   isSuccess?: boolean;
   disabled?: boolean;
+  value?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 };
 
 // Custom components
@@ -24,6 +26,8 @@ function InputField(props: Props) {
     isError,
     isSuccess,
     disabled,
+    value,
+    onChange,
   } = props;
 
   return (
@@ -39,6 +43,8 @@ function InputField(props: Props) {
       <input
         disabled={disabled}
         type={type}
+        value={value}
+        onChange={onChange}
         id={id}
         placeholder={placeholder}
         className={`mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none duration-300 ${
