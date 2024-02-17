@@ -6,7 +6,7 @@ import FixedPlugin from "@/components/fixedPlugin/FixedPlugin";
 
 type Props = {};
 
-const AuthPage: FC<Props> = () => {
+const LogIn: FC<Props> = () => {
   return (
     <>
       <div className="flex justify-center items-center !bg-lightPrimary dark:!bg-navy-900">
@@ -95,4 +95,4 @@ const AuthPage: FC<Props> = () => {
   );
 };
 
-export default AuthPage;
+export default LogIn;
