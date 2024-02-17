@@ -5,7 +5,7 @@ type Props = {
   label: string;
   id: string;
   placeholder: string;
-  extra: string;
+  className: string;
   cols: number;
   rows: number;
   isError: boolean;
@@ -13,11 +13,11 @@ type Props = {
   disabled: boolean;
 };
 
-function InputField(props: Props) {
+function InputArea(props: Props) {
   const {
     label,
     id,
-    extra,
+    className = "",
     placeholder,
     cols,
     rows,
@@ -27,7 +27,7 @@ function InputField(props: Props) {
   } = props;
 
   return (
-    <div className={`${extra}`}>
+    <div className={className}>
       <label
         htmlFor={id}
         className="ml-3 mb-2 text-sm font-bold text-navy-700 dark:text-white"
@@ -58,4 +58,4 @@ function InputField(props: Props) {
   );
 }
 
-export default InputField;
+export default InputArea;
