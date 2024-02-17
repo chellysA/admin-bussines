@@ -12,8 +12,8 @@ import {
 
 const LineChart = dynamic(() => import("@/components/charts/LineChart"), {
   loading: () => <p>loading...</p>,
-  ssr: false
-})
+  ssr: false,
+});
 
 const TotalSpent = () => {
   return (
@@ -23,7 +23,7 @@ const TotalSpent = () => {
           <MdOutlineCalendarToday />
           <span className="text-sm font-medium text-gray-600">This month</span>
         </button>
-        < className="!linear z-[1] flex items-center justify-center rounded-lg bg-lightPrimary p-2 text-brand-500 !transition !duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-navy-700 dark:text-white dark:hover:bg-white/20 dark:active:bg-white/10">
+        <button className="!linear z-[1] flex items-center justify-center rounded-lg bg-lightPrimary p-2 text-brand-500 !transition !duration-200 hover:bg-gray-100 active:bg-gray-200 dark:bg-navy-700 dark:text-white dark:hover:bg-white/20 dark:active:bg-white/10">
           <MdBarChart className="h-6 w-6" />
         </button>
       </div>
