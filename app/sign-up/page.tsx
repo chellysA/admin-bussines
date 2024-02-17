@@ -57,7 +57,7 @@ const SignUp: FC<Props> = () => {
                 Already have an account?
               </span>
               <a
-                href=" "
+                href=""
                 className="ml-1 text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-brand-400"
               >
                 Sign In
