@@ -4,9 +4,16 @@ import {
   MdOutlineShoppingCart,
   MdBarChart,
   MdPerson,
+  MdOutlineSupervisorAccount,
 } from "react-icons/md";
 
 const routes = [
+  {
+    name: "Usuarios",
+    layout: "/dashboard",
+    path: "usuarios",
+    icon: <MdOutlineSupervisorAccount className="h-6 w-6" />,
+  },
   {
     name: "Main Dashboard",
     layout: "/dashboard",

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import CardMenu from "@/components/card/CardMenu";
 import Card from "@/components/card";
@@ -13,12 +13,13 @@ import { useMemo } from "react";
 import Progress from "@/components/progress";
 
 type Props = {
-  columnsData: any[]
-  tableData: any[]
-}
+  columnsData: any[];
+  tableData: any[];
+  title?: string;
+};
 
 const ComplexTable = (props: Props) => {
-  const { columnsData, tableData } = props;
+  const { columnsData, tableData, title = "Complex Table" } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -47,7 +48,7 @@ const ComplexTable = (props: Props) => {
     <Card className={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
       <div className="relative flex items-center justify-between pt-4">
         <div className="text-xl font-bold text-navy-700 dark:text-white">
-          Complex Table
+          {title}
         </div>
         <CardMenu />
       </div>
@@ -108,7 +109,9 @@ const ComplexTable = (props: Props) => {
                         </p>
                       );
                     } else if (cell.column.Header === "PROGRESS") {
-                      renderData = <Progress width="w-[108px]" value={cell.value} />;
+                      renderData = (
+                        <Progress width="w-[108px]" value={cell.value} />
+                      );
                     }
                     return (
                       <td

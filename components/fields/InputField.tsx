@@ -32,14 +32,16 @@ function InputField(props: Props) {
 
   return (
     <div className={className}>
-      <label
-        htmlFor={id}
-        className={`text-sm text-navy-700 dark:text-white ${
-          variant === "auth" ? "ml-1.5 font-medium" : "ml-3 font-bold"
-        }`}
-      >
-        {label}
-      </label>
+      {label && (
+        <label
+          htmlFor={id}
+          className={`text-sm text-navy-700 dark:text-white ${
+            variant === "auth" ? "ml-1.5 font-medium" : "ml-3 font-bold"
+          }`}
+        >
+          {label}
+        </label>
+      )}
       <input
         disabled={disabled}
         type={type}

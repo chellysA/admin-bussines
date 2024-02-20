@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useMemo } from "react";
 import {
@@ -12,14 +12,14 @@ import CardMenu from "@/components/card/CardMenu";
 import Checkbox from "@/components/checkbox";
 import Card from "@/components/card";
 
-
 type Props = {
-  columnsData: any[]
-  tableData: any[]
-}
+  columnsData: any[];
+  tableData: any[];
+  title?: string;
+};
 
 const CheckTable = (props: Props) => {
-  const { columnsData, tableData } = props;
+  const { columnsData, tableData, title = "Check Table" } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -49,7 +49,7 @@ const CheckTable = (props: Props) => {
     <Card className={"w-full h-full sm:overflow-auto px-6 pb-5"}>
       <header className="relative flex items-center justify-between pt-4">
         <div className="text-xl font-bold text-navy-700 dark:text-white">
-          Check Table
+          {title}
         </div>
 
         <CardMenu />
@@ -61,7 +61,7 @@ const CheckTable = (props: Props) => {
           className="w-full"
           // variant="simple"
           color="gray-500"
-        // mb="24px"
+          // mb="24px"
         >
           <thead>
             {headerGroups.map((headerGroup, index) => (
