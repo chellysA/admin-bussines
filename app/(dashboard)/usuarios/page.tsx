@@ -3,6 +3,7 @@ import InputField from "@/components/fields/InputField";
 import ColumnsUsersTable from "./components/ColumnsUsersTable";
 import tableDataUsers from "./variables/tableDataUsers.json";
 import { columnsDataUsers } from "./variables/columnsDataUsers";
+import Select from "@/components/select";
 
 const Usuarios = () => {
   return (
@@ -11,7 +12,16 @@ const Usuarios = () => {
         <div className="grid grid-cols-1 grid-rows-1 col-span-2 md:gap-5 md:grid-cols-3 md:mr-10 mt-2">
           <InputField placeholder="Nombre" />
           <InputField placeholder="Email" />
-          <InputField placeholder="Cargo" />
+          <Select
+            options={[
+              "Administrador",
+              "Gerente",
+              "Cajero",
+              "Vendedor",
+              "Contador",
+            ]}
+            label="Cargo"
+          />
         </div>
         <div className="md:ml-12 mt-4 md:mt-0 grid grid-cols-1 col-span-1">
           <Button label="Buscar" />
