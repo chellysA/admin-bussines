@@ -1,20 +1,23 @@
 [
   {
+    "id": "id",
     "nombre": "Maria Morales",
     "cargo": "Administrador",
     "email": "12.Jan.2021",
-    "acciones": 75.5
+    "acciones": ["eliminar", "editar", "ver mas"]
   },
   {
+    "id": "id",
     "nombre": "Maria Morales",
     "cargo": "Administrador",
     "email": "12.Jan.2021",
-    "acciones": 75.5
+    "acciones": ["eliminar", "editar", "ver mas"]
   },
   {
+    "id": "id",
     "nombre": "Maria Morales",
     "cargo": "Administrador",
     "email": "12.Jan.2021",
-    "acciones": 75.5
+    "acciones": ["eliminar", "editar", "ver mas"]
   }
 ]

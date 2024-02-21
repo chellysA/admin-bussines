@@ -6,6 +6,7 @@ export const columnsDataUsers = [
   columnHelper.accessor("nombre", {
     header: "NOMBRE",
   }),
+  { accessorKey: "id", header: "id" },
   {
     accessorKey: "cargo",
     header: "CARGO",
