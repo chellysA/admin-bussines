@@ -13,13 +13,7 @@ const Usuarios = () => {
           <InputField placeholder="Nombre" />
           <InputField placeholder="Email" />
           <Select
-            options={[
-              "Administrador",
-              "Gerente",
-              "Cajero",
-              "Vendedor",
-              "Contador",
-            ]}
+            options={["Administrador", "Gerente", "Cajero", "Vendedor"]}
             label="Cargo"
           />
         </div>
