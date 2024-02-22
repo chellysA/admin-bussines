@@ -6,7 +6,7 @@ type Props = {
   disabled?: boolean;
   isError?: boolean;
   isSuccess?: boolean;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 };
 const Select = ({
   options,
