@@ -96,10 +96,12 @@ const ColumnsUsersTable = (props: Props) => {
         </table>
 
         <div className="flex items-center justify-right gap-2">
-          <div className="min-w-[180px] mr-4">
+          <span>Filas por pagina:</span>
+          <div className="min-w-[70px] mr-4 mb-1">
+            {" "}
             <Select
               options={[10, 20, 30, 40, 50]}
-              label="Filas por pagina:"
+              label=""
               onChange={(value) => {
                 tableInstance.setPageSize(Number(value));
               }}
