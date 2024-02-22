@@ -4,12 +4,15 @@ import { useMemo, useState } from "react";
 import {
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   flexRender,
   useReactTable,
 } from "@tanstack/react-table";
 
 import CardMenu from "@/components/card/CardMenu";
 import Card from "@/components/card";
+import Button from "@/components/button";
+import InputField from "@/components/fields/InputField";
 
 type Props = {
   columnsData: any[];
@@ -34,6 +37,7 @@ const ColumnsUsersTable = (props: Props) => {
       globalFilter: filtering,
     },
     onGlobalFilterChange: setFiltering,
+    getPaginationRowModel: getPaginationRowModel(),
   });
   return (
     <Card className={"w-full pb-10 p-4 h-full"}>
@@ -89,6 +93,50 @@ const ColumnsUsersTable = (props: Props) => {
             })}
           </tbody>
         </table>
+        <div className="flex items-center justify-center gap-2">
+          <Button
+            onClick={() => tableInstance.setPageIndex(0)}
+            disabled={!tableInstance.getCanPreviousPage()}
+            label="<<"
+          />
+
+          <Button
+            onClick={() => tableInstance.previousPage()}
+            disabled={!tableInstance.getCanPreviousPage()}
+            label="<"
+          />
+          <Button
+            onClick={() => tableInstance.nextPage()}
+            disabled={!tableInstance.getCanNextPage()}
+            label=">"
+          />
+          <Button
+            onClick={() =>
+              tableInstance.setPageIndex(tableInstance.getPageCount() - 1)
+            }
+            disabled={!tableInstance.getCanNextPage()}
+            label=">>"
+          />
+          <span className="flex items-center gap-2">
+            <div>Page</div>
+            <strong>
+              {tableInstance.getState().pagination.pageIndex + 1} of{" "}
+              {tableInstance.getPageCount()}
+            </strong>
+          </span>
+          <span className="flex items-center gap-2">
+            | Go to page:
+            <InputField
+              className="w-20"
+              type="number"
+              value={tableInstance.getState().pagination.pageIndex + 1}
+              onChange={(e) => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                tableInstance.setPageIndex(page);
+              }}
+            />
+          </span>
+        </div>
       </div>
     </Card>
   );
