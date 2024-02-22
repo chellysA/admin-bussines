@@ -93,7 +93,15 @@ const ColumnsUsersTable = (props: Props) => {
             })}
           </tbody>
         </table>
-        <div className="flex items-center justify-center gap-2">
+
+        <div className="flex items-center justify-left gap-2">
+          <span className="flex items-center gap-2 mr-4">
+            <div>Page</div>
+            <strong>
+              {tableInstance.getState().pagination.pageIndex + 1} of{" "}
+              {tableInstance.getPageCount()}
+            </strong>
+          </span>
           <Button
             onClick={() => tableInstance.setPageIndex(0)}
             disabled={!tableInstance.getCanPreviousPage()}
@@ -117,25 +125,6 @@ const ColumnsUsersTable = (props: Props) => {
             disabled={!tableInstance.getCanNextPage()}
             label=">>"
           />
-          <span className="flex items-center gap-2">
-            <div>Page</div>
-            <strong>
-              {tableInstance.getState().pagination.pageIndex + 1} of{" "}
-              {tableInstance.getPageCount()}
-            </strong>
-          </span>
-          <span className="flex items-center gap-2">
-            | Go to page:
-            <InputField
-              className="w-20"
-              type="number"
-              value={tableInstance.getState().pagination.pageIndex + 1}
-              onChange={(e) => {
-                const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                tableInstance.setPageIndex(page);
-              }}
-            />
-          </span>
         </div>
       </div>
     </Card>
