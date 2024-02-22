@@ -13,6 +13,7 @@ import CardMenu from "@/components/card/CardMenu";
 import Card from "@/components/card";
 import Button from "@/components/button";
 import InputField from "@/components/fields/InputField";
+import Select from "@/components/select";
 
 type Props = {
   columnsData: any[];
@@ -94,13 +95,22 @@ const ColumnsUsersTable = (props: Props) => {
           </tbody>
         </table>
 
-        <div className="flex items-center justify-left gap-2">
+        <div className="flex items-center justify-right gap-2">
+          <div className="min-w-[180px] mr-4">
+            <Select
+              options={[10, 20, 30, 40, 50]}
+              label="Filas por pagina:"
+              onChange={(value) => {
+                tableInstance.setPageSize(Number(value));
+              }}
+            />
+          </div>
           <span className="flex items-center gap-2 mr-4">
             <div>Page</div>
             <strong>
-              {tableInstance.getState().pagination.pageIndex + 1} of{" "}
-              {tableInstance.getPageCount()}
+              {tableInstance.getState().pagination.pageIndex + 1}{" "}
             </strong>
+            of <strong>{tableInstance.getPageCount()}</strong>
           </span>
           <Button
             onClick={() => tableInstance.setPageIndex(0)}
