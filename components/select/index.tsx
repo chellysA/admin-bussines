@@ -1,17 +1,28 @@
 "use client";
 import React, { useState } from "react";
 type Props = {
-  options: string[];
+  options: string[] | number[];
   label: string;
   disabled?: boolean;
   isError?: boolean;
   isSuccess?: boolean;
+  onChange: (value: string) => void;
 };
-const Select = ({ options, label, disabled, isError, isSuccess }: Props) => {
+const Select = ({
+  options,
+  label,
+  disabled,
+  isError,
+  isSuccess,
+  onChange,
+}: Props) => {
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleChange = (event: any) => {
     setSelectedOption(event.target.value);
+    if (onChange) {
+      onChange(event.target.value);
+    }
   };
 
   return (
