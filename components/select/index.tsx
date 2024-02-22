@@ -29,11 +29,18 @@ const Select = ({ options, label, disabled, isError, isSuccess }: Props) => {
             : "border-gray-200 dark:border-white/10 focus:border-blueSecondary dark:focus:border-blueSecondary dark:text-white"
         }`}
       >
-        <option value="" className="bg-navy-700">
+        <option
+          value=""
+          className="options dark:bg-navy-900 bg-white text-[17px]"
+        >
           {label}
         </option>
         {options.map((option, index) => (
-          <option key={index} value={option} className="bg-navy-700">
+          <option
+            key={index}
+            value={option}
+            className="dark:bg-navy-900 bg-white text-[17px]"
+          >
             {option}
           </option>
         ))}

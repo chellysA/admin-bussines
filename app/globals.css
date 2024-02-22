@@ -23,7 +23,7 @@ select {
 .content-select i {
   position: absolute;
   right: 20px;
-  top: calc(50% - 5px);
+  top: 45%;
   width: 10px;
   height: 10px;
   display: block;
@@ -73,3 +73,8 @@ input:checked.defaultCheckbox::before {
   cursor: pointer;
 }
 /* END SCROLLBAR */
+@media (min-width: 768px) {
+  .content-select i {
+    top: 25%;
+  }
+}
