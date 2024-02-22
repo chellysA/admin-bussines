@@ -106,7 +106,7 @@ const ColumnsUsersTable = (props: Props) => {
             />
           </div>
           <span className="flex items-center gap-2 mr-4">
-            <div>Page</div>
+            <div>Pagina</div>
             <strong>
               {tableInstance.getState().pagination.pageIndex + 1}{" "}
             </strong>
