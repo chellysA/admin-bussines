@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useMemo } from "react";
 import {
@@ -12,12 +12,13 @@ import CardMenu from "@/components/card/CardMenu";
 import Card from "@/components/card";
 
 type Props = {
-  columnsData: any[]
-  tableData: any[]
-}
+  columnsData: any[];
+  tableData: any[];
+  title?: string;
+};
 
 const ColumnsTable = (props: Props) => {
-  const { columnsData, tableData } = props;
+  const { columnsData, tableData, title = "4-Columns Table" } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -46,7 +47,7 @@ const ColumnsTable = (props: Props) => {
     <Card className={"w-full pb-10 p-4 h-full"}>
       <header className="relative flex items-center justify-between">
         <div className="text-xl font-bold text-navy-700 dark:text-white">
-          4-Columns Table
+          {title}
         </div>
         <CardMenu />
       </header>
@@ -76,6 +77,7 @@ const ColumnsTable = (props: Props) => {
               return (
                 <tr {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
+                    console.log(cell);
                     let data;
                     if (cell.column.Header === "NAME") {
                       data = (
