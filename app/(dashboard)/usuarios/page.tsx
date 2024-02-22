@@ -1,6 +1,6 @@
 import Button from "@/components/button";
 import InputField from "@/components/fields/InputField";
-import ColumnsUsersTable from "./components/ColumnsUsersTable";
+import BasicTable from "./components/basicTable";
 import tableDataUsers from "./variables/tableDataUsers.json";
 import { columnsDataUsers } from "./variables/columnsDataUsers";
 import Select from "@/components/select";
@@ -23,7 +23,7 @@ const Usuarios = () => {
         </div>
       </div>
       <div className="mt-8">
-        <ColumnsUsersTable
+        <BasicTable
           columnsData={columnsDataUsers}
           tableData={tableDataUsers}
           title="Lista de Usuarios"
