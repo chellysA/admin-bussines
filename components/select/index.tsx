@@ -15,7 +15,7 @@ const Select = ({ options, label, disabled, isError, isSuccess }: Props) => {
   };
 
   return (
-    <div>
+    <div className="content-select relative">
       <select
         value={selectedOption}
         onChange={handleChange}
@@ -38,6 +38,7 @@ const Select = ({ options, label, disabled, isError, isSuccess }: Props) => {
           </option>
         ))}
       </select>
+      <i></i>
     </div>
   );
 };
