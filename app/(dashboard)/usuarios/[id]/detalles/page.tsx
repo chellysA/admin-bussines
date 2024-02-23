@@ -1,4 +1,4 @@
-const Id = ({ params }: any) => {
+const Details = ({ params }: any) => {
   return <p className="mt-20">{params.id}</p>;
 };
-export default Id;
+export default Details;

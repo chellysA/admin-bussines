@@ -97,7 +97,7 @@ const ColumnsUsersTable = (props: Props) => {
 
         <div className="flex items-center justify-right gap-2">
           <span>Filas por pagina:</span>
-          <div className="min-w-[70px] mr-4 mb-1">
+          <div className="min-w-[70px] mr-4">
             {" "}
             <Select
               options={[10, 20, 30, 40, 50]}
