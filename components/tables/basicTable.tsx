@@ -118,17 +118,20 @@ const ColumnsUsersTable = (props: Props) => {
             onClick={() => tableInstance.setPageIndex(0)}
             disabled={!tableInstance.getCanPreviousPage()}
             label="<<"
+            title="Volver a la pag. 1"
           />
 
           <Button
             onClick={() => tableInstance.previousPage()}
             disabled={!tableInstance.getCanPreviousPage()}
             label="<"
+            title="Ir a la pag. anterior"
           />
           <Button
             onClick={() => tableInstance.nextPage()}
             disabled={!tableInstance.getCanNextPage()}
             label=">"
+            title="Ir a la siguiente pag."
           />
           <Button
             onClick={() =>
@@ -136,6 +139,7 @@ const ColumnsUsersTable = (props: Props) => {
             }
             disabled={!tableInstance.getCanNextPage()}
             label=">>"
+            title="Ir a la última pag."
           />
         </div>
       </div>
