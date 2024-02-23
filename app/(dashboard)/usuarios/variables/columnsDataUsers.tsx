@@ -23,7 +23,7 @@ export const columnsDataUsers = [
     cell: (props: any) => (
       <div className="flex gap-3">
         <Link
-          href={`/usuarios/${props.row.original.id}/edit`}
+          href={`/usuarios/${props.row.original.id}/editar`}
           className="text-[22px] text-gray-900 dark:text-white"
           title="Editar"
         >

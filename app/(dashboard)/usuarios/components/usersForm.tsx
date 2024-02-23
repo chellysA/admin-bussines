@@ -1,11 +1,15 @@
+import Button from "@/components/button";
 import InputField from "@/components/fields/InputField";
 import Select from "@/components/select";
 
 type Props = {
   isReadOnly?: boolean;
+  buttonLabel?: string | React.ReactElement;
+  buttonTitle?: string;
 };
 
-const UsersForm = (isReadOnly: Props) => {
+const UsersForm = (props: Props) => {
+  const { isReadOnly = false, buttonLabel = "", buttonTitle } = props;
   return (
     <form>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-8">
@@ -32,6 +36,11 @@ const UsersForm = (isReadOnly: Props) => {
         <InputField label="Contraseña" disabled={isReadOnly && true} />
         <InputField label="Fecha de Ingreso" disabled={isReadOnly && true} />
       </div>
+      {!isReadOnly && (
+        <div className="flex justify-end mt-8">
+          <Button label={buttonLabel} className="px-10" title={buttonTitle} />
+        </div>
+      )}
     </form>
   );
 };
