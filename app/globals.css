@@ -18,12 +18,14 @@ select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  cursor: pointer;
 }
 
 .content-select i {
+  pointer-events: none;
   position: absolute;
   right: 20px;
-  top: 45%;
+  top: calc(50% - 5px);
   width: 10px;
   height: 10px;
   display: block;
@@ -73,8 +75,3 @@ input:checked.defaultCheckbox::before {
   cursor: pointer;
 }
 /* END SCROLLBAR */
-@media (min-width: 768px) {
-  .content-select i {
-    top: 25%;
-  }
-}
