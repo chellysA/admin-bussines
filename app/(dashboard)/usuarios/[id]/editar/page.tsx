@@ -3,7 +3,7 @@ import UsersForm from "../../components/usersForm";
 const Edit = () => {
   return (
     <div className="mt-10">
-      <UsersForm />
+      <UsersForm buttonLabel="Aplicar Cambios" />
     </div>
   );
 };
