@@ -95,7 +95,7 @@ const ColumnsUsersTable = (props: Props) => {
           </tbody>
         </table>
 
-        <div className="flex items-center justify-right gap-2">
+        <div className="flex items-center justify-right gap-2 my-4">
           <span>Filas por pagina:</span>
           <div className="min-w-[70px] mr-4">
             {" "}
