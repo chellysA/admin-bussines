@@ -23,8 +23,9 @@ export const columnsDataUsers = [
     cell: (props: any) => (
       <div className="flex gap-3">
         <Link
-          href={`/usuarios/${props.row.original.id}/edit`}
+          href={`/usuarios/${props.row.original.id}/editar`}
           className="text-[22px] text-gray-900 dark:text-white"
+          title="Editar"
         >
           <MdEdit className="cursor-pointer" />
         </Link>
@@ -32,12 +33,14 @@ export const columnsDataUsers = [
         <Link
           href={`/usuarios/${props.row.original.id}/detalles`}
           className="text-[22px] text-gray-900 dark:text-white"
+          title="Detalles"
         >
           <MdSearch className="cursor-pointer" />
         </Link>
         <Link
           href={`/usuarios/${props.row.original.id}/delete`}
           className="text-[22px] text-gray-900 dark:text-white"
+          title="Eliminar"
         >
           <MdDeleteForever className="cursor-pointer" />
         </Link>

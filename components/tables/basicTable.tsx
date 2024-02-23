@@ -96,10 +96,12 @@ const ColumnsUsersTable = (props: Props) => {
         </table>
 
         <div className="flex items-center justify-right gap-2">
-          <div className="min-w-[180px] mr-4">
+          <span>Filas por pagina:</span>
+          <div className="min-w-[70px] mr-4">
+            {" "}
             <Select
               options={[10, 20, 30, 40, 50]}
-              label="Filas por pagina:"
+              label=""
               onChange={(value) => {
                 tableInstance.setPageSize(Number(value));
               }}
@@ -116,17 +118,20 @@ const ColumnsUsersTable = (props: Props) => {
             onClick={() => tableInstance.setPageIndex(0)}
             disabled={!tableInstance.getCanPreviousPage()}
             label="<<"
+            title="Volver a la pag. 1"
           />
 
           <Button
             onClick={() => tableInstance.previousPage()}
             disabled={!tableInstance.getCanPreviousPage()}
             label="<"
+            title="Ir a la pag. anterior"
           />
           <Button
             onClick={() => tableInstance.nextPage()}
             disabled={!tableInstance.getCanNextPage()}
             label=">"
+            title="Ir a la siguiente pag."
           />
           <Button
             onClick={() =>
@@ -134,6 +139,7 @@ const ColumnsUsersTable = (props: Props) => {
             }
             disabled={!tableInstance.getCanNextPage()}
             label=">>"
+            title="Ir a la última pag."
           />
         </div>
       </div>
