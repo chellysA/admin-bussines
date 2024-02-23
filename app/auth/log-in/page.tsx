@@ -3,6 +3,7 @@ import InputField from "@/components/fields/InputField";
 import Checkbox from "@/components/checkbox";
 import FixedPlugin from "@/components/fixedPlugin/FixedPlugin";
 import Button from "@/components/button";
+import Link from "next/link";
 
 type Props = {};
 
@@ -62,12 +63,12 @@ const LogIn: FC<Props> = () => {
         <span className=" text-sm font-medium text-navy-700 dark:text-gray-600">
           No estas registrado aún?
         </span>
-        <a
-          href=" "
+        <Link
+          href="/auth/sign-up"
           className="ml-1 text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-brand-400"
         >
           Crea una cuenta
-        </a>
+        </Link>
       </div>
     </>
   );
