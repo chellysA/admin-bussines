@@ -10,7 +10,7 @@ type Props = {
   isError?: boolean;
   isSuccess?: boolean;
   disabled?: boolean;
-  value?: string;
+  value?: string | number;
   onChange?: ChangeEventHandler<HTMLInputElement>;
 };
 
@@ -32,14 +32,16 @@ function InputField(props: Props) {
 
   return (
     <div className={className}>
-      <label
-        htmlFor={id}
-        className={`text-sm text-navy-700 dark:text-white ${
-          variant === "auth" ? "ml-1.5 font-medium" : "ml-3 font-bold"
-        }`}
-      >
-        {label}
-      </label>
+      {label && (
+        <label
+          htmlFor={id}
+          className={`text-sm text-navy-700 dark:text-white ${
+            variant === "auth" ? "ml-1.5 font-medium" : "ml-3 font-bold"
+          }`}
+        >
+          {label}
+        </label>
+      )}
       <input
         disabled={disabled}
         type={type}
@@ -47,7 +49,9 @@ function InputField(props: Props) {
         onChange={onChange}
         id={id}
         placeholder={placeholder}
-        className={`mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none duration-300 ${
+        className={`relative ${className} ${
+          label ? "mt-2" : "mt-0"
+        } flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none duration-300 ${
           disabled
             ? "!border-none !bg-gray-100 dark:!bg-white/5 dark:placeholder:!text-[rgba(255,255,255,0.15)]"
             : isError
