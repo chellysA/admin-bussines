@@ -25,7 +25,7 @@ select {
   pointer-events: none;
   position: absolute;
   right: 20px;
-  top: calc(50% - 5px);
+  top: calc(50% - 6px);
   width: 10px;
   height: 10px;
   display: block;
