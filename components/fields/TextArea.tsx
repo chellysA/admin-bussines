@@ -1,33 +1,37 @@
 // Custom components
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 
 type Props = {
   label: string;
   id: string;
   placeholder: string;
-  extra: string;
+  className: string;
   cols: number;
   rows: number;
   isError: boolean;
   isSuccess: boolean;
   disabled: boolean;
+  value?: string;
+  onChange: ChangeEventHandler<HTMLTextAreaElement>;
 };
 
-function InputField(props: Props) {
+function InputArea(props: Props) {
   const {
     label,
     id,
-    extra,
+    className = "",
     placeholder,
     cols,
     rows,
     isError,
     isSuccess,
     disabled,
+    value,
+    onChange,
   } = props;
 
   return (
-    <div className={`${extra}`}>
+    <div className={className}>
       <label
         htmlFor={id}
         className="ml-3 mb-2 text-sm font-bold text-navy-700 dark:text-white"
@@ -38,6 +42,8 @@ function InputField(props: Props) {
         <textarea
           cols={cols}
           rows={rows}
+          value={value}
+          onChange={onChange}
           placeholder={placeholder}
           className={`flex w-full items-center justify-center rounded-xl border bg-white/0 pl-3 pt-3 text-sm outline-none ${
             disabled
@@ -58,4 +64,4 @@ function InputField(props: Props) {
   );
 }
 
-export default InputField;
+export default InputArea;
