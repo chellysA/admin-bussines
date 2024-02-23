@@ -1,6 +1,6 @@
 import Button from "@/components/button";
 import InputField from "@/components/fields/InputField";
-import BasicTable from "../../../components/tables/basicTable";
+import BasicTable from "../../../components/tables/BasicTable";
 import tableDataUsers from "./variables/tableDataUsers.json";
 import { columnsDataUsers } from "./variables/columnsDataUsers";
 import Select from "@/components/select";
