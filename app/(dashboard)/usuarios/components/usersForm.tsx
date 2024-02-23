@@ -38,7 +38,7 @@ const UsersForm = (props: Props) => {
       </div>
       {!isReadOnly && (
         <div className="flex justify-end mt-8">
-          <Button label={buttonLabel} className="px-10" title={buttonTitle} />
+          <Button label={buttonLabel} className="px-8" title={buttonTitle} />
         </div>
       )}
     </form>
