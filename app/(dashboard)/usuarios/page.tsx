@@ -18,17 +18,15 @@ const Usuarios = () => {
             label="Cargo"
           />
         </div>
-        <div
-          className="md:ml-12 mt-6 md:mt-2 grid grid-cols-1 col-span-1"
-          title="Buscar Usuario"
-        >
-          <Button label="Buscar" />
+        <div className="md:ml-12 mt-6 md:mt-2 grid grid-cols-1 col-span-1">
+          <Button label="Buscar" title="Buscar Usuario" />
         </div>
       </div>
-      <div className="flex justify-end" title="Crear Usuario">
+      <div className="flex justify-end">
         <Button
           label={<IoMdPersonAdd className="text-[25px] mx-5" />}
           className="mt-4"
+          title="Crear Usuario"
         />
       </div>
       <div className="mt-8">
