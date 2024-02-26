@@ -1,7 +1,6 @@
 import { FC } from "react";
 import InputField from "@/components/fields/InputField";
-import Checkbox from "@/components/checkbox";
-import FixedPlugin from "@/components/fixedPlugin/FixedPlugin";
+import Checkbox from "@/components/checkbox/Checkbox";
 import Button from "@/components/button";
 import Link from "next/link";
 

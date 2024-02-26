@@ -9,7 +9,7 @@ import {
 } from "react-table";
 
 import CardMenu from "@/components/card/CardMenu";
-import Checkbox from "@/components/checkbox";
+import Checkbox from "@/components/checkbox/Checkbox";
 import Card from "@/components/card";
 
 type Props = {
