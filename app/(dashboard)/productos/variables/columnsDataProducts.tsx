@@ -1,6 +1,12 @@
 "use client";
 import Link from "next/link";
-import { MdDeleteForever, MdEdit, MdSearch } from "react-icons/md";
+import {
+  MdCancel,
+  MdCheckCircle,
+  MdDeleteForever,
+  MdEdit,
+  MdSearch,
+} from "react-icons/md";
 
 export const columnsDataProducts = [
   {
@@ -26,6 +32,21 @@ export const columnsDataProducts = [
   {
     accessorKey: "iva",
     header: "IVA",
+    cell: (props: any) => (
+      <div>
+        {props.row.original.iva === "Incluye" ? (
+          <MdCheckCircle
+            className="text-green-500 text-[28px] cursor-help"
+            title="Incluye Iva"
+          />
+        ) : (
+          <MdCancel
+            className="text-red-500 text-[28px] cursor-help"
+            title="No Incluye Iva"
+          />
+        )}
+      </div>
+    ),
   },
   {
     accessorKey: "cantidad en almacen",
