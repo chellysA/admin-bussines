@@ -4,7 +4,7 @@ import { FC, useState } from "react";
 import { HiX } from "react-icons/hi";
 import { useSidebarContext } from "@/providers/SidebarProvider";
 import useMobileView from "@/hooks/useMobileView";
-import Links from "./components/Links";
+import Links from "./components/TemplateLinks";
 import SidebarCard from "./components/SidebarCard";
 
 type Props = {};

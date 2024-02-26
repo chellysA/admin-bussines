@@ -6,10 +6,9 @@ import Project from "./components/Project";
 import Storage from "./components/Storage";
 import Upload from "./components/Upload";
 
-
 export const metadata: Metadata = {
-  title: 'Profile | Horizon UI by Ories',
-}
+  title: "Profile | Horizon UI by Ories",
+};
 
 const ProfileOverview = () => {
   return (

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useMemo } from "react";
 import CardMenu from "@/components/card/CardMenu";
@@ -13,9 +13,9 @@ import {
 } from "react-table";
 
 type Props = {
-  columnsData: any[]
-  tableData: any[]
-}
+  columnsData: any[];
+  tableData: any[];
+};
 
 const CheckTable = (props: Props) => {
   const { columnsData, tableData } = props;
@@ -58,8 +58,8 @@ const CheckTable = (props: Props) => {
           {...getTableProps()}
           className="w-full"
           color="gray-500"
-        // variant="simple"
-        // mb="24px"
+          // variant="simple"
+          // mb="24px"
         >
           <thead>
             {headerGroups.map((headerGroup, index) => (

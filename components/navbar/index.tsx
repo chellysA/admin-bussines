@@ -12,7 +12,7 @@ import {
 } from "react-icons/io";
 import Dropdown from "@/components/dropdown";
 
-import routes from "@/data/routes";
+import routes from "@/data/template-routes";
 import { useSidebarContext } from "@/providers/SidebarProvider";
 import { useThemeContext } from "@/providers/ThemeProvider";
 

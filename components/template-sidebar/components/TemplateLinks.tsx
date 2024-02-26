@@ -6,13 +6,13 @@ import { usePathname } from "next/navigation";
 import DashIcon from "@/components/icons/DashIcon";
 // chakra imports
 
-import routes from "@/data/routes";
+import routes from "@/data/template-routes";
 
 type Props = {
   onClickRoute?: (e: MouseEvent<HTMLElement>) => any | any;
 };
 
-export function SidebarLinks({ onClickRoute }: Props) {
+export function SidebarTemplateLinks({ onClickRoute }: Props) {
   // Chakra color mode
   const pathname = usePathname();
 
@@ -24,7 +24,7 @@ export function SidebarLinks({ onClickRoute }: Props) {
   const createLinks = (routes: any) => {
     return routes.map((route: any, index: number) => {
       if (
-        route.layout === "/dashboard" ||
+        route.layout === "/template" ||
         route.layout === "/auth" ||
         route.layout === "/rtl"
       ) {
@@ -69,4 +69,4 @@ export function SidebarLinks({ onClickRoute }: Props) {
   return createLinks(routes);
 }
 
-export default SidebarLinks;
+export default SidebarTemplateLinks;

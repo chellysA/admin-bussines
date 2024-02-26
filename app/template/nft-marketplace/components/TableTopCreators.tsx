@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useMemo } from "react";
 import Card from "@/components/card";
@@ -11,9 +11,9 @@ import {
 } from "react-table";
 
 type Props = {
-  columnsData: any[]
-  tableData: any[]
-}
+  columnsData: any[];
+  tableData: any[];
+};
 
 function TopCreatorTable(props: Props) {
   const { columnsData, tableData } = props;
