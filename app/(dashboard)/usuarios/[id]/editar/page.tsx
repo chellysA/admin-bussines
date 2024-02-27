@@ -1,10 +1,10 @@
 import UsersForm from "../../components/usersForm";
 
-const Details = () => {
+const Edit = () => {
   return (
     <div className="mt-10">
-      <UsersForm isReadOnly />
+      <UsersForm buttonLabel="Aplicar Cambios" />
     </div>
   );
 };
-export default Details;
+export default Edit;

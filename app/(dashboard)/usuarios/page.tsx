@@ -5,6 +5,7 @@ import tableDataUsers from "./variables/tableDataUsers.json";
 import { columnsDataUsers } from "./variables/columnsDataUsers";
 import Select from "@/components/select";
 import { IoMdPersonAdd } from "react-icons/io";
+import Link from "next/link";
 
 const Usuarios = () => {
   return (
@@ -23,11 +24,13 @@ const Usuarios = () => {
         </div>
       </div>
       <div className="flex justify-end">
-        <Button
-          label={<IoMdPersonAdd className="text-[25px] mx-5" />}
-          className="mt-4"
-          title="Crear Usuario"
-        />
+        <Link href="/usuarios/crear-usuario">
+          <Button
+            label={<IoMdPersonAdd className="text-[25px] mx-5" />}
+            className="mt-4"
+            title="Crear Usuario"
+          />
+        </Link>
       </div>
       <div className="mt-8">
         <BasicTable
