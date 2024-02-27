@@ -1,9 +1,10 @@
 import Button from "@/components/button";
 import InputField from "@/components/fields/InputField";
-import BasicTable from "../../../components/tables/BasicTable";
+import BasicTable from "../../../components/tables/basicTable";
 import tableDataUsers from "./variables/tableDataUsers.json";
 import { columnsDataUsers } from "./variables/columnsDataUsers";
 import Select from "@/components/select";
+import { IoMdPersonAdd } from "react-icons/io";
 
 const Usuarios = () => {
   return (
@@ -17,10 +18,18 @@ const Usuarios = () => {
             label="Cargo"
           />
         </div>
-        <div className="md:ml-12 mt-6 md:mt-2 grid grid-cols-1 col-span-1">
-          <Button label="Buscar" className="mb-4" />
-          <Button label="Crear Usuario" />
+        <div
+          className="md:ml-12 mt-6 md:mt-2 grid grid-cols-1 col-span-1"
+          title="Buscar Usuario"
+        >
+          <Button label="Buscar" />
         </div>
+      </div>
+      <div className="flex justify-end" title="Crear Usuario">
+        <Button
+          label={<IoMdPersonAdd className="text-[25px] mx-5" />}
+          className="mt-4"
+        />
       </div>
       <div className="mt-8">
         <BasicTable
