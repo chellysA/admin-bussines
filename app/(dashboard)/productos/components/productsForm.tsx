@@ -1,4 +1,5 @@
 import Button from "@/components/button";
+import Checkbox from "@/components/checkbox/CheckboxWithLabel";
 import InputField from "@/components/fields/InputField";
 import Select from "@/components/select";
 
@@ -32,6 +33,14 @@ const ProductsForm = (props: Props) => {
           />
         </div>
         <InputField label="Precio" disabled={isReadOnly && true} />
+        <Checkbox
+          label="Incluye Iva?"
+          checkboxes={[
+            { id: "check1", optionsLabel: "Si" },
+            { id: "check2", optionsLabel: "No" },
+          ]}
+          disabled={isReadOnly}
+        />
         <InputField label="Cantidad en almacén" disabled={isReadOnly && true} />
         <InputField label="Stock" disabled={isReadOnly && true} />
       </div>

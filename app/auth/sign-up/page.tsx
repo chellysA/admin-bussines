@@ -1,6 +1,5 @@
 import { FC } from "react";
 import InputField from "@/components/fields/InputField";
-import FixedPlugin from "@/components/fixedPlugin/FixedPlugin";
 import Link from "next/link";
 
 type Props = {};

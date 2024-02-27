@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import CardMenu from "@/components/card/CardMenu";
 import Card from "@/components/card";
-import Checkbox from "@/components/checkbox";
+import Checkbox from "@/components/checkbox/Checkbox";
 
 import {
   useGlobalFilter,
