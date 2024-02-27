@@ -5,6 +5,7 @@ import {
   MdBarChart,
   MdPerson,
   MdOutlineSupervisorAccount,
+  MdBusinessCenter,
 } from "react-icons/md";
 
 const routes = [
@@ -13,6 +14,12 @@ const routes = [
     layout: "/dashboard",
     path: "usuarios",
     icon: <MdOutlineSupervisorAccount className="h-6 w-6" />,
+  },
+  {
+    name: "Productos",
+    layout: "/dashboard",
+    path: "productos",
+    icon: <MdBusinessCenter className="h-6 w-6" />,
   },
   {
     name: "Main Dashboard",
