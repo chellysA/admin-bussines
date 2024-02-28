@@ -18,9 +18,9 @@ const ProductsForm = (props: Props) => {
         <InputField label="Categoria" disabled={isReadOnly && true} />
         <div>
           <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
-            Cede
+            Sede
           </p>
-          <Select label="Cede 1" options={[]} disabled={isReadOnly && true} />
+          <Select label="Sede 1" options={[]} disabled={isReadOnly && true} />
         </div>
         <div>
           <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
