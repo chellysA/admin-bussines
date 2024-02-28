@@ -94,53 +94,53 @@ const ColumnsUsersTable = (props: Props) => {
             })}
           </tbody>
         </table>
-        <div className="flex items-center justify-end gap-2 my-4">
-          <span>Filas por pagina:</span>
-          <div className="min-w-[70px] mr-4">
-            {" "}
-            <Select
-              options={[10, 20, 30, 40, 50]}
-              label=""
-              onChange={(value) => {
-                tableInstance.setPageSize(Number(value));
-              }}
-            />
-          </div>
-          <span className="flex items-center gap-2 mr-4">
-            <div>Pagina</div>
-            <strong>
-              {tableInstance.getState().pagination.pageIndex + 1}{" "}
-            </strong>
-            of <strong>{tableInstance.getPageCount()}</strong>
-          </span>
-          <Button
-            onClick={() => tableInstance.setPageIndex(0)}
-            disabled={!tableInstance.getCanPreviousPage()}
-            label="<<"
-            title="Volver a la pag. 1"
-          />
+      </div>
+      <div className="flex items-center justify-end gap-2 my-4">
+              <span>Filas por pagina:</span>
+              <div className="min-w-[70px] mr-4">
+                {" "}
+                <Select
+                  options={[10, 20, 30, 40, 50]}
+                  label=""
+                  onChange={(value) => {
+                    tableInstance.setPageSize(Number(value));
+                  }}
+                />
+              </div>
+              <span className="flex items-center gap-2 mr-4">
+                <div>Pagina</div>
+                <strong>
+                  {tableInstance.getState().pagination.pageIndex + 1}{" "}
+                </strong>
+                of <strong>{tableInstance.getPageCount()}</strong>
+              </span>
+              <Button
+                onClick={() => tableInstance.setPageIndex(0)}
+                disabled={!tableInstance.getCanPreviousPage()}
+                label="<<"
+                title="Volver a la pag. 1"
+              />
 
-          <Button
-            onClick={() => tableInstance.previousPage()}
-            disabled={!tableInstance.getCanPreviousPage()}
-            label="<"
-            title="Ir a la pag. anterior"
-          />
-          <Button
-            onClick={() => tableInstance.nextPage()}
-            disabled={!tableInstance.getCanNextPage()}
-            label=">"
-            title="Ir a la siguiente pag."
-          />
-          <Button
-            onClick={() =>
-              tableInstance.setPageIndex(tableInstance.getPageCount() - 1)
-            }
-            disabled={!tableInstance.getCanNextPage()}
-            label=">>"
-            title="Ir a la última pag."
-          />
-        </div>
+              <Button
+                onClick={() => tableInstance.previousPage()}
+                disabled={!tableInstance.getCanPreviousPage()}
+                label="<"
+                title="Ir a la pag. anterior"
+              />
+              <Button
+                onClick={() => tableInstance.nextPage()}
+                disabled={!tableInstance.getCanNextPage()}
+                label=">"
+                title="Ir a la siguiente pag."
+              />
+              <Button
+                onClick={() =>
+                  tableInstance.setPageIndex(tableInstance.getPageCount() - 1)
+                }
+                disabled={!tableInstance.getCanNextPage()}
+                label=">>"
+                title="Ir a la última pag."
+              />
       </div>
     </Card>
   );
