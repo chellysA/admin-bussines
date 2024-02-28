@@ -102,25 +102,15 @@ const ColumnsUsersTable = (props: Props) => {
           </tbody>
         </table>
       </div>
-      <div className="flex items-center justify-end gap-2 my-4">
-              <span>Filas por pagina:</span>
-              <div className="min-w-[70px] mr-4">
-                {" "}
-                <Select
-                  options={[10, 20, 30, 40, 50]}
-                  label=""
-                  onChange={(value) => {
-                    tableInstance.setPageSize(Number(value));
-                  }}
-                />
-              </div>
-              <span className="flex items-center gap-2 mr-4">
-                <div>Pagina</div>
-                <strong>
-                  {tableInstance.getState().pagination.pageIndex + 1}{" "}
-                </strong>
-                of <strong>{tableInstance.getPageCount()}</strong>
-              </span>
+      <div className="flex flex-col md:flex-row items-center justify-center md:justify-end gap-3 my-4">
+        <div className="flex gap-2 mb-2 md:mb-0">
+           <span className="flex items-center gap-2 mr-4">
+              <div>Pagina</div>   
+              <strong>{tableInstance.getState().pagination.pageIndex + 1}{" "}
+              </strong>    
+                  of 
+              <strong>{tableInstance.getPageCount()}</strong>
+            </span>
               <Button
                 onClick={() => tableInstance.setPageIndex(0)}
                 disabled={!tableInstance.getCanPreviousPage()}
@@ -148,6 +138,20 @@ const ColumnsUsersTable = (props: Props) => {
                 label=">>"
                 title="Ir a la última pag."
               />
+        </div>
+        <div className="flex gap-2 items-center ">
+          <span>Filas por pagina:</span>
+          <div className="min-w-[70px] mr-4">
+                {" "}
+                <Select
+                  options={[10, 20, 30, 40, 50]}
+                  label=""
+                  onChange={(value) => {
+                    tableInstance.setPageSize(Number(value));
+                  }}
+                />
+          </div>
+        </div>
       </div>
     </Card>
   );
