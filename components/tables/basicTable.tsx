@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import {useMemo, useState } from "react";
 import {
   getCoreRowModel,
   getFilteredRowModel,
@@ -12,11 +12,18 @@ import {
 import CardMenu from "@/components/card/CardMenu";
 import Card from "@/components/card";
 import Button from "@/components/button";
-import InputField from "@/components/fields/InputField";
 import Select from "@/components/select";
 
+interface CellProps {
+  row: {
+    original: {
+      iva: string;
+    };
+  };
+}
+
 type Props = {
-  columnsData: any[];
+  columnsData: { accessorKey: string; header: string; cell?: (props: CellProps) => JSX.Element }[]
   tableData: any[];
   title?: string;
 };
