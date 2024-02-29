@@ -27,9 +27,9 @@ const UsersForm = (props: Props) => {
         </div>
         <div>
           <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
-            Cede
+            Sede
           </p>
-          <Select label="cede 1" options={[]} disabled={isReadOnly && true} />
+          <Select label="Sede 1" options={[]} disabled={isReadOnly && true} />
         </div>
         <InputField label="Email" disabled={isReadOnly && true} />
         <InputField label="Nombre de Usuario" disabled={isReadOnly && true} />
