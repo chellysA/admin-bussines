@@ -1,7 +1,10 @@
+"use client"
+import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
 import ProductsForm from "../components/productsForm";
 import { MdAddBusiness } from "react-icons/md";
 
 const CreateUser = () => {
+  useChangeTitleLayoutAdmin("Agregar Producto")
   return (
     <div className="mt-10">
       <ProductsForm
