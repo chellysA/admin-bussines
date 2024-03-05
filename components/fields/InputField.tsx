@@ -1,21 +1,6 @@
-import { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
+import { IInputProps } from "@/types/components/input";
 
-type Props = {
-  label?: string;
-  id?: string;
-  className?: string;
-  type?: HTMLInputTypeAttribute;
-  placeholder?: string;
-  variant?: any;
-  isError?: boolean;
-  isSuccess?: boolean;
-  disabled?: boolean;
-  value?: string | number;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
-};
-
-// Custom components
-function InputField(props: Props) {
+function InputField(props: IInputProps) {
   const {
     label,
     id,
@@ -28,8 +13,8 @@ function InputField(props: Props) {
     disabled,
     value,
     onChange,
+    error
   } = props;
-
   return (
     <div className={className}>
       {label && (
@@ -61,6 +46,7 @@ function InputField(props: Props) {
             : "border-gray-200 dark:border-white/10 focus:border-blueSecondary dark:focus:border-blueSecondary dark:text-white"
         }`}
       />
+      {isError && <p className="text-red-500 dark:!text-red-400 text-sm">{`* ${error}`}</p>}
     </div>
   );
 }
