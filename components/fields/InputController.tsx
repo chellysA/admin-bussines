@@ -3,10 +3,10 @@ import InputField from "./InputField";
 import { IInputProps } from "@/types/components/input";
 
 interface InputControllerProps extends IInputProps {
-  control: Control<any>
+  control: Control<any>;
 }
 
-const InputController= ({
+const InputController = ({
   variant,
   className,
   label,
@@ -15,8 +15,9 @@ const InputController= ({
   type = "text",
   control,
   error,
-  isError
-}:InputControllerProps) => {
+  isError,
+  disabled,
+}: InputControllerProps) => {
   const { field } = useController({ name: id, control });
 
   return (
@@ -31,6 +32,7 @@ const InputController= ({
       value={field.value}
       error={error}
       isError={isError}
+      disabled={disabled}
     />
   );
 };
