@@ -5,7 +5,6 @@ import Button from "@/components/button";
 import Link from "next/link";
 import { useForm, FormProvider } from "react-hook-form";
 import InputController from "@/components/fields/InputController";
-import { DevTool } from "@hookform/devtools";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LogInSchema from "@/data/validations/Log-in-schema";
 import { useRouter } from "next/navigation";
@@ -25,7 +24,6 @@ const LogIn: FC<Props> = () => {
     formState: { errors },
     handleSubmit,
   } = form;
-  const methods = useForm();
   const router = useRouter();
 
   const onSubmit = async (data: any) => {
@@ -109,7 +107,6 @@ const LogIn: FC<Props> = () => {
           </Link>
         </div>
       </form>
-      <DevTool control={control} />
     </>
   );
 };
