@@ -1,5 +1,4 @@
-
-"use client"
+"use client";
 import Link from "next/link";
 import { FiAlignJustify, FiSearch } from "react-icons/fi";
 import { BsArrowBarUp } from "react-icons/bs";
@@ -12,7 +11,7 @@ import Dropdown from "@/components/dropdown";
 
 import { useSidebarContext } from "@/providers/SidebarProvider";
 import { useThemeContext } from "@/providers/ThemeProvider";
-import { useCurrentRouteContext } from "@/providers/CurrentRouteProvider"
+import { useCurrentRouteContext } from "@/providers/CurrentRouteProvider";
 
 type Props = {};
 
@@ -167,7 +166,7 @@ const Navbar = ({}: Props) => {
             <div className="p-4">
               <div className="flex items-center gap-2">
                 <p className="text-sm font-bold text-navy-700 dark:text-white">
-                  👋 Hey, Adela
+                  👋 Hola, Adela
                 </p>{" "}
               </div>
             </div>
@@ -175,22 +174,16 @@ const Navbar = ({}: Props) => {
 
             <div className="flex flex-col p-4">
               <Link
-                href=" "
+                href="/perfil/configurar-perfil"
                 className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
               >
-                Profile Settings
+                Configuraciones del perfil
               </Link>
               <Link
-                href=" "
-                className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
-              >
-                Newsletter Settings
-              </Link>
-              <Link
-                href="/auth"
+                href="/auth/log-in"
                 className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
               >
-                Log Out
+                Cerrar Sesion
               </Link>
             </div>
           </div>

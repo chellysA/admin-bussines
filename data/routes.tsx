@@ -6,6 +6,7 @@ import {
   MdPerson,
   MdOutlineSupervisorAccount,
   MdBusinessCenter,
+  MdBusiness,
 } from "react-icons/md";
 
 const routes = [
@@ -41,10 +42,16 @@ const routes = [
     path: "data-tables",
   },
   {
-    name: "Profile",
+    name: "Perfil",
     layout: "/dashboard",
-    path: "profile",
+    path: "perfil",
     icon: <MdPerson className="h-6 w-6" />,
+  },
+  {
+    name: "Negocio",
+    layout: "/dashboard",
+    path: "negocio",
+    icon: <MdBusiness className="h-6 w-6" />,
   },
   {
     name: "RTL Admin",

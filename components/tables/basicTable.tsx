@@ -1,6 +1,6 @@
 "use client";
 
-import {useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   getCoreRowModel,
   getFilteredRowModel,
@@ -23,12 +23,16 @@ interface CellProps {
 }
 
 type Props = {
-  columnsData: { accessorKey: string; header: string; cell?: (props: CellProps) => JSX.Element }[]
+  columnsData: {
+    accessorKey: string;
+    header: string;
+    cell?: (props: CellProps) => JSX.Element;
+  }[];
   tableData: any[];
   title?: string;
 };
 
-const ColumnsUsersTable = (props: Props) => {
+const BasicTable = (props: Props) => {
   const { columnsData, tableData, title = "4-Columns Table" } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
@@ -69,7 +73,7 @@ const ColumnsUsersTable = (props: Props) => {
                     <div className="flex w-full justify-between pr-10 text-xs tracking-wide text-gray-600">
                       {flexRender(
                         column.column.columnDef.header,
-                        column.getContext()
+                        column.getContext(),
                       )}
                     </div>
                   </th>
@@ -90,7 +94,7 @@ const ColumnsUsersTable = (props: Props) => {
                         <div>
                           {flexRender(
                             cell.column.columnDef.cell,
-                            cell.getContext()
+                            cell.getContext(),
                           )}
                         </div>
                       </td>
@@ -103,54 +107,52 @@ const ColumnsUsersTable = (props: Props) => {
         </table>
       </div>
       <div className="flex items-center justify-end gap-2 my-4">
-              <span>Filas por pagina:</span>
-              <div className="min-w-[70px] mr-4">
-                {" "}
-                <Select
-                  options={[10, 20, 30, 40, 50]}
-                  label=""
-                  onChange={(value) => {
-                    tableInstance.setPageSize(Number(value));
-                  }}
-                />
-              </div>
-              <span className="flex items-center gap-2 mr-4">
-                <div>Pagina</div>
-                <strong>
-                  {tableInstance.getState().pagination.pageIndex + 1}{" "}
-                </strong>
-                of <strong>{tableInstance.getPageCount()}</strong>
-              </span>
-              <Button
-                onClick={() => tableInstance.setPageIndex(0)}
-                disabled={!tableInstance.getCanPreviousPage()}
-                label="<<"
-                title="Volver a la pag. 1"
-              />
+        <span>Filas por pagina:</span>
+        <div className="min-w-[70px] mr-4">
+          {" "}
+          <Select
+            options={[10, 20, 30, 40, 50]}
+            label=""
+            onChange={(value) => {
+              tableInstance.setPageSize(Number(value));
+            }}
+          />
+        </div>
+        <span className="flex items-center gap-2 mr-4">
+          <div>Pagina</div>
+          <strong>{tableInstance.getState().pagination.pageIndex + 1} </strong>
+          of <strong>{tableInstance.getPageCount()}</strong>
+        </span>
+        <Button
+          onClick={() => tableInstance.setPageIndex(0)}
+          disabled={!tableInstance.getCanPreviousPage()}
+          label="<<"
+          title="Volver a la pag. 1"
+        />
 
-              <Button
-                onClick={() => tableInstance.previousPage()}
-                disabled={!tableInstance.getCanPreviousPage()}
-                label="<"
-                title="Ir a la pag. anterior"
-              />
-              <Button
-                onClick={() => tableInstance.nextPage()}
-                disabled={!tableInstance.getCanNextPage()}
-                label=">"
-                title="Ir a la siguiente pag."
-              />
-              <Button
-                onClick={() =>
-                  tableInstance.setPageIndex(tableInstance.getPageCount() - 1)
-                }
-                disabled={!tableInstance.getCanNextPage()}
-                label=">>"
-                title="Ir a la última pag."
-              />
+        <Button
+          onClick={() => tableInstance.previousPage()}
+          disabled={!tableInstance.getCanPreviousPage()}
+          label="<"
+          title="Ir a la pag. anterior"
+        />
+        <Button
+          onClick={() => tableInstance.nextPage()}
+          disabled={!tableInstance.getCanNextPage()}
+          label=">"
+          title="Ir a la siguiente pag."
+        />
+        <Button
+          onClick={() =>
+            tableInstance.setPageIndex(tableInstance.getPageCount() - 1)
+          }
+          disabled={!tableInstance.getCanNextPage()}
+          label=">>"
+          title="Ir a la última pag."
+        />
       </div>
     </Card>
   );
 };
 
-export default ColumnsUsersTable;
+export default BasicTable;
