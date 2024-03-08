@@ -3,7 +3,7 @@ import InputField from "@/components/fields/InputField";
 import BasicTable from "../../../components/tables/basicTable";
 import Select from "@/components/select";
 import Link from "next/link";
-import { MdAddBusiness } from "react-icons/md";
+import { MdAddCircle } from "react-icons/md";
 import { columnsDataProducts } from "./variables/columnsDataProducts";
 import tableDataProducts from "./variables/tableDataProducts.json";
 
@@ -17,17 +17,24 @@ const Productos = () => {
           <Select options={["Unidad", "Kg"]} label="Presentación" />
         </div>
         <div className="md:ml-12 mt-6 md:mt-2 grid grid-cols-1 col-span-1">
-          <Button label="Buscar" title="Buscar Usuario" />
+          <Button label="Buscar" title="Buscar Producto" />
         </div>
       </div>
-      <div className="flex justify-end">
+      <div className="flex flex-col items-end">
         <Link href="/productos/agregar-producto">
           <Button
-            label={<MdAddBusiness className="text-[25px] mx-5" />}
+            label={<><MdAddCircle className="text-[25px] mr-2" /><>Producto</></>}
             className="mt-4"
             title="Añadir Producto"
           />
         </Link>
+     
+          <Button
+            label={<><MdAddCircle className="text-[25px] mr-2" /><>Categoria</></>}
+            className="mt-4"
+            title="Añadir Categoria"
+          />
+      
       </div>
       <div className="mt-8">
         <BasicTable

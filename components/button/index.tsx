@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { JsxElement } from "typescript";
 
 type Props = {
-  label: string | React.ReactElement;
+  label: string | React.ReactElement | React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
   variant?: "full" | "normal";

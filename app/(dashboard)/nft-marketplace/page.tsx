@@ -7,9 +7,9 @@ import NftCard from "@/components/card/NftCard";
 import tableDataTopCreators from "./variables/tableDataTopCreators.json";
 import { tableColumnsTopCreators } from "./variables/tableColumnsTopCreators";
 
-export const metadata: Metadata = {
-  title: 'NFT | Horizon UI by Ories',
-}
+// export const metadata: Metadata = {
+//   title: 'NFT | Horizon UI by Ories',
+// }
 
 const NFTMarketPlacePage = () => {
   const bidders = ['/img/avatars/avatar1.png', '/img/avatars/avatar2.png', '/img/avatars/avatar3.png']
