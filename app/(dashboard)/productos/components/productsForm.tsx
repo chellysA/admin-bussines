@@ -37,7 +37,6 @@ const ProductsForm = (props: Props) => {
 
   const onSubmit = async (data: any) => {
     try {
-      await ProductsSchema.validate(data);
       console.log("Datos válidos:", data);
       router.push("/productos");
     } catch (error) {

@@ -36,7 +36,6 @@ const UsersForm = (props: Props) => {
 
   const onSubmit = async (data: any) => {
     try {
-      await CreateUsersSchema.validate(data);
       console.log("Datos válidos:", data);
       router.push("/usuarios");
     } catch (error) {
