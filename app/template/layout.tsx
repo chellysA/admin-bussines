@@ -1,7 +1,8 @@
 import Navbar from "@/components/navbar";
-import Sidebar from "@/components/template-sidebar";
+import Sidebar from "@/components/sidebar";
 import Footer from "@/components/footer/Footer";
 import SidebarProvider from "@/providers/SidebarProvider";
+import routes from "@/data/template-routes";
 
 export default function TemplateLayout({
   children, // will be a page or nested layout
@@ -12,7 +13,7 @@ export default function TemplateLayout({
     <>
       <SidebarProvider>
         <section className="flex h-full w-full">
-          <Sidebar />
+          <Sidebar routes={routes}/>
 
           {/* Navbar & Main Content */}
           <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">

@@ -4,15 +4,15 @@ import React, { MouseEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import DashIcon from "@/components/icons/DashIcon";
+import { IRoute } from "@/types/routes";
 // chakra imports
-
-import routes from "@/data/routes";
 
 type Props = {
   onClickRoute?: (e: MouseEvent<HTMLElement>) => any | any;
+  routes: {routes: IRoute[]};
 };
 
-export function SidebarLinks({ onClickRoute }: Props) {
+export function SidebarLinks({ onClickRoute, routes }: Props) {
   // Chakra color mode
   const pathname = usePathname();
 
@@ -21,13 +21,9 @@ export function SidebarLinks({ onClickRoute }: Props) {
     return pathname.includes(routeName);
   };
 
-  const createLinks = (routes: any) => {
+  const createLinks = (routesObj:{routes:IRoute[]}) => {
+    const { routes } = routesObj;
     return routes.map((route: any, index: number) => {
-      if (
-        route.layout === "/dashboard" ||
-        route.layout === "/auth" ||
-        route.layout === "/rtl"
-      ) {
         return (
           // <Link key={index} href={route.layout + "/" + route.path}>
           <Link key={index} href={route.path} onClick={onClickRoute}>
@@ -61,7 +57,6 @@ export function SidebarLinks({ onClickRoute }: Props) {
             </div>
           </Link>
         );
-      }
     });
   };
 

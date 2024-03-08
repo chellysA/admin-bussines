@@ -1,14 +1,12 @@
 // Icon Imports
+import { IRoute } from "@/types/routes";
 import {
   MdHome,
-  MdOutlineShoppingCart,
-  MdBarChart,
-  MdPerson,
   MdOutlineSupervisorAccount,
   MdBusinessCenter,
 } from "react-icons/md";
 
-const routes = [
+const routes:IRoute[] = [
   {
     name: "Usuarios",
     layout: "/dashboard",
