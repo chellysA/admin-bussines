@@ -18,8 +18,8 @@ export const columnsDataProducts = [
     header: "CATEGORIA",
   },
   {
-    accessorKey: "cede",
-    header: "CEDE",
+    accessorKey: "sede",
+    header: "SEDE",
   },
   {
     accessorKey: "presentacion",

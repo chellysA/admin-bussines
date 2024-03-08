@@ -16,15 +16,11 @@ type LabelWithCheckboxesProps = {
 const Checkbox = (props: CheckboxProps) => {
   const { id, className, optionsLabel, disabled, isError, isSuccess } = props;
   return (
-    <label
-      htmlFor={id}
-      className="text-sm text-navy-700 dark:text-white font-bold flex mt-2"
-    >
-      {optionsLabel && optionsLabel}
+    <div className="flex mt-2">
       <input
         id={id}
         type="radio"
-        className={`ml-2 defaultCheckbox relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center 
+        className={`mr-2 defaultCheckbox relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center 
           justify-center rounded-md border border-gray-300 text-white/0 outline-none transition duration-[0.2s]
           checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:border-none checked:bg-indigo-500 dark:checked:bg-indigo-400 ${
             disabled
@@ -38,7 +34,12 @@ const Checkbox = (props: CheckboxProps) => {
         name="weekly"
         disabled={disabled}
       />
-    </label>
+       <label
+      htmlFor={id}
+      className="text-sm text-navy-700 dark:text-white font-bold">
+      {optionsLabel && optionsLabel}
+      </label>
+    </div>
   );
 };
 

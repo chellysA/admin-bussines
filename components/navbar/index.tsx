@@ -12,32 +12,22 @@ import {
 } from "react-icons/io";
 import Dropdown from "@/components/dropdown";
 
-import routes from "@/data/template-routes";
 import { useSidebarContext } from "@/providers/SidebarProvider";
 import { useThemeContext } from "@/providers/ThemeProvider";
 
 type Props = {};
 
 const Navbar = ({}: Props) => {
-  const [currentRoute, setCurrentRoute] = useState("Main Dashboard");
+  const [currentRoute, setCurrentRoute] = useState<string | undefined>("Main Dashboard");
 
   const pathname = usePathname();
   const { setOpenSidebar } = useSidebarContext();
   const { theme, setTheme } = useThemeContext();
 
   useEffect(() => {
-    getActiveRoute(routes);
+    let lastRoute= pathname.split("/").filter(part => part !== '').pop()?.replace(/-/g, ' ')
+    setCurrentRoute(lastRoute)
   }, [pathname]);
-
-  const getActiveRoute = (routes: any) => {
-    let activeRoute = "Main Dashboard";
-    for (let i = 0; i < routes.length; i++) {
-      if (window.location.href.indexOf(routes[i].path) !== -1) {
-        setCurrentRoute(routes[i].name);
-      }
-    }
-    return activeRoute;
-  };
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
