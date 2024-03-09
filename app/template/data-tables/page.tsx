@@ -1,3 +1,4 @@
+"use client"
 import { type Metadata } from "next";
 import CheckTable from "./components/CheckTable";
 import DevelopmentTable from "./components/DevelopmentTable";
@@ -14,12 +15,15 @@ import tableDataDevelopment from "./variables/tableDataDevelopment.json";
 import tableDataCheck from "./variables/tableDataCheck.json";
 import tableDataColumns from "./variables/tableDataColumns.json";
 import tableDataComplex from "./variables/tableDataComplex.json";
+import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
 
-export const metadata: Metadata = {
-  title: "DataTables | Horizon UI by Ories",
-};
+
+// export const metadata: Metadata = {
+//   title: 'DataTables | Horizon UI by Ories',
+// }
 
 const DataTablesPage = () => {
+  useChangeTitleLayoutAdmin("Data tables")
   return (
     <div>
       <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2">

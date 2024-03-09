@@ -1,3 +1,4 @@
+"use client"
 import Button from "@/components/button";
 import InputField from "@/components/fields/InputField";
 import BasicTable from "../../../components/tables/basicTable";
@@ -6,8 +7,10 @@ import { columnsDataUsers } from "./variables/columnsDataUsers";
 import Select from "@/components/select";
 import { IoMdPersonAdd } from "react-icons/io";
 import Link from "next/link";
+import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
 
 const Usuarios = () => {
+  useChangeTitleLayoutAdmin("Usuarios")
   return (
     <>
       <div className="mt-3 grid grid-cols-1 md:gap-5 md:grid-cols-3">
