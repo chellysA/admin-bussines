@@ -6,13 +6,16 @@ import { useSidebarContext } from "@/providers/SidebarProvider";
 import useMobileView from "@/hooks/useMobileView";
 import Links from "./components/Links";
 import SidebarCard from "./components/SidebarCard";
+import { IRoute } from "@/types/routes";
 
-type Props = {};
+type Props = {
+  routes: IRoute[];
+};
 
-const Sidebar: FC<Props> = () => {
+const Sidebar = (routes: Props) => {
   const { isMobile } = useMobileView();
   const { openSidebar, setOpenSidebar } = useSidebarContext();
-  const [paymentNotification] = useState(false);
+  const [paymentNotification] = useState(true);
 
   return (
     <>
@@ -45,6 +48,7 @@ const Sidebar: FC<Props> = () => {
         <ul className="mb-auto pt-1">
           <Links
             onClickRoute={isMobile ? () => setOpenSidebar(false) : undefined}
+            routes={routes}
           />
         </ul>
 

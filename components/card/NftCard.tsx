@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { FC, useState } from "react";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
@@ -6,19 +6,27 @@ import Card from "@/components/card";
 import { type StaticImageData } from "next/image";
 
 type Props = {
-  title?: string
-  author?: string
-  price?: string | number
-  image?: string | StaticImageData
-  bidders?: any[]
-  className?: string
-}
+  title?: string;
+  author?: string;
+  price?: string | number;
+  image?: string | StaticImageData;
+  bidders?: any[];
+  className?: string;
+};
 
-const NftCard: FC<Props> = ({ title, author, price, image, bidders, className }) => {
+const NftCard: FC<Props> = ({
+  title,
+  author,
+  price,
+  image,
+  bidders,
+  className,
+}) => {
   const [heart, setHeart] = useState(true);
 
   return (
-    <Card className={`flex flex-col w-full h-full !p-4 3xl:p-![18px] bg-white ${className}`}
+    <Card
+      className={`flex flex-col w-full h-full !p-4 3xl:p-![18px] bg-white ${className}`}
     >
       <div className="h-full w-full">
         <div className="relative w-full">
@@ -77,9 +85,7 @@ const NftCard: FC<Props> = ({ title, author, price, image, bidders, className })
               Current Bid: {price} <span>ETH</span>
             </p>
           </div>
-          <button
-            className="linear rounded-[20px] bg-brand-900 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-800 active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:opacity-90"
-          >
+          <button className="linear rounded-[20px] bg-brand-900 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-800 active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:opacity-90">
             Place Bid
           </button>
         </div>

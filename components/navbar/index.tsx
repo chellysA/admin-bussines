@@ -1,8 +1,5 @@
 "use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { FiAlignJustify, FiSearch } from "react-icons/fi";
 import { BsArrowBarUp } from "react-icons/bs";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
@@ -14,20 +11,14 @@ import Dropdown from "@/components/dropdown";
 
 import { useSidebarContext } from "@/providers/SidebarProvider";
 import { useThemeContext } from "@/providers/ThemeProvider";
+import { useCurrentRouteContext } from "@/providers/CurrentRouteProvider";
 
 type Props = {};
 
 const Navbar = ({}: Props) => {
-  const [currentRoute, setCurrentRoute] = useState<string | undefined>("Main Dashboard");
-
-  const pathname = usePathname();
   const { setOpenSidebar } = useSidebarContext();
   const { theme, setTheme } = useThemeContext();
-
-  useEffect(() => {
-    let lastRoute= pathname.split("/").filter(part => part !== '').pop()?.replace(/-/g, ' ')
-    setCurrentRoute(lastRoute)
-  }, [pathname]);
+  const { currentRoute } = useCurrentRouteContext();
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
