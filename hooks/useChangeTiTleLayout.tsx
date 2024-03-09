@@ -7,8 +7,7 @@ const useChangeTitleLayoutAdmin=(title: string)=>{
 
   useEffect(()=>{
     changeRoute && changeRoute(title)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[title])
+  },[title, changeRoute])
 }
 
 export default useChangeTitleLayoutAdmin
