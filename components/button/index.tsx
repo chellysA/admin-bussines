@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { ButtonHTMLAttributes, useMemo } from "react";
 import { JsxElement } from "typescript";
 
 type Props = {
@@ -8,6 +8,7 @@ type Props = {
   variant?: "full" | "normal";
   className?: string;
   title?: string;
+  type?: "submit" | "reset" | "button";
 };
 
 const Button = (props: Props) => {
@@ -18,6 +19,7 @@ const Button = (props: Props) => {
     className,
     onClick,
     title,
+    type = "button",
   } = props;
   const styles = useMemo(() => ({ full: "w-full", normal: "" }), [variant]);
 
@@ -27,6 +29,7 @@ const Button = (props: Props) => {
       disabled={disabled}
       onClick={onClick}
       title={title}
+      type={type}
     >
       {label}
     </button>
