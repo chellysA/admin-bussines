@@ -13,7 +13,7 @@ type Props = {
   buttonTitle?: string;
 };
 
-const ProductsForm = (props: Props) => {
+const ProductsForm = ({ isReadOnly = false, buttonLabel = "", buttonTitle }: Props) => {
   const form = useForm({
     defaultValues: {
       nombre: "",
@@ -33,11 +33,8 @@ const ProductsForm = (props: Props) => {
   } = form;
   const router = useRouter();
 
-  const { isReadOnly = false, buttonLabel = "", buttonTitle } = props;
-
   const onSubmit = async (data: any) => {
     try {
-      await ProductsSchema.validate(data);
       console.log("Datos válidos:", data);
       router.push("/productos");
     } catch (error) {
@@ -51,7 +48,7 @@ const ProductsForm = (props: Props) => {
         <InputController
           id="nombre"
           label="Nombre"
-          disabled={isReadOnly && true}
+          disabled={isReadOnly}
           control={control}
           error={errors.nombre?.message}
           isError={!!errors.nombre}
@@ -64,7 +61,7 @@ const ProductsForm = (props: Props) => {
             id="categoria"
             options={["Alimentos", "hogar", "Higiene"]}
             label="Categoria"
-            disabled={isReadOnly && true}
+            disabled={isReadOnly}
             control={control}
             error={errors.categoria?.message}
             isError={!!errors.categoria}
@@ -78,7 +75,7 @@ const ProductsForm = (props: Props) => {
             id="sede"
             label="Sede 1"
             options={["1", "2"]}
-            disabled={isReadOnly && true}
+            disabled={isReadOnly}
             control={control}
             error={errors.sede?.message}
             isError={!!errors.sede}
@@ -92,7 +89,7 @@ const ProductsForm = (props: Props) => {
             id="presentacion"
             label="Kg"
             options={["Unidad", "Docena"]}
-            disabled={isReadOnly && true}
+            disabled={isReadOnly}
             control={control}
             isError={!!errors.presentacion}
             error={errors.presentacion?.message}
@@ -101,7 +98,7 @@ const ProductsForm = (props: Props) => {
         <InputController
           id="precio"
           label="Precio"
-          disabled={isReadOnly && true}
+          disabled={isReadOnly}
           control={control}
           isError={!!errors.precio}
           error={errors.precio?.message}
@@ -121,7 +118,7 @@ const ProductsForm = (props: Props) => {
         <InputController
           id="almacen"
           label="Cantidad en almacén"
-          disabled={isReadOnly && true}
+          disabled={isReadOnly}
           control={control}
           isError={!!errors.almacen}
           error={errors.almacen?.message}
@@ -129,7 +126,7 @@ const ProductsForm = (props: Props) => {
         <InputController
           id="stock"
           label="Stock"
-          disabled={isReadOnly && true}
+          disabled={isReadOnly}
           control={control}
           isError={!!errors.stock}
           error={errors.stock?.message}

@@ -36,7 +36,6 @@ const UsersForm = (props: Props) => {
 
   const onSubmit = async (data: any) => {
     try {
-      await CreateUsersSchema.validate(data);
       console.log("Datos válidos:", data);
       router.push("/usuarios");
     } catch (error) {
@@ -49,7 +48,7 @@ const UsersForm = (props: Props) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-8">
         <InputController
           id="nombre"
-          disabled={isReadOnly && true}
+          disabled={isReadOnly}
           label="Nombre"
           control={control}
           isError={!!errors.nombre}
@@ -57,7 +56,7 @@ const UsersForm = (props: Props) => {
         />
         <InputController
           id="apellido"
-          disabled={isReadOnly && true}
+          disabled={isReadOnly}
           label="Apellido"
           control={control}
           isError={!!errors.apellido}
@@ -71,7 +70,7 @@ const UsersForm = (props: Props) => {
             id="rol"
             label="Administrador"
             options={["1", "2"]}
-            disabled={isReadOnly && true}
+            disabled={isReadOnly}
             control={control}
             isError={!!errors.rol}
             error={errors.rol?.message}
@@ -85,7 +84,7 @@ const UsersForm = (props: Props) => {
             id="sede"
             label="Sede 1"
             options={["1", "2"]}
-            disabled={isReadOnly && true}
+            disabled={isReadOnly}
             control={control}
             isError={!!errors.sede}
             error={errors.sede?.message}
@@ -93,7 +92,7 @@ const UsersForm = (props: Props) => {
         </div>
         <InputController
           id="email"
-          disabled={isReadOnly && true}
+          disabled={isReadOnly}
           label="Email"
           control={control}
           isError={!!errors.email}
@@ -101,7 +100,7 @@ const UsersForm = (props: Props) => {
         />
         <InputController
           id="userName"
-          disabled={isReadOnly && true}
+          disabled={isReadOnly}
           label="Nombre de Usuario"
           control={control}
           isError={!!errors.userName}
@@ -109,7 +108,7 @@ const UsersForm = (props: Props) => {
         />
         <InputController
           id="password"
-          disabled={isReadOnly && true}
+          disabled={isReadOnly}
           label="Contraseña"
           control={control}
           isError={!!errors.password}
@@ -118,7 +117,7 @@ const UsersForm = (props: Props) => {
         {/* Agregar input de calendario */}
         {/* <InputController
           id="admissionDate"
-          disabled={isReadOnly && true}
+          disabled={isReadOnly}
           label="Fecha de ingreso"
           control={control}
           isError={!!errors.admissionDate}
