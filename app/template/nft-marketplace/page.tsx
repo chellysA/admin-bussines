@@ -13,8 +13,8 @@ import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
 //   title: 'NFT | Horizon UI by Ories',
 // }
 
-const NFTMarketPlacePage = () => { 
-  useChangeTitleLayoutAdmin("Nft Marketplace")
+const NFTMarketPlacePage = () => {
+  useChangeTitleLayoutAdmin("Nft Marketplace");
   const bidders = [
     "/img/avatars/avatar1.png",
     "/img/avatars/avatar2.png",

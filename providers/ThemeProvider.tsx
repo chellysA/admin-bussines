@@ -8,9 +8,9 @@ import {
 } from "react";
 
 const ColorTheme = {
-    light: 'light',
-    dark: 'dark'
-}
+  light: "light",
+  dark: "dark",
+};
 
 const getInitialTheme = (): "light" | "dark" => {
   if (typeof window !== "undefined" && window.localStorage) {

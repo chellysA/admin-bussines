@@ -13,7 +13,11 @@ type Props = {
   buttonTitle?: string;
 };
 
-const ProductsForm = ({ isReadOnly = false, buttonLabel = "", buttonTitle }: Props) => {
+const ProductsForm = ({
+  isReadOnly = false,
+  buttonLabel = "",
+  buttonTitle,
+}: Props) => {
   const form = useForm({
     defaultValues: {
       nombre: "",
