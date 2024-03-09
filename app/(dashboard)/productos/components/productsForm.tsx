@@ -14,6 +14,7 @@ type Props = {
 };
 
 const ProductsForm = (props: Props) => {
+  const { isReadOnly = false, buttonLabel = "", buttonTitle } = props;
   const form = useForm({
     defaultValues: {
       nombre: "",
@@ -32,8 +33,6 @@ const ProductsForm = (props: Props) => {
     formState: { errors },
   } = form;
   const router = useRouter();
-
-  const { isReadOnly = false, buttonLabel = "", buttonTitle } = props;
 
   const onSubmit = async (data: any) => {
     try {
