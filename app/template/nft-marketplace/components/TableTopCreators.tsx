@@ -28,7 +28,7 @@ function TopCreatorTable(props: Props) {
     },
     useGlobalFilter,
     useSortBy,
-    usePagination
+    usePagination,
   );
 
   const { getTableProps, getTableBodyProps, headerGroups, page, prepareRow } =

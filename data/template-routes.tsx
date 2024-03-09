@@ -7,7 +7,7 @@ import {
   MdPerson,
 } from "react-icons/md";
 
-const routes:IRoute[] = [
+const routes: IRoute[] = [
   {
     name: "Main Dashboard",
     layout: "/template",

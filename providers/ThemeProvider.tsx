@@ -15,7 +15,7 @@ const ColorTheme = {
 const getInitialTheme = (): "light" | "dark" => {
   if (typeof window !== "undefined" && window.localStorage) {
     const storedPrefs = window.localStorage.getItem(
-      "color-theme"
+      "color-theme",
     ) as keyof typeof ColorTheme;
     if (typeof storedPrefs === "string") {
       return storedPrefs;

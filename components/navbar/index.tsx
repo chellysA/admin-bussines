@@ -1,5 +1,4 @@
-
-"use client"
+"use client";
 import Link from "next/link";
 import { FiAlignJustify, FiSearch } from "react-icons/fi";
 import { BsArrowBarUp } from "react-icons/bs";
@@ -12,7 +11,7 @@ import Dropdown from "@/components/dropdown";
 
 import { useSidebarContext } from "@/providers/SidebarProvider";
 import { useThemeContext } from "@/providers/ThemeProvider";
-import { useCurrentRouteContext } from "@/providers/CurrentRouteProvider"
+import { useCurrentRouteContext } from "@/providers/CurrentRouteProvider";
 
 type Props = {};
 

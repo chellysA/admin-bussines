@@ -1,6 +1,6 @@
 "use client";
 
-import {useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   getCoreRowModel,
   getFilteredRowModel,
@@ -23,7 +23,11 @@ interface CellProps {
 }
 
 type Props = {
-  columnsData: { accessorKey: string; header: string; cell?: (props: CellProps) => JSX.Element }[]
+  columnsData: {
+    accessorKey: string;
+    header: string;
+    cell?: (props: CellProps) => JSX.Element;
+  }[];
   tableData: any[];
   title?: string;
 };
@@ -69,7 +73,7 @@ const ColumnsUsersTable = (props: Props) => {
                     <div className="flex w-full justify-between pr-10 text-xs tracking-wide text-gray-600">
                       {flexRender(
                         column.column.columnDef.header,
-                        column.getContext()
+                        column.getContext(),
                       )}
                     </div>
                   </th>
@@ -90,7 +94,7 @@ const ColumnsUsersTable = (props: Props) => {
                         <div>
                           {flexRender(
                             cell.column.columnDef.cell,
-                            cell.getContext()
+                            cell.getContext(),
                           )}
                         </div>
                       </td>
@@ -104,52 +108,53 @@ const ColumnsUsersTable = (props: Props) => {
       </div>
       <div className="flex flex-col md:flex-row items-center justify-center md:justify-end gap-3 my-4">
         <div className="flex gap-2 mb-2 md:mb-0">
-           <span className="flex items-center gap-2 mr-4">
-              <div>Pagina</div>   
-              <strong>{tableInstance.getState().pagination.pageIndex + 1}{" "}
-              </strong>    
-                  of 
-              <strong>{tableInstance.getPageCount()}</strong>
-            </span>
-              <Button
-                onClick={() => tableInstance.setPageIndex(0)}
-                disabled={!tableInstance.getCanPreviousPage()}
-                label="<<"
-                title="Volver a la pag. 1"
-              />
+          <span className="flex items-center gap-2 mr-4">
+            <div>Pagina</div>
+            <strong>
+              {tableInstance.getState().pagination.pageIndex + 1}{" "}
+            </strong>
+            of
+            <strong>{tableInstance.getPageCount()}</strong>
+          </span>
+          <Button
+            onClick={() => tableInstance.setPageIndex(0)}
+            disabled={!tableInstance.getCanPreviousPage()}
+            label="<<"
+            title="Volver a la pag. 1"
+          />
 
-              <Button
-                onClick={() => tableInstance.previousPage()}
-                disabled={!tableInstance.getCanPreviousPage()}
-                label="<"
-                title="Ir a la pag. anterior"
-              />
-              <Button
-                onClick={() => tableInstance.nextPage()}
-                disabled={!tableInstance.getCanNextPage()}
-                label=">"
-                title="Ir a la siguiente pag."
-              />
-              <Button
-                onClick={() =>
-                  tableInstance.setPageIndex(tableInstance.getPageCount() - 1)
-                }
-                disabled={!tableInstance.getCanNextPage()}
-                label=">>"
-                title="Ir a la última pag."
-              />
+          <Button
+            onClick={() => tableInstance.previousPage()}
+            disabled={!tableInstance.getCanPreviousPage()}
+            label="<"
+            title="Ir a la pag. anterior"
+          />
+          <Button
+            onClick={() => tableInstance.nextPage()}
+            disabled={!tableInstance.getCanNextPage()}
+            label=">"
+            title="Ir a la siguiente pag."
+          />
+          <Button
+            onClick={() =>
+              tableInstance.setPageIndex(tableInstance.getPageCount() - 1)
+            }
+            disabled={!tableInstance.getCanNextPage()}
+            label=">>"
+            title="Ir a la última pag."
+          />
         </div>
         <div className="flex gap-2 items-center ">
           <span>Filas por pagina:</span>
           <div className="min-w-[70px] mr-4">
-                {" "}
-                <Select
-                  options={[10, 20, 30, 40, 50]}
-                  label=""
-                  onChange={(value) => {
-                    tableInstance.setPageSize(Number(value));
-                  }}
-                />
+            {" "}
+            <Select
+              options={[10, 20, 30, 40, 50]}
+              label=""
+              onChange={(value) => {
+                tableInstance.setPageSize(Number(value));
+              }}
+            />
           </div>
         </div>
       </div>

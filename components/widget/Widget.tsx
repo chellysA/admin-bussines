@@ -2,10 +2,10 @@ import { FC, ReactNode } from "react";
 import Card from "@/components/card";
 
 type Props = {
-  icon?: ReactNode | string
-  title?: string
-  subtitle?: string
-}
+  icon?: ReactNode | string;
+  title?: string;
+  subtitle?: string;
+};
 
 const Widget: FC<Props> = ({ icon, title, subtitle }) => {
   return (

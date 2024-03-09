@@ -25,7 +25,7 @@ const MiniCalendar = dynamic(
   {
     loading: () => <p>loading...</p>,
     ssr: false,
-  }
+  },
 );
 
 type Props = {};

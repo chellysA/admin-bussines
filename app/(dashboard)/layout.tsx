@@ -5,13 +5,11 @@ import SidebarProvider from "@/providers/SidebarProvider";
 import { CurrentRouteProvider } from "@/providers/CurrentRouteProvider";
 import routes from "@/data/routes";
 
-
 export default function DashboardLayout({
-    children, // will be a page or nested layout
+  children, // will be a page or nested layout
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-
     return (
         <>
             <CurrentRouteProvider>
@@ -46,3 +44,5 @@ export default function DashboardLayout({
         </>
     );
 }
+ 
+  

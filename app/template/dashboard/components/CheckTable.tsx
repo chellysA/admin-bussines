@@ -31,7 +31,7 @@ const CheckTable = (props: Props) => {
     },
     useGlobalFilter,
     useSortBy,
-    usePagination
+    usePagination,
   );
 
   const {

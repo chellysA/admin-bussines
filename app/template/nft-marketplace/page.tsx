@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { type Metadata } from "next";
 import Banner from "./components/Banner";
 import HistoryCard from "./components/HistoryCard";
