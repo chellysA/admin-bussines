@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
-import { FC } from 'react';
-import Chart from 'react-apexcharts';
-import { type ApexOptions } from 'apexcharts';
+import { FC } from "react";
+import Chart from "react-apexcharts";
+import { type ApexOptions } from "apexcharts";
 
 type Props = {
-  chartOptions?: ApexOptions
-  chartData?: any
+  chartOptions?: ApexOptions;
+  chartData?: any;
 };
 
 const BarChart: FC<Props> = ({ chartData, chartOptions }) => {
@@ -21,6 +21,6 @@ const BarChart: FC<Props> = ({ chartData, chartOptions }) => {
       />
     </>
   );
-}
+};
 
 export default BarChart;

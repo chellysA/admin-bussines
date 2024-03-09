@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { type Metadata } from "next";
 import Banner from "./components/Banner";
 import HistoryCard from "./components/HistoryCard";
@@ -14,8 +14,12 @@ import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
 // }
 
 const NFTMarketPlacePage = () => {
-  useChangeTitleLayoutAdmin("Nft Marketplace")
-  const bidders = ['/img/avatars/avatar1.png', '/img/avatars/avatar2.png', '/img/avatars/avatar3.png']
+  useChangeTitleLayoutAdmin("Nft Marketplace");
+  const bidders = [
+    "/img/avatars/avatar1.png",
+    "/img/avatars/avatar2.png",
+    "/img/avatars/avatar3.png",
+  ];
 
   return (
     <div className="mt-3 grid h-full grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-3">
@@ -30,22 +34,34 @@ const NFTMarketPlacePage = () => {
           </h4>
           <ul className="mt-4 flex items-center justify-between md:mt-0 md:justify-center md:!gap-5 2xl:!gap-12">
             <li>
-              <a className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white" href=" ">
+              <a
+                className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white"
+                href=" "
+              >
                 Art
               </a>
             </li>
             <li>
-              <a className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white" href=" " >
+              <a
+                className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white"
+                href=" "
+              >
                 Music
               </a>
             </li>
             <li>
-              <a className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white" href=" " >
+              <a
+                className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white"
+                href=" "
+              >
                 Collection
               </a>
             </li>
             <li>
-              <a className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white" href=" ">
+              <a
+                className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white"
+                href=" "
+              >
                 Sports
               </a>
             </li>
@@ -59,21 +75,21 @@ const NFTMarketPlacePage = () => {
             title="Abstract Colors"
             author="Esthera Jackson"
             price="0.91"
-            image={'/img/nfts/Nft3.png'}
+            image={"/img/nfts/Nft3.png"}
           />
           <NftCard
             bidders={bidders}
             title="ETH AI Brain"
             author="Nick Wilson"
             price="0.7"
-            image={'/img/nfts/Nft2.png'}
+            image={"/img/nfts/Nft2.png"}
           />
           <NftCard
             bidders={bidders}
             title="Mesh Gradients"
             author="Will Smith"
             price="2.91"
-            image={'/img/nfts/Nft4.png'}
+            image={"/img/nfts/Nft4.png"}
           />
         </div>
 
@@ -91,21 +107,21 @@ const NFTMarketPlacePage = () => {
             title="Abstract Colors"
             author="Esthera Jackson"
             price="0.91"
-            image={'/img/nfts/Nft4.png'}
+            image={"/img/nfts/Nft4.png"}
           />
           <NftCard
             bidders={bidders}
             title="ETH AI Brain"
             author="Nick Wilson"
             price="0.7"
-            image={'/img/nfts/Nft5.png'}
+            image={"/img/nfts/Nft5.png"}
           />
           <NftCard
             bidders={bidders}
             title="Mesh Gradients"
             author="Will Smith"
             price="2.91"
-            image={'/img/nfts/Nft6.png'}
+            image={"/img/nfts/Nft6.png"}
           />
         </div>
       </div>

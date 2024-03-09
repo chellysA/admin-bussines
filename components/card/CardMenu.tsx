@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 import Dropdown from "@/components/dropdown";
@@ -9,8 +9,8 @@ import { AiOutlineShop } from "react-icons/ai";
 import { TiLightbulb } from "react-icons/ti";
 
 type Props = {
-  transparent?: boolean
-}
+  transparent?: boolean;
+};
 
 function CardMenu(props: Props) {
   const { transparent } = props;
@@ -22,10 +22,11 @@ function CardMenu(props: Props) {
         <button
           onClick={() => setOpen(!open)}
           // open={open}
-          className={`flex items-center text-xl hover:cursor-pointer ${transparent
-            ? "bg-none text-white hover:bg-none active:bg-none"
-            : "bg-lightPrimary p-2 text-brand-500 hover:bg-gray-100 dark:bg-navy-700 dark:text-white dark:hover:bg-white/20 dark:active:bg-white/10"
-            } linear justify-center rounded-lg font-bold transition duration-200`}
+          className={`flex items-center text-xl hover:cursor-pointer ${
+            transparent
+              ? "bg-none text-white hover:bg-none active:bg-none"
+              : "bg-lightPrimary p-2 text-brand-500 hover:bg-gray-100 dark:bg-navy-700 dark:text-white dark:hover:bg-white/20 dark:active:bg-white/10"
+          } linear justify-center rounded-lg font-bold transition duration-200`}
         >
           <BsThreeDots className="h-6 w-6" />
         </button>

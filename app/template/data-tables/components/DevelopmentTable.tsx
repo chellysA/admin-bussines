@@ -1,25 +1,25 @@
 "use client";
 
-import CardMenu from "@/components/card/CardMenu";
-import Card from "@/components/card";
+import { useMemo } from "react";
 import {
   useGlobalFilter,
   usePagination,
   useSortBy,
   useTable,
 } from "react-table";
-import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
-import { useMemo } from "react";
+
+import CardMenu from "@/components/card/CardMenu";
+import Card from "@/components/card";
 import Progress from "@/components/progress";
+import { DiApple, DiAndroid, DiWindows } from "react-icons/di";
 
 type Props = {
   columnsData: any[];
   tableData: any[];
-  title?: string;
 };
 
-const ComplexTable = (props: Props) => {
-  const { columnsData, tableData, title = "Complex Table" } = props;
+const DevelopmentTable = (props: Props) => {
+  const { columnsData, tableData } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -42,31 +42,37 @@ const ComplexTable = (props: Props) => {
     prepareRow,
     initialState,
   } = tableInstance;
-  initialState.pageSize = 5;
+  initialState.pageSize = 11;
 
   return (
-    <Card className={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
-      <div className="relative flex items-center justify-between pt-4">
+    <Card className={"w-full h-full p-4"}>
+      <div className="relative flex items-center justify-between">
         <div className="text-xl font-bold text-navy-700 dark:text-white">
-          {title}
+          Development Table
         </div>
         <CardMenu />
       </div>
 
-      <div className="mt-8 overflow-x-auto h-full">
-        <table {...getTableProps()} className="w-full">
+      <div className="h-full overflow-x-auto">
+        <table
+          {...getTableProps()}
+          className="mt-8 h-max w-full"
+          color="gray-500"
+          // variant="simple"
+          // mb="24px"
+        >
           <thead>
             {headerGroups.map((headerGroup, index) => (
               <tr {...headerGroup.getHeaderGroupProps()} key={index}>
                 {headerGroup.headers.map((column, index) => (
                   <th
                     {...column.getHeaderProps(column.getSortByToggleProps())}
+                    className="border-b border-gray-200 pr-32 pb-[10px] text-start dark:!border-navy-700 "
                     key={index}
-                    className="border-b border-gray-200 pr-28 pb-[10px] text-start dark:!border-navy-700"
                   >
-                    <p className="text-xs tracking-wide text-gray-600">
+                    <div className="text-xs font-bold tracking-wide text-gray-600">
                       {column.render("Header")}
-                    </p>
+                    </div>
                   </th>
                 ))}
               </tr>
@@ -85,21 +91,39 @@ const ComplexTable = (props: Props) => {
                           {cell.value}
                         </p>
                       );
-                    } else if (cell.column.Header === "STATUS") {
+                    } else if (cell.column.Header === "TECH") {
                       renderData = (
                         <div className="flex items-center gap-2">
-                          <div className={`rounded-full text-xl`}>
-                            {cell.value === "Approved" ? (
-                              <MdCheckCircle className="text-green-500" />
-                            ) : cell.value === "Disable" ? (
-                              <MdCancel className="text-red-500" />
-                            ) : cell.value === "Error" ? (
-                              <MdOutlineError className="text-orange-500" />
-                            ) : null}
-                          </div>
-                          <p className="text-sm font-bold text-navy-700 dark:text-white">
-                            {cell.value}
-                          </p>
+                          {cell.value.map((item: any, key: number) => {
+                            if (item === "apple") {
+                              return (
+                                <div
+                                  key={key}
+                                  className="text-[22px] text-gray-600 dark:text-white"
+                                >
+                                  <DiApple />
+                                </div>
+                              );
+                            } else if (item === "android") {
+                              return (
+                                <div
+                                  key={key}
+                                  className="text-[21px] text-gray-600 dark:text-white"
+                                >
+                                  <DiAndroid />
+                                </div>
+                              );
+                            } else if (item === "windows") {
+                              return (
+                                <div
+                                  key={key}
+                                  className="text-xl text-gray-600 dark:text-white"
+                                >
+                                  <DiWindows />
+                                </div>
+                              );
+                            } else return null;
+                          })}
                         </div>
                       );
                     } else if (cell.column.Header === "DATE") {
@@ -110,14 +134,19 @@ const ComplexTable = (props: Props) => {
                       );
                     } else if (cell.column.Header === "PROGRESS") {
                       renderData = (
-                        <Progress width="w-[108px]" value={cell.value} />
+                        <div className="flex items-center gap-3">
+                          <p className="text-sm font-bold text-navy-700 dark:text-white">
+                            {cell.value}%
+                          </p>
+                          <Progress width="w-[68px]" value={cell.value} />
+                        </div>
                       );
                     }
                     return (
                       <td
-                        className="pt-[14px] pb-[18px] sm:text-[14px]"
                         {...cell.getCellProps()}
                         key={index}
+                        className="pt-[14px] pb-3 text-[14px]"
                       >
                         {renderData}
                       </td>
@@ -133,4 +162,4 @@ const ComplexTable = (props: Props) => {
   );
 };
 
-export default ComplexTable;
+export default DevelopmentTable;

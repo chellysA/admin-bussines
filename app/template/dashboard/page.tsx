@@ -1,4 +1,3 @@
-"use client";
 import dynamic from "next/dynamic";
 import { FC } from "react";
 
@@ -19,7 +18,7 @@ import DailyTraffic from "./components/DailyTraffic";
 import TaskCard from "./components/TaskCard";
 import tableDataCheck from "./variables/tableDataCheck.json";
 import tableDataComplex from "./variables/tableDataComplex.json";
-import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
+import Select from "@/components/select";
 
 const MiniCalendar = dynamic(
   () => import("@/components/calendar/MiniCalendar"),
@@ -32,7 +31,6 @@ const MiniCalendar = dynamic(
 type Props = {};
 
 const DashboardPage: FC<Props> = () => {
-  useChangeTitleLayoutAdmin("Dashboard");
   return (
     <>
       {/* Card widget */}
