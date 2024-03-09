@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import dynamic from "next/dynamic";
 import { FC } from "react";
 
@@ -26,13 +26,13 @@ const MiniCalendar = dynamic(
   {
     loading: () => <p>loading...</p>,
     ssr: false,
-  }
+  },
 );
 
 type Props = {};
 
 const DashboardPage: FC<Props> = () => {
-  useChangeTitleLayoutAdmin("Dashboard")
+  useChangeTitleLayoutAdmin("Dashboard");
   return (
     <>
       {/* Card widget */}

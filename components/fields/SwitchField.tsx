@@ -1,12 +1,12 @@
 import Switch from "@/components/switch";
 
 type Props = {
-  id?: string
-  label?: string
-  desc?: string
-  mt?: string
-  mb?: string
-}
+  id?: string;
+  label?: string;
+  desc?: string;
+  mt?: string;
+  mb?: string;
+};
 
 const SwitchField = (props: Props) => {
   const { id, label, desc, mt, mb } = props;

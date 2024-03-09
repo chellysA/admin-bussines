@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
 import { ApexOptions } from "apexcharts";
 import Chart from "react-apexcharts";
 
 type Props = {
-  series: ApexAxisChartSeries | any
-  options: ApexOptions
-}
+  series: ApexAxisChartSeries | any;
+  options: ApexOptions;
+};
 
 const LineChart = (props: Props) => {
   const { series, options } = props;
