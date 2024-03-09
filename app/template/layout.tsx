@@ -13,7 +13,7 @@ export default function TemplateLayout({
     <>
       <SidebarProvider>
         <section className="flex h-full w-full">
-          <Sidebar routes={routes}/>
+          <Sidebar routes={routes} />
 
           {/* Navbar & Main Content */}
           <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">

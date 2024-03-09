@@ -30,7 +30,7 @@ const ColumnsTable = (props: Props) => {
     },
     useGlobalFilter,
     useSortBy,
-    usePagination
+    usePagination,
   );
 
   const {

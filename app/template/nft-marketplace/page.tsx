@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { type Metadata } from "next";
 import Banner from "./components/Banner";
 import HistoryCard from "./components/HistoryCard";
@@ -14,8 +14,12 @@ import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
 // }
 
 const NFTMarketPlacePage = () => {
-  useChangeTitleLayoutAdmin("Nft Marketplace")
-  const bidders = ['/img/avatars/avatar1.png', '/img/avatars/avatar2.png', '/img/avatars/avatar3.png']
+  useChangeTitleLayoutAdmin("Nft Marketplace");
+  const bidders = [
+    "/img/avatars/avatar1.png",
+    "/img/avatars/avatar2.png",
+    "/img/avatars/avatar3.png",
+  ];
 
   return (
     <div className="mt-3 grid h-full grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-3">

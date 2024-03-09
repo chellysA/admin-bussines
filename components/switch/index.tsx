@@ -1,8 +1,8 @@
 type Props = {
-  className?: string
-  color?: string
-  id?: string
-}
+  className?: string;
+  color?: string;
+  id?: string;
+};
 
 const Switch = (props: Props) => {
   const { className, color, id } = props;
@@ -14,7 +14,8 @@ const Switch = (props: Props) => {
       before:absolute before:top-[50%] before:h-4 before:w-4 before:translate-x-[2px] before:translate-y-[-50%] before:rounded-[20px]
       before:bg-white before:shadow-[0_2px_5px_rgba(0,_0,_0,_.2)] before:transition before:content-[""]
       checked:before:translate-x-[22px] hover:cursor-pointer
-      dark:bg-white/5 ${color === "red"
+      dark:bg-white/5 ${
+        color === "red"
           ? "checked:bg-red-500 dark:checked:bg-red-400"
           : color === "blue"
             ? "checked:bg-blue-500 dark:checked:bg-blue-400"
@@ -43,7 +44,7 @@ const Switch = (props: Props) => {
                                   : color === "gray"
                                     ? "checked:bg-gray-500 dark:checked:bg-gray-400"
                                     : "checked:bg-brand-500 dark:checked:bg-brand-400"
-        } ${className}`}
+      } ${className}`}
       name="weekly"
     />
   );

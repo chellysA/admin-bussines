@@ -9,10 +9,10 @@ import SidebarCard from "./components/SidebarCard";
 import { IRoute } from "@/types/routes";
 
 type Props = {
-  routes: IRoute[]
+  routes: IRoute[];
 };
 
-const Sidebar = (routes:Props) => {
+const Sidebar = (routes: Props) => {
   const { isMobile } = useMobileView();
   const { openSidebar, setOpenSidebar } = useSidebarContext();
   const [paymentNotification] = useState(true);

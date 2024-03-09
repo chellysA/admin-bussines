@@ -8,8 +8,8 @@ import { MdBarChart } from "react-icons/md";
 
 const BarChart = dynamic(() => import("@/components/charts/BarChart"), {
   loading: () => <p>loading...</p>,
-  ssr: false
-})
+  ssr: false,
+});
 
 const WeeklyRevenue = () => {
   return (

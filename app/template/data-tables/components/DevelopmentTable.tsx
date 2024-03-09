@@ -31,7 +31,7 @@ const DevelopmentTable = (props: Props) => {
     },
     useGlobalFilter,
     useSortBy,
-    usePagination
+    usePagination,
   );
 
   const {

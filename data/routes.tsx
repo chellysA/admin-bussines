@@ -6,7 +6,7 @@ import {
   MdBusinessCenter,
 } from "react-icons/md";
 
-const routes:IRoute[] = [
+const routes: IRoute[] = [
   {
     name: "Usuarios",
     layout: "/dashboard",
