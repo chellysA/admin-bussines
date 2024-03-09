@@ -1,34 +1,29 @@
-'use client'
+"use client";
 
 import React, { MouseEvent } from "react";
 import Link from "next/link";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 import DashIcon from "@/components/icons/DashIcon";
+import { IRoute } from "@/types/routes";
 // chakra imports
 
-import routes from "@/data/routes";
-
-
 type Props = {
-  onClickRoute?: (e: MouseEvent<HTMLElement>) => any | any
-}
+  onClickRoute?: (e: MouseEvent<HTMLElement>) => any | any;
+  routes: {routes: IRoute[]};
+};
 
-export function SidebarLinks({ onClickRoute }: Props) {
+export function SidebarLinks({ onClickRoute, routes }: Props) {
   // Chakra color mode
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName: string) => {
     return pathname.includes(routeName);
   };
 
-  const createLinks = (routes: any) => {
+  const createLinks = (routesObj:{routes:IRoute[]}) => {
+    const { routes } = routesObj;
     return routes.map((route: any, index: number) => {
-      if (
-        route.layout === "/dashboard" ||
-        route.layout === "/auth" ||
-        route.layout === "/rtl"
-      ) {
         return (
           // <Link key={index} href={route.layout + "/" + route.path}>
           <Link key={index} href={route.path} onClick={onClickRoute}>
@@ -38,18 +33,20 @@ export function SidebarLinks({ onClickRoute }: Props) {
                 key={index}
               >
                 <span
-                  className={`${activeRoute(route.path) === true
-                    ? "font-bold text-brand-500 dark:text-white"
-                    : "font-medium text-gray-600"
-                    }`}
+                  className={`${
+                    activeRoute(route.path) === true
+                      ? "font-bold text-brand-500 dark:text-white"
+                      : "font-medium text-gray-600"
+                  }`}
                 >
                   {route.icon ? route.icon : <DashIcon />}{" "}
                 </span>
                 <p
-                  className={`leading-1 ml-4 flex ${activeRoute(route.path) === true
-                    ? "font-bold text-navy-700 dark:text-white"
-                    : "font-medium text-gray-600"
-                    }`}
+                  className={`leading-1 ml-4 flex ${
+                    activeRoute(route.path) === true
+                      ? "font-bold text-navy-700 dark:text-white"
+                      : "font-medium text-gray-600"
+                  }`}
                 >
                   {route.name}
                 </p>
@@ -60,7 +57,6 @@ export function SidebarLinks({ onClickRoute }: Props) {
             </div>
           </Link>
         );
-      }
     });
   };
 
