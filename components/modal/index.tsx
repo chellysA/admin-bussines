@@ -7,14 +7,14 @@ interface IModalProps{
     title: string;
     children: React.ReactNode;
     closeModal:  Dispatch<SetStateAction<boolean>>;
-    state: boolean
+    isOpen: boolean
 }
 
-const Modal=({title, children, closeModal, state }:IModalProps)=> {
+const Modal=({title, children, closeModal, isOpen }:IModalProps)=> {
 
   return (
     <>
-       {state && 
+       {isOpen && 
        <div className="fixed inset-0 flex items-center justify-center bg-blackOpacity z-50">
             <Card className="p-4 w-96">
                 <div className="flex justify-between items-center mb-4">
