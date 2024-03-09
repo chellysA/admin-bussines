@@ -15,10 +15,9 @@ import tableDataCheck from "./variables/tableDataCheck.json";
 import tableDataColumns from "./variables/tableDataColumns.json";
 import tableDataComplex from "./variables/tableDataComplex.json";
 
-
 export const metadata: Metadata = {
-  title: 'DataTables | Horizon UI by Ories',
-}
+  title: "DataTables | Horizon UI by Ories",
+};
 
 const DataTablesPage = () => {
   return (

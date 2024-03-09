@@ -2,6 +2,7 @@ import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
 import Footer from "@/components/footer/Footer";
 import SidebarProvider from "@/providers/SidebarProvider";
+import routes from "@/data/routes";
 
 
 export default function DashboardLayout({
@@ -14,7 +15,7 @@ export default function DashboardLayout({
         <>
             <SidebarProvider>
                 <section className="flex h-full w-full">
-                    <Sidebar />
+                    <Sidebar routes={routes}/>
 
                     {/* Navbar & Main Content */}
                     <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
