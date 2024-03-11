@@ -4,12 +4,40 @@ import InputField from "@/components/fields/InputField";
 import BasicTable from "../../../components/tables/basicTable";
 import Select from "@/components/select";
 import Link from "next/link";
-import { MdAddBusiness } from "react-icons/md";
+import { MdAddBox, MdAddBusiness } from "react-icons/md";
 import { columnsDataProducts } from "./variables/columnsDataProducts";
 import tableDataProducts from "./variables/tableDataProducts.json";
 import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
+import Modal from "@/components/modal";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import CreateCategorieSchema from "@/data/validations/Create-Categorie-schema";
+import InputController from "@/components/fields/InputController";
 
 const Productos = () => {
+  const [openModal, setOpenModal] = useState(false);
+
+  const form = useForm({
+    defaultValues: { categoria: "" },
+    resolver: yupResolver(CreateCategorieSchema),
+  });
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = form;
+
+  const onSubmit = async (data: any) => {
+    try {
+      console.log("Datos válidos:", data);
+      setOpenModal(false);
+    } catch (error) {
+      console.error("Error de validación:");
+    }
+  };
+
   useChangeTitleLayoutAdmin("Productos");
   return (
     <>
@@ -27,15 +55,46 @@ const Productos = () => {
           <Button label="Buscar" title="Buscar Usuario" />
         </div>
       </div>
-      <div className="flex justify-end">
+      <div className="flex flex-col items-end">
         <Link href="/productos/agregar-producto">
           <Button
-            label={<MdAddBusiness className="text-[25px] mx-5" />}
+            label={
+              <>
+                <MdAddBox className="text-[25px] mr-2" /> <p>Producto</p>
+              </>
+            }
             className="mt-4"
             title="Añadir Producto"
           />
         </Link>
+        <Button
+          label={
+            <>
+              <MdAddBox className="text-[25px] mr-2" /> <p>Categoria</p>
+            </>
+          }
+          className="mt-4"
+          title="Añadir Categoria"
+          onClick={() => setOpenModal(true)}
+        />
       </div>
+      <Modal
+        title="Añadir categoria"
+        isOpen={openModal}
+        closeModal={() => setOpenModal(false)}
+        onConfirm={handleSubmit(onSubmit)}
+        buttonType="submit"
+      >
+        <form>
+          <InputController
+            id="categoria"
+            label="Nombre de la categoria"
+            control={control}
+            isError={!!errors.categoria}
+            error={errors.categoria?.message}
+          />
+        </form>
+      </Modal>
       <div className="mt-8">
         <BasicTable
           columnsData={columnsDataProducts}

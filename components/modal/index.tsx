@@ -11,7 +11,8 @@ interface IModalProps {
   isOpen: boolean;
   labelConfirm?: string;
   labelCancel?: string;
-  onClickConfirm: () => void;
+  onConfirm: () => void;
+  buttonType?: "button" | "submit" | "reset";
 }
 
 const Modal = ({
@@ -21,13 +22,14 @@ const Modal = ({
   isOpen,
   labelConfirm = "Confirmar",
   labelCancel = "Cancelar",
-  onClickConfirm,
+  onConfirm,
+  buttonType,
 }: IModalProps) => {
   return (
     <>
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-blackOpacity z-50">
-          <Card className="p-4 max-w-[50%] max-h-[70%] overflow-y-auto overflow-x-hidden">
+          <Card className="p-4 w-auto h-auto overflow-y-auto overflow-x-hidden justify-between">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold">{title}</h2>
               <button
@@ -38,13 +40,17 @@ const Modal = ({
               </button>
             </div>
             <div className="p-2">{children}</div>
-            <div className="flex justify-end gap-5">
+            <div className="flex justify-end gap-5 mt-4">
               <Button
                 label={labelCancel}
                 secondaryButton
                 onClick={() => closeModal(false)}
               />
-              <Button label={labelConfirm} onClick={onClickConfirm} />
+              <Button
+                label={labelConfirm}
+                onClick={onConfirm}
+                type={buttonType}
+              />
             </div>
           </Card>
         </div>
