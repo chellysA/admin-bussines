@@ -9,7 +9,7 @@ import { columnsDataProducts } from "./variables/columnsDataProducts";
 import tableDataProducts from "./variables/tableDataProducts.json";
 import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
 import Modal from "@/components/modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import CreateCategorieSchema from "@/data/validations/Create-Categorie-schema";
@@ -27,18 +27,29 @@ const Productos = () => {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = form;
 
   const onSubmit = async (data: any) => {
     try {
       console.log("Datos válidos:", data);
       setOpenModal(false);
+      handleReset();
     } catch (error) {
       console.error("Error de validación:");
     }
   };
 
+  const handleReset = () => {
+    reset({ categoria: "" });
+  };
+
   useChangeTitleLayoutAdmin("Productos");
+
+  useEffect(() => {
+    !openModal && handleReset();
+  }, [openModal]);
+
   return (
     <>
       <div className="mt-3 grid grid-cols-1 md:gap-5 md:grid-cols-3">
