@@ -19,7 +19,7 @@ const Productos = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const form = useForm({
-    defaultValues: { categoria: "" },
+    defaultValues: { categorie: "" },
     resolver: yupResolver(CreateCategorieSchema),
   });
 
@@ -41,7 +41,7 @@ const Productos = () => {
   };
 
   const handleReset = () => {
-    reset({ categoria: "" });
+    reset({ categorie: "" });
   };
 
   useChangeTitleLayoutAdmin("Productos");
@@ -55,7 +55,7 @@ const Productos = () => {
       <div className="mt-3 grid grid-cols-1 md:gap-5 md:grid-cols-3">
         <div className="grid grid-cols-1 grid-rows-1 col-span-2 gap-5 md:grid-cols-3 md:mr-10 mt-2">
           <InputField placeholder="Nombre" id="nombre" />
-          <InputField placeholder="Categoria" id="categoria" />
+          <InputField placeholder="Categorie" id="categorie" />
           <Select
             options={["Unidad", "Kg"]}
             label="Presentación"
@@ -81,11 +81,11 @@ const Productos = () => {
         <Button
           label={
             <>
-              <MdAddBox className="text-[25px] mr-2" /> <p>Categoria</p>
+              <MdAddBox className="text-[25px] mr-2" /> <p>Categorie</p>
             </>
           }
           className="mt-4"
-          title="Añadir Categoria"
+          title="Añadir Categorie"
           onClick={() => setOpenModal(true)}
         />
       </div>
@@ -101,8 +101,8 @@ const Productos = () => {
             id="categoria"
             label="Nombre de la categoria"
             control={control}
-            isError={!!errors.categoria}
-            error={errors.categoria?.message}
+            isError={!!errors.categorie}
+            error={errors.categorie?.message}
           />
         </form>
       </Modal>

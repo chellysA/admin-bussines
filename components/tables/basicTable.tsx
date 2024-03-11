@@ -149,6 +149,7 @@ const ColumnsUsersTable = (props: Props) => {
           <div className="min-w-[70px] mr-4">
             {" "}
             <Select
+              id="page"
               options={[10, 20, 30, 40, 50]}
               label=""
               onChange={(value) => {
