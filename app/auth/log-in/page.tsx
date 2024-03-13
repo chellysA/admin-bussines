@@ -8,6 +8,7 @@ import InputController from "@/components/fields/InputController";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LogInSchema from "@/data/validations/Log-in-schema";
 import { useRouter } from "next/navigation";
+import { useLogIn } from "@/hooks/useLogIn";
 
 type Props = {};
 
@@ -25,12 +26,18 @@ const LogIn: FC<Props> = () => {
     handleSubmit,
   } = form;
   const router = useRouter();
+  const { mutate } = useLogIn();
 
   const onSubmit = async (data: any) => {
     try {
       await LogInSchema.validate(data);
       console.log("Datos válidos:", data);
-      router.push("/dashboard");
+      mutate(data, {
+        onSuccess: (res) => {
+          console.log(res);
+          router.push("/dashboard");
+        },
+      });
     } catch (error) {
       console.error("Error de validación:");
     }
