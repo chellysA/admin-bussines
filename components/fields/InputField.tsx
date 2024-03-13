@@ -13,7 +13,7 @@ function InputField(props: IInputProps) {
     disabled,
     value,
     onChange,
-    error
+    error,
   } = props;
   return (
     <div className={className}>
@@ -46,7 +46,9 @@ function InputField(props: IInputProps) {
                 : "border-gray-200 dark:border-white/10 focus:border-blueSecondary dark:focus:border-blueSecondary dark:text-white"
         }`}
       />
-      {isError && <p className="text-red-500 dark:!text-red-400 text-sm">{`* ${error}`}</p>}
+      {isError && (
+        <p className="text-red-500 dark:!text-red-400 text-sm">{`* ${error}`}</p>
+      )}
     </div>
   );
 }

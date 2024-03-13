@@ -1,4 +1,4 @@
-export interface IInputProps  {
+export interface IInputProps {
   label?: string;
   id: string;
   className?: string;
@@ -10,5 +10,5 @@ export interface IInputProps  {
   disabled?: boolean;
   value?: string | number;
   onChange?: ChangeEventHandler<HTMLInputElement>;
-  error?: string
-};
+  error?: string;
+}
