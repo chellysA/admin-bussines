@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, useMemo } from "react";
 import { JsxElement } from "typescript";
 
 type Props = {
-  label: string | React.ReactElement;
+  label: string | React.ReactElement | React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
   variant?: "full" | "normal";
@@ -23,7 +23,8 @@ const Button = (props: Props) => {
     title,
     type = "button",
   } = props;
-  const styles = useMemo(() => ({ full: "w-full", normal: "" }), [variant]);
+
+  const styles = useMemo(() => ({ full: "w-full", normal: "" }), []);
 
   return (
     <button
