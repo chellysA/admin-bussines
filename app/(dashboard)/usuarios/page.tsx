@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import DeleteUserConfirmationSchema from "@/data/validations/Delete-user-confirmation-schema";
 import InputController from "@/components/fields/InputController";
+import DeleteConfirmationModal from "@/components/modal/DeleteConfirmationModal";
 
 const Usuarios = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -89,33 +90,22 @@ const Usuarios = () => {
           title="Lista de Usuarios"
         />
       </div>
-      <Modal
+      <DeleteConfirmationModal
         title="Eliminar Usuario"
         isOpen={openModal}
         closeModal={() => setOpenModal(false)}
         onConfirm={handleSubmit(onSubmit)}
         buttonType="submit"
+        objectToBeDeleted={userNameToBeDeleted}
       >
-        <p className="text-gray-500">
-          Los datos de{" "}
-          <span className="font-bold text-white">{userNameToBeDeleted}</span>{" "}
-          serán eliminados de tu lista de usuarios permanentemente, esta acción
-          es irreversible. <br />
-          <span className="font-bold text-red-400">
-            Estás seguro que quieres eliminarlo?
-          </span>
-        </p>
-        <form className="py-4">
-          <InputController
-            id="name"
-            label="Ingresa el nombre del usuario para continuar:"
-            control={control}
-            isError={!!errors.name}
-            error={errors.name?.message}
-          />
-        </form>
-        <div></div>
-      </Modal>
+        <InputController
+          id="name"
+          label="Ingresa el nombre del usuario para continuar:"
+          control={control}
+          isError={!!errors.name}
+          error={errors.name?.message}
+        />
+      </DeleteConfirmationModal>
     </>
   );
 };
