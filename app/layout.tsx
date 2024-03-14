@@ -3,6 +3,7 @@ import "./globals.css";
 // import "react-calendar/dist/Calendar.css";
 import "@/components/calendar/MiniCalendar.css";
 import ThemeProvider from "@/providers/ThemeProvider";
+import Providers from "@/providers";
 
 export const metadata: Metadata = {
   title: "Horizon UI by Ories",
@@ -34,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
