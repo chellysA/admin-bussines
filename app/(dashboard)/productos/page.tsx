@@ -17,32 +17,43 @@ const Productos = () => {
         <div className="grid grid-cols-1 grid-rows-1 col-span-2 gap-5 md:grid-cols-3 md:mr-10 mt-2">
           <InputField placeholder="Nombre" id="nombre" />
           <InputField placeholder="Categoria" id="categoria" />
-          <Select
-            options={["Unidad", "Kg"]}
-            label="Presentación"
-            id="presentacionS"
-          />
+          <div className="h-10">
+            <Select
+              options={["Unidad", "Kg"]}
+              label="Presentación"
+              id="presentacion"
+            />
+          </div>
         </div>
         <div className="md:ml-12 mt-6 md:mt-2 grid grid-cols-1 col-span-1">
           <Button label="Buscar" title="Buscar Producto" />
-        </div>
-      </div>
-      <div className="flex flex-col items-end">
-        <Link href="/productos/agregar-producto">
+          <Link href="/productos/agregar-producto w-full">
+            <Button
+              label={
+                <>
+                  <MdAddCircle className="text-[25px] mr-2" />
+                  <>Producto</>
+                </>
+              }
+              className="mt-4"
+              title="Añadir Producto"
+              variant="full"
+            />
+          </Link>
+
           <Button
-            label={<><MdAddCircle className="text-[25px] mr-2" /><>Producto</></>}
-            className="mt-4"
-            title="Añadir Producto"
-          />
-        </Link>
-     
-          <Button
-            label={<><MdAddCircle className="text-[25px] mr-2" /><>Categoria</></>}
+            label={
+              <>
+                <MdAddCircle className="text-[25px] mr-2" />
+                <>Categoria</>
+              </>
+            }
             className="mt-4"
             title="Añadir Categoria"
           />
-      
+        </div>
       </div>
+
       <div className="mt-8">
         <BasicTable
           columnsData={columnsDataProducts}
