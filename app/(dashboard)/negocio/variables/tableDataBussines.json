@@ -1,0 +1,16 @@
+[
+  {
+    "id": "45856",
+    "nombre": "Mi Negocio",
+    "sector": "Alimenticio",
+    "rif": "j-56845595",
+    "telefono": "+58 414 450 5536"
+  },
+  {
+    "id": "45856",
+    "nombre": "Mi Negocio",
+    "sector": "Salud",
+    "rif": "j-78455625",
+    "telefono": "+58 414 450 5536"
+  }
+]
