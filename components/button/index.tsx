@@ -23,7 +23,8 @@ const Button = (props: Props) => {
     title,
     type = "button",
   } = props;
-  const styles = useMemo(() => ({ full: "w-full", normal: "" }), [variant]);
+
+  const styles = useMemo(() => ({ full: "w-full", normal: "" }), []);
 
   return (
     <button

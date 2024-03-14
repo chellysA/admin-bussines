@@ -25,32 +25,33 @@ const Productos = () => {
             />
           </div>
         </div>
-        <div className="md:ml-12 mt-6 md:mt-2 grid grid-cols-1 col-span-1">
+        <div className="mt-6 md:mt-2 grid grid-cols-1 col-span-1">
           <Button label="Buscar" title="Buscar Producto" />
-          <Link href="/productos/agregar-producto w-full">
+          <div className="flex flex-col lg:flex-row w-full gap-4 mt-4">
+            <Link href="/productos/agregar-producto" className="w-full">
+              <Button
+                label={
+                  <>
+                    <MdAddCircle className="text-[25px] mr-2" />
+                    <>Producto</>
+                  </>
+                }
+                title="Añadir Producto"
+                variant="full"
+              />
+            </Link>
+
             <Button
               label={
                 <>
                   <MdAddCircle className="text-[25px] mr-2" />
-                  <>Producto</>
+                  <>Categoria</>
                 </>
               }
-              className="mt-4"
-              title="Añadir Producto"
+              title="Añadir Categoria"
               variant="full"
             />
-          </Link>
-
-          <Button
-            label={
-              <>
-                <MdAddCircle className="text-[25px] mr-2" />
-                <>Categoria</>
-              </>
-            }
-            className="mt-4"
-            title="Añadir Categoria"
-          />
+          </div>
         </div>
       </div>
 
