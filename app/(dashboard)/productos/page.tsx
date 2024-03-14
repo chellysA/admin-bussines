@@ -4,7 +4,7 @@ import InputField from "@/components/fields/InputField";
 import BasicTable from "../../../components/tables/basicTable";
 import Select from "@/components/select";
 import Link from "next/link";
-import { MdAddBox, MdAddBusiness } from "react-icons/md";
+import { MdAddBox } from "react-icons/md";
 import { columnsDataProducts } from "./variables/columnsDataProducts";
 import tableDataProducts from "./variables/tableDataProducts.json";
 import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
@@ -14,13 +14,25 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import CreateCategorieSchema from "@/data/validations/Create-Categorie-schema";
 import InputController from "@/components/fields/InputController";
+import DeleteConfirmationModal from "@/components/modal/DeleteConfirmationModal";
+import DeleteProductConfirmationSchema from "@/data/validations/Delete-product-confirmation-schema";
 
 const Productos = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [deleteConfirmationOpenModal, setDeleteConfirmationOpenModal] =
+    useState(false);
+  const [productToBeDeleted, setproductToBeDeleted] = useState("");
+
+  useChangeTitleLayoutAdmin("Productos");
 
   const form = useForm({
     defaultValues: { categorie: "" },
     resolver: yupResolver(CreateCategorieSchema),
+  });
+
+  const deleteProductForm = useForm({
+    defaultValues: { productName: "" },
+    resolver: yupResolver(DeleteProductConfirmationSchema),
   });
 
   const {
@@ -29,6 +41,13 @@ const Productos = () => {
     formState: { errors },
     reset,
   } = form;
+
+  const {
+    handleSubmit: deleteConfirmatioHandleSubmit,
+    control: deleteConfirmationControl,
+    formState: { errors: deleteConfirmatioErrors },
+    reset: deleteConfirmationReset,
+  } = deleteProductForm;
 
   const onSubmit = async (data: any) => {
     try {
@@ -39,16 +58,38 @@ const Productos = () => {
       console.error("Error de validación:");
     }
   };
+  const deleteConfirationOnSubmit = async (data: any) => {
+    try {
+      if (data.productName === productToBeDeleted) {
+        console.log("Datos válidos:", data);
+        setDeleteConfirmationOpenModal(false);
+        deleteConfirmationReset();
+      }
+    } catch (error) {
+      console.error("Error de validación:");
+    }
+  };
+
+  const handleDelete = (name: string) => {
+    setDeleteConfirmationOpenModal(true);
+    setproductToBeDeleted(name);
+  };
 
   const handleReset = useCallback(() => {
     reset({ categorie: "" });
   }, [reset]);
 
-  useChangeTitleLayoutAdmin("Productos");
+  const deleteConfirmationHandleReset = useCallback(() => {
+    deleteConfirmationReset({ productName: "" });
+  }, [deleteConfirmationReset]);
 
   useEffect(() => {
     !openModal && handleReset();
   }, [handleReset, openModal]);
+
+  useEffect(() => {
+    !deleteConfirmationOpenModal && deleteConfirmationHandleReset();
+  }, [deleteConfirmationHandleReset, deleteConfirmationOpenModal]);
 
   return (
     <>
@@ -81,11 +122,11 @@ const Productos = () => {
         <Button
           label={
             <>
-              <MdAddBox className="text-[25px] mr-2" /> <p>Categorie</p>
+              <MdAddBox className="text-[25px] mr-2" /> <p>Categoria</p>
             </>
           }
           className="mt-4"
-          title="Añadir Categorie"
+          title="Añadir Categoria"
           onClick={() => setOpenModal(true)}
         />
       </div>
@@ -98,7 +139,7 @@ const Productos = () => {
       >
         <form>
           <InputController
-            id="categoria"
+            id="categorie"
             label="Nombre de la categoria"
             control={control}
             isError={!!errors.categorie}
@@ -106,9 +147,25 @@ const Productos = () => {
           />
         </form>
       </Modal>
+      <DeleteConfirmationModal
+        title="Eliminar Usuario"
+        isOpen={deleteConfirmationOpenModal}
+        closeModal={() => setDeleteConfirmationOpenModal(false)}
+        onConfirm={deleteConfirmatioHandleSubmit(deleteConfirationOnSubmit)}
+        buttonType="submit"
+        objectToBeDeleted={productToBeDeleted}
+      >
+        <InputController
+          id="productName"
+          label="Ingresa el nombre del producto para continuar:"
+          control={deleteConfirmationControl}
+          isError={!!deleteConfirmatioErrors.productName}
+          error={deleteConfirmatioErrors.productName?.message}
+        />
+      </DeleteConfirmationModal>
       <div className="mt-8">
         <BasicTable
-          columnsData={columnsDataProducts}
+          columnsData={columnsDataProducts(handleDelete)}
           tableData={tableDataProducts}
           title="Lista de Productos"
         />

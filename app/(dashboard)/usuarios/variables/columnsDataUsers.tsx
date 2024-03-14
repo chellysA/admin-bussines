@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import { MouseEventHandler } from "react";
 import { MdDeleteForever, MdEdit, MdSearch } from "react-icons/md";
 
 export const columnsDataUsers = (deleteOnClick: (arg0: string) => void) => [

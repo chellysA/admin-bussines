@@ -29,7 +29,7 @@ const Modal = ({
     <>
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-blackOpacity z-50">
-          <Card className="p-4 w-auto h-auto max-w-[75%] md:max-w-[40%] overflow-y-auto overflow-x-hidden justify-between">
+          <Card className="p-4 w-auto h-auto min-w-[300px] min-h-[300px] max-w-[75%] md:max-w-[40%] overflow-y-auto overflow-x-hidden justify-between">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold">{title}</h2>
               <button
