@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Negocios | Horizon UI by Ories",
 };
 
-export default function NegociosLayout({
+export default function EmpresaLayout({
   children,
 }: {
   children: React.ReactNode;
