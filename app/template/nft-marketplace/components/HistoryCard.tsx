@@ -61,7 +61,10 @@ const HistoryCard = () => {
 
       {/* History CardData */}
       {HistoryData.map((data, index) => (
-        <div className="flex h-full w-full items-start justify-between bg-white px-3 py-[20px] hover:shadow-2xl dark:!bg-navy-800 dark:shadow-none dark:hover:!bg-navy-700" key={index}>
+        <div
+          className="flex h-full w-full items-start justify-between bg-white px-3 py-[20px] hover:shadow-2xl dark:!bg-navy-800 dark:shadow-none dark:hover:!bg-navy-700"
+          key={index}
+        >
           <div className="flex items-center gap-3">
             <div className="flex h-16 w-16 items-center justify-center">
               <img
@@ -87,7 +90,7 @@ const HistoryCard = () => {
               <FaEthereum />
             </div>
             <div className="ml-1 flex items-center text-sm font-bold text-navy-700 dark:text-white">
-              <p> { } </p>
+              <p> {} </p>
               {data.price} <p className="ml-1">ETH</p>
             </div>
             <div className="ml-2 flex items-center text-sm font-normal text-gray-600 dark:text-white">

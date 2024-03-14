@@ -1,6 +1,7 @@
-'use client'
+"use client";
 
-import { useMemo } from "react";
+import CardMenu from "@/components/card/CardMenu";
+import Card from "@/components/card";
 import {
   useGlobalFilter,
   usePagination,
@@ -8,18 +9,17 @@ import {
   useTable,
 } from "react-table";
 import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
-
-import CardMenu from "@/components/card/CardMenu";
-import Card from "@/components/card";
+import { useMemo } from "react";
 import Progress from "@/components/progress";
 
 type Props = {
-  columnsData: any[]
-  tableData: any[]
-}
+  columnsData: any[];
+  tableData: any[];
+  title?: string;
+};
 
 const ComplexTable = (props: Props) => {
-  const { columnsData, tableData } = props;
+  const { columnsData, tableData, title = "Complex Table" } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
@@ -31,7 +31,7 @@ const ComplexTable = (props: Props) => {
     },
     useGlobalFilter,
     useSortBy,
-    usePagination
+    usePagination,
   );
 
   const {
@@ -45,15 +45,15 @@ const ComplexTable = (props: Props) => {
   initialState.pageSize = 5;
 
   return (
-    <Card className={"w-full h-full p-4 sm:overflow-x-auto"}>
-      <div className="relative flex items-center justify-between">
+    <Card className={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
+      <div className="relative flex items-center justify-between pt-4">
         <div className="text-xl font-bold text-navy-700 dark:text-white">
-          Complex Table
+          {title}
         </div>
         <CardMenu />
       </div>
 
-      <div className="mt-8 h-full overflow-x-auto">
+      <div className="mt-8 overflow-x-auto h-full">
         <table {...getTableProps()} className="w-full">
           <thead>
             {headerGroups.map((headerGroup, index) => (
@@ -109,7 +109,9 @@ const ComplexTable = (props: Props) => {
                         </p>
                       );
                     } else if (cell.column.Header === "PROGRESS") {
-                      renderData = <Progress width="w-[68px]" value={cell.value} />;
+                      renderData = (
+                        <Progress width="w-[108px]" value={cell.value} />
+                      );
                     }
                     return (
                       <td
