@@ -1,5 +1,5 @@
-'use client'
-import { useEffect, useState, useRef, ReactNode } from 'react'
+"use client";
+import { useEffect, useState, useRef, ReactNode } from "react";
 
 function useOutsideAlerter(ref: any, setX: any) {
   useEffect(() => {
@@ -21,11 +21,11 @@ function useOutsideAlerter(ref: any, setX: any) {
 }
 
 type Props = {
-  button?: ReactNode
-  children?: ReactNode
-  className?: string
-  animation?: string | any
-}
+  button?: ReactNode;
+  children?: ReactNode;
+  className?: string;
+  animation?: string | any;
+};
 
 const Dropdown = (props: Props) => {
   const { button, children, className, animation } = props;
@@ -39,10 +39,11 @@ const Dropdown = (props: Props) => {
         {button}
       </div>
       <div
-        className={`${className} absolute z-10 ${animation
-          ? animation
-          : "origin-top-right transition-all duration-300 ease-in-out"
-          } ${openWrapper ? "scale-100" : "scale-0"}`}
+        className={`${className} absolute z-10 ${
+          animation
+            ? animation
+            : "origin-top-right transition-all duration-300 ease-in-out"
+        } ${openWrapper ? "scale-100" : "scale-0"}`}
       >
         {children}
       </div>

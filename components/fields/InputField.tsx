@@ -1,21 +1,6 @@
-import { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
+import { IInputProps } from "@/types/components/input";
 
-type Props = {
-  label?: string;
-  id?: string;
-  className?: string;
-  type?: HTMLInputTypeAttribute;
-  placeholder?: string;
-  variant?: any;
-  isError?: boolean;
-  isSuccess?: boolean;
-  disabled?: boolean;
-  value?: string | number;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
-};
-
-// Custom components
-function InputField(props: Props) {
+function InputField(props: IInputProps) {
   const {
     label,
     id,
@@ -28,8 +13,8 @@ function InputField(props: Props) {
     disabled,
     value,
     onChange,
+    error,
   } = props;
-
   return (
     <div className={className}>
       {label && (
@@ -55,12 +40,15 @@ function InputField(props: Props) {
           disabled
             ? "!border-none !bg-gray-100 dark:!bg-white/5 dark:placeholder:!text-[rgba(255,255,255,0.15)]"
             : isError
-            ? "border-red-500 text-red-500 placeholder:text-red-500 dark:!border-red-400 dark:!text-red-400 dark:placeholder:!text-red-400"
-            : isSuccess
-            ? "border-green-500 text-green-500 placeholder:text-green-500 dark:!border-green-400 dark:!text-green-400 dark:placeholder:!text-green-400"
-            : "border-gray-200 dark:border-white/10 focus:border-blueSecondary dark:focus:border-blueSecondary dark:text-white"
+              ? "border-red-500 text-red-500 placeholder:text-red-500 dark:!border-red-400 dark:!text-red-400 dark:placeholder:!text-red-400"
+              : isSuccess
+                ? "border-green-500 text-green-500 placeholder:text-green-500 dark:!border-green-400 dark:!text-green-400 dark:placeholder:!text-green-400"
+                : "border-gray-200 dark:border-white/10 focus:border-blueSecondary dark:focus:border-blueSecondary dark:text-white"
         }`}
       />
+      {isError && (
+        <p className="text-red-500 dark:!text-red-400 text-sm">{`* ${error}`}</p>
+      )}
     </div>
   );
 }
