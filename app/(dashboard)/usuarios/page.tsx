@@ -8,9 +8,56 @@ import Select from "@/components/select";
 import { IoMdPersonAdd } from "react-icons/io";
 import Link from "next/link";
 import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
+import Modal from "@/components/modal";
+import { useCallback, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import DeleteUserConfirmationSchema from "@/data/validations/Delete-user-confirmation-schema";
+import InputController from "@/components/fields/InputController";
+import DeleteConfirmationModal from "@/components/modal/DeleteConfirmationModal";
 
 const Usuarios = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const [userNameToBeDeleted, setUserNameToBeDeleted] = useState("");
   useChangeTitleLayoutAdmin("Usuarios");
+
+  const form = useForm({
+    defaultValues: { name: "" },
+    resolver: yupResolver(DeleteUserConfirmationSchema),
+  });
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+  } = form;
+
+  const onSubmit = async (data: any) => {
+    try {
+      if (data.name === userNameToBeDeleted) {
+        console.log("Datos válidos:", data);
+        setOpenModal(false);
+        handleReset();
+      }
+    } catch (error) {
+      console.error("Error de validación:");
+    }
+  };
+
+  const handleDelete = (name: string) => {
+    setOpenModal(true);
+    setUserNameToBeDeleted(name);
+  };
+
+  const handleReset = useCallback(() => {
+    reset({ name: "" });
+  }, [reset]);
+
+  useEffect(() => {
+    !openModal && handleReset();
+  }, [handleReset, openModal]);
+
   return (
     <>
       <div className="mt-3 grid grid-cols-1 md:gap-5 md:grid-cols-3">
@@ -38,11 +85,27 @@ const Usuarios = () => {
       </div>
       <div className="mt-8">
         <BasicTable
-          columnsData={columnsDataUsers}
+          columnsData={columnsDataUsers(handleDelete)}
           tableData={tableDataUsers}
           title="Lista de Usuarios"
         />
       </div>
+      <DeleteConfirmationModal
+        title="Eliminar Usuario"
+        isOpen={openModal}
+        closeModal={() => setOpenModal(false)}
+        onConfirm={handleSubmit(onSubmit)}
+        buttonType="submit"
+        objectToBeDeleted={userNameToBeDeleted}
+      >
+        <InputController
+          id="name"
+          label="Ingresa el nombre del usuario para continuar:"
+          control={control}
+          isError={!!errors.name}
+          error={errors.name?.message}
+        />
+      </DeleteConfirmationModal>
     </>
   );
 };
