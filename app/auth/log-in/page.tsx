@@ -9,10 +9,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import LogInSchema from "@/data/validations/Log-in-schema";
 import { useRouter } from "next/navigation";
 import { useLogIn } from "@/hooks/useLogIn";
+import { useAuth } from "@/providers/AuthProvider";
 
 type Props = {};
 
 const LogIn: FC<Props> = () => {
+  const router = useRouter();
+  const { login } = useAuth();
   const form = useForm({
     defaultValues: {
       email: "",
@@ -20,27 +23,19 @@ const LogIn: FC<Props> = () => {
     },
     resolver: yupResolver(LogInSchema),
   });
+
   const {
     control,
     formState: { errors },
     handleSubmit,
   } = form;
-  const router = useRouter();
-  const { mutate } = useLogIn();
 
   const onSubmit = async (data: any) => {
-    try {
-      await LogInSchema.validate(data);
-      console.log("Datos válidos:", data);
-      mutate(data, {
-        onSuccess: (res) => {
-          console.log(res);
-          router.push("/dashboard");
-        },
-      });
-    } catch (error) {
-      console.error("Error de validación:");
-    }
+    login(data, {
+      onSuccess: () => {
+        router.push("/dashboard");
+      },
+    });
   };
 
   return (

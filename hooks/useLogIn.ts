@@ -1,18 +1,21 @@
 import AxiosInstance from "@/constants/AxiosInstance";
+import { IResponseServices } from "@/types/request";
 import { useMutation } from "@tanstack/react-query";
 
-interface IPayLoadLogIn {
+export interface IPayLoadLogIn {
   email: string;
   password: string;
 }
 
-const fetchLogIn = async (payload: IPayLoadLogIn) => {
+const fetchLogIn = async (
+  payload: IPayLoadLogIn,
+): Promise<IResponseServices<any>> => {
   const res = await AxiosInstance.post("/auth/login", payload);
+
   try {
-    console.log("Respuesta del servidor:", res);
+    // TODO Mejorar el typescript
     return res;
   } catch (error) {
-    console.error("Error al enviar datos:", error);
     return error;
   }
 };
