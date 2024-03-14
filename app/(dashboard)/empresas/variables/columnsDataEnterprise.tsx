@@ -2,7 +2,9 @@
 import Link from "next/link";
 import { MdDeleteForever, MdEdit, MdSearch } from "react-icons/md";
 
-export const columnsDataEnterprise = [
+export const columnsDataEnterprise = (
+  deleteOnClick: (arg0: string) => void,
+) => [
   {
     accessorKey: "nombre",
     header: "NOMBRE",
@@ -51,13 +53,11 @@ export const columnsDataEnterprise = [
         >
           <MdSearch className="cursor-pointer" />
         </Link>
-        <Link
-          href={`/empresa/${props.row.original.id}/delete`}
-          className="text-[22px] text-gray-900 dark:text-white"
+        <MdDeleteForever
+          className="cursor-pointer text-[22px] text-gray-900 dark:text-white"
           title="Eliminar"
-        >
-          <MdDeleteForever className="cursor-pointer" />
-        </Link>
+          onClick={() => deleteOnClick(props.row.original.nombre)}
+        />
       </div>
     ),
   },
