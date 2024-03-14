@@ -9,7 +9,7 @@ import { IoMdPersonAdd } from "react-icons/io";
 import Link from "next/link";
 import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
 import Modal from "@/components/modal";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import DeleteUserConfirmationSchema from "@/data/validations/Delete-user-confirmation-schema";
@@ -49,13 +49,13 @@ const Usuarios = () => {
     setUserNameToBeDeleted(name);
   };
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     reset({ name: "" });
-  };
+  }, [reset]);
 
   useEffect(() => {
     !openModal && handleReset();
-  }, [openModal]);
+  }, [handleReset, openModal]);
 
   return (
     <>

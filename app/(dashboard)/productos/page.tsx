@@ -9,7 +9,7 @@ import { columnsDataProducts } from "./variables/columnsDataProducts";
 import tableDataProducts from "./variables/tableDataProducts.json";
 import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
 import Modal from "@/components/modal";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import CreateCategorieSchema from "@/data/validations/Create-Categorie-schema";
@@ -40,15 +40,15 @@ const Productos = () => {
     }
   };
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     reset({ categorie: "" });
-  };
+  }, [reset]);
 
   useChangeTitleLayoutAdmin("Productos");
 
   useEffect(() => {
     !openModal && handleReset();
-  }, [openModal]);
+  }, [handleReset, openModal]);
 
   return (
     <>
