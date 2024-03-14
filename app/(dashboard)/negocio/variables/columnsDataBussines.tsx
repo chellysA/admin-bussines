@@ -16,6 +16,10 @@ export const columnsDataBussines = [
     header: "RIF",
   },
   {
+    accessorKey: "telefono",
+    header: "TELEFONO",
+  },
+  {
     accessorKey: "acciones",
     header: "ACCIONES",
     cell: (props: any) => (
