@@ -2,10 +2,10 @@ import { type Metadata } from "next";
 import Footer from "@/components/footer/Footer";
 
 export const metadata: Metadata = {
-  title: "Enterprise | Horizon UI by Ories",
+  title: "Negocios | Horizon UI by Ories",
 };
 
-export default function EnterpriseLayout({
+export default function NegociosLayout({
   children,
 }: {
   children: React.ReactNode;
