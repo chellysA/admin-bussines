@@ -8,7 +8,7 @@ import {
   MdSearch,
 } from "react-icons/md";
 
-export const columnsDataProducts = [
+export const columnsDataProducts = (deleteOnClick: (arg0: string) => void) => [
   {
     accessorKey: "nombre",
     header: "NOMBRE",
@@ -76,13 +76,11 @@ export const columnsDataProducts = [
         >
           <MdSearch className="cursor-pointer" />
         </Link>
-        <Link
-          href={`/productos/${props.row.original.id}/delete`}
-          className="text-[22px] text-gray-900 dark:text-white"
+        <MdDeleteForever
+          className="cursor-pointer text-[22px] text-gray-900 dark:text-white"
           title="Eliminar"
-        >
-          <MdDeleteForever className="cursor-pointer" />
-        </Link>
+          onClick={() => deleteOnClick(props.row.original.nombre)}
+        />
       </div>
     ),
   },
