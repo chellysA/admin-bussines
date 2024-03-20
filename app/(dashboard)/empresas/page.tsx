@@ -68,7 +68,7 @@ const Empresas = () => {
         </div>
       </div>
       <div className="flex justify-end">
-        <Link href="/empresa/agregar-empresa">
+        <Link href="/empresas/agregar-empresa">
           <Button
             label={<MdDomainAdd className="text-[25px] mx-5" />}
             className="mt-4"
@@ -96,7 +96,7 @@ const Empresas = () => {
         <BasicTable
           columnsData={columnsDataEnterprise(handleDelete)}
           tableData={tableDataEnterprises}
-          title="Lista de Empresa"
+          title="Lista de Empresas"
         />
       </div>
     </>

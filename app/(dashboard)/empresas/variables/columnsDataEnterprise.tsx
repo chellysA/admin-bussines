@@ -6,12 +6,12 @@ export const columnsDataEnterprise = (
   deleteOnClick: (arg0: string) => void,
 ) => [
   {
-    accessorKey: "nombre",
-    header: "NOMBRE",
+    accessorKey: "nombre de la empresa",
+    header: "NOMBRE DE LA EMPRESA",
   },
   {
-    accessorKey: "nombre de los representantes",
-    header: "NOMBRE DE LOS REPRESENTANTES",
+    accessorKey: "nombre del representante",
+    header: "NOMBRE DEL REPRESENTANTE",
   },
   {
     accessorKey: "email",

@@ -20,13 +20,13 @@ const EnterpriseForm = ({
 }: Props) => {
   const form = useForm({
     defaultValues: {
-      nombre: "",
-      nombreDeLosRepresentantes: "",
+      enterpriseName: "",
+      nameOfRepresentatives: "",
       email: "",
-      telefono: "",
+      phone: "",
       sector: "",
       rif: "",
-      direccion: "",
+      address: "",
     },
     resolver: yupResolver(CreateEnterpriseSchema),
   });
@@ -50,25 +50,24 @@ const EnterpriseForm = ({
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-8">
         <InputController
-          id="nombre"
-          label="Nombre"
+          id="enterpriseName"
+          label="Nombre de la Empresa"
           disabled={isReadOnly}
           control={control}
-          error={errors.nombre?.message}
-          isError={!!errors.nombre}
+          error={errors.enterpriseName?.message}
+          isError={!!errors.enterpriseName}
         />
         <div>
           <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
-            Nombre de los Representantes
+            Nombre del Representante
           </p>
-          <SelectController
-            id="nombreDeLosRepresentantes"
-            options={["Ana Maria", "Howard Aquino", "Luis Perez"]}
+          <InputController
+            id="nameOfRepresentatives"
             label=""
             disabled={isReadOnly}
             control={control}
-            error={errors.nombreDeLosRepresentantes?.message}
-            isError={!!errors.nombreDeLosRepresentantes}
+            error={errors.nameOfRepresentatives?.message}
+            isError={!!errors.nameOfRepresentatives}
           />
         </div>
         <InputController
@@ -80,12 +79,12 @@ const EnterpriseForm = ({
           isError={!!errors.email}
         />
         <InputController
-          id="telefono"
+          id="phone"
           label="Telefono"
           disabled={isReadOnly}
           control={control}
-          error={errors.telefono?.message}
-          isError={!!errors.telefono}
+          error={errors.phone?.message}
+          isError={!!errors.phone}
         />
         <InputController
           id="sector"
@@ -104,12 +103,12 @@ const EnterpriseForm = ({
           isError={!!errors.rif}
         />
         <InputController
-          id="direccion"
+          id="address"
           label="Direccion"
           disabled={isReadOnly}
           control={control}
-          error={errors.nombre?.message}
-          isError={!!errors.nombre}
+          error={errors.address?.message}
+          isError={!!errors.address}
         />
       </div>
 
