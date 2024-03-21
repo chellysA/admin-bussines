@@ -1,4 +1,5 @@
 import { IPayLoadLogIn, useLogIn } from "@/hooks/useLogIn";
+import { setAuthorizationHeader } from "@/utils/setAuthorizationHeader";
 import { setCookie, deleteCookie, getCookie } from "cookies-next";
 import {
   Dispatch,
@@ -6,6 +7,7 @@ import {
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -59,10 +61,18 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     mutateLogin(values, {
       onSuccess: ({ data: dataResponse }) => {
         saveUserToken(dataResponse.jwt);
+        setAuthorizationHeader(dataResponse.jwt);
         options?.onSuccess && options?.onSuccess();
       },
     });
   };
+
+  useEffect(() => {
+    const userToken = getUserToken();
+    if (userToken) {
+      setAuthorizationHeader(userToken);
+    }
+  }, []);
 
   return (
     <AuthContext.Provider

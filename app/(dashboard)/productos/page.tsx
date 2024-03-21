@@ -4,6 +4,7 @@ import InputField from "@/components/fields/InputField";
 import BasicTable from "../../../components/tables/basicTable";
 import Select from "@/components/select";
 import Link from "next/link";
+import { MdAddCircle } from "react-icons/md";
 import { MdAddBox } from "react-icons/md";
 import { columnsDataProducts } from "./variables/columnsDataProducts";
 import tableDataProducts from "./variables/tableDataProducts.json";
@@ -96,73 +97,44 @@ const Productos = () => {
       <div className="mt-3 grid grid-cols-1 md:gap-5 md:grid-cols-3">
         <div className="grid grid-cols-1 grid-rows-1 col-span-2 gap-5 md:grid-cols-3 md:mr-10 mt-2">
           <InputField placeholder="Nombre" id="nombre" />
-          <InputField placeholder="Categorie" id="categorie" />
-          <Select
-            options={["Unidad", "Kg"]}
-            label="Presentación"
-            id="presentacionS"
-          />
+          <InputField placeholder="Categoria" id="categoria" />
+          <div className="h-10">
+            <Select
+              options={["Unidad", "Kg"]}
+              label="Presentación"
+              id="presentacion"
+            />
+          </div>
         </div>
-        <div className="md:ml-12 mt-6 md:mt-2 grid grid-cols-1 col-span-1">
-          <Button label="Buscar" title="Buscar Usuario" />
+        <div className="mt-6 md:mt-2 grid grid-cols-1 col-span-1">
+          <Button label="Buscar" title="Buscar Producto" />
+          <div className="flex flex-col lg:flex-row w-full gap-4 mt-4">
+            <Link href="/productos/agregar-producto" className="w-full">
+              <Button
+                label={
+                  <>
+                    <MdAddCircle className="text-[25px] mr-2" />
+                    <>Producto</>
+                  </>
+                }
+                title="Añadir Producto"
+                variant="full"
+              />
+            </Link>
+
+            <Button
+              label={
+                <>
+                  <MdAddCircle className="text-[25px] mr-2" />
+                  <>Categoria</>
+                </>
+              }
+              title="Añadir Categoria"
+              variant="full"
+            />
+          </div>
         </div>
       </div>
-      <div className="flex flex-col items-end">
-        <Link href="/productos/agregar-producto">
-          <Button
-            label={
-              <>
-                <MdAddBox className="text-[25px] mr-2" /> <p>Producto</p>
-              </>
-            }
-            className="mt-4"
-            title="Añadir Producto"
-          />
-        </Link>
-        <Button
-          label={
-            <>
-              <MdAddBox className="text-[25px] mr-2" /> <p>Categoria</p>
-            </>
-          }
-          className="mt-4"
-          title="Añadir Categoria"
-          onClick={() => setOpenModal(true)}
-        />
-      </div>
-      <Modal
-        title="Añadir categoria"
-        isOpen={openModal}
-        closeModal={() => setOpenModal(false)}
-        onConfirm={handleSubmit(onSubmit)}
-        buttonType="submit"
-      >
-        <form>
-          <InputController
-            id="categorie"
-            label="Nombre de la categoria"
-            control={control}
-            isError={!!errors.categorie}
-            error={errors.categorie?.message}
-          />
-        </form>
-      </Modal>
-      <DeleteConfirmationModal
-        title="Eliminar Usuario"
-        isOpen={deleteConfirmationOpenModal}
-        closeModal={() => setDeleteConfirmationOpenModal(false)}
-        onConfirm={deleteConfirmatioHandleSubmit(deleteConfirationOnSubmit)}
-        buttonType="submit"
-        objectToBeDeleted={productToBeDeleted}
-      >
-        <InputController
-          id="productName"
-          label="Ingresa el nombre del producto para continuar:"
-          control={deleteConfirmationControl}
-          isError={!!deleteConfirmatioErrors.productName}
-          error={deleteConfirmatioErrors.productName?.message}
-        />
-      </DeleteConfirmationModal>
       <div className="mt-8">
         <BasicTable
           columnsData={columnsDataProducts(handleDelete)}
