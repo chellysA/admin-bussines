@@ -1,5 +1,5 @@
 import { IPayLoadLogIn, useLogIn } from "@/hooks/useLogIn";
-import { setCookie, deleteCookie } from "cookies-next";
+import { setCookie, deleteCookie, getCookie } from "cookies-next";
 import {
   Dispatch,
   ReactNode,
@@ -26,6 +26,7 @@ interface IAuthContext {
   saveUserToken: (token: string) => void;
   deleteUserToken: () => void;
   login: TLogin;
+  getUserToken: () => string | undefined;
 }
 
 const AuthContext = createContext<IAuthContext>({
@@ -34,6 +35,7 @@ const AuthContext = createContext<IAuthContext>({
   saveUserToken: () => {},
   deleteUserToken: () => {},
   login: () => {},
+  getUserToken: () => "",
 });
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -49,6 +51,10 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     deleteCookie(USER_TOKEN);
   };
 
+  const getUserToken = () => {
+    return getCookie(USER_TOKEN);
+  };
+
   const login: TLogin = (values: IPayLoadLogIn, options) => {
     mutateLogin(values, {
       onSuccess: ({ data: dataResponse }) => {
@@ -60,7 +66,14 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser, saveUserToken, deleteUserToken, login }}
+      value={{
+        user,
+        setUser,
+        saveUserToken,
+        deleteUserToken,
+        login,
+        getUserToken,
+      }}
     >
       {children}
     </AuthContext.Provider>
