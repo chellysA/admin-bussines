@@ -1,11 +1,13 @@
 import { IPayLoadLogIn, useLogIn } from "@/hooks/useLogIn";
-import { setCookie, deleteCookie } from "cookies-next";
+import { setAuthorizationHeader } from "@/utils/setAuthorizationHeader";
+import { setCookie, deleteCookie, getCookie } from "cookies-next";
 import {
   Dispatch,
   ReactNode,
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -26,6 +28,7 @@ interface IAuthContext {
   saveUserToken: (token: string) => void;
   deleteUserToken: () => void;
   login: TLogin;
+  getUserToken: () => string | undefined;
 }
 
 const AuthContext = createContext<IAuthContext>({
@@ -34,6 +37,7 @@ const AuthContext = createContext<IAuthContext>({
   saveUserToken: () => {},
   deleteUserToken: () => {},
   login: () => {},
+  getUserToken: () => "",
 });
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -49,18 +53,37 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     deleteCookie(USER_TOKEN);
   };
 
+  const getUserToken = () => {
+    return getCookie(USER_TOKEN);
+  };
+
   const login: TLogin = (values: IPayLoadLogIn, options) => {
     mutateLogin(values, {
       onSuccess: ({ data: dataResponse }) => {
         saveUserToken(dataResponse.jwt);
+        setAuthorizationHeader(dataResponse.jwt);
         options?.onSuccess && options?.onSuccess();
       },
     });
   };
 
+  useEffect(() => {
+    const userToken = getUserToken();
+    if (userToken) {
+      setAuthorizationHeader(userToken);
+    }
+  }, []);
+
   return (
     <AuthContext.Provider
-      value={{ user, setUser, saveUserToken, deleteUserToken, login }}
+      value={{
+        user,
+        setUser,
+        saveUserToken,
+        deleteUserToken,
+        login,
+        getUserToken,
+      }}
     >
       {children}
     </AuthContext.Provider>
