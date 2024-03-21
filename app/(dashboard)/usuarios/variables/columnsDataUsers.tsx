@@ -16,7 +16,10 @@ export const columnsDataUsers = (deleteOnClick: (arg0: string) => void) => [
     accessorKey: "email",
     header: "EMAIL",
   },
-
+  {
+    accessorKey: "documento",
+    header: "DOCUMENTO",
+  },
   {
     accessorKey: "acciones",
     header: "ACCIONES",
