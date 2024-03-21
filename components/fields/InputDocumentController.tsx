@@ -1,4 +1,4 @@
-giimport { Control, useController } from "react-hook-form";
+import { Control, useController } from "react-hook-form";
 import { IInputProps } from "@/types/components/input";
 import Select from "../select";
 import { useState } from "react";

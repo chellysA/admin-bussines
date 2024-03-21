@@ -26,8 +26,8 @@ export const columnsDataEnterprise = (
     header: "SECTOR",
   },
   {
-    accessorKey: "rif",
-    header: "RIF",
+    accessorKey: "documento",
+    header: "DOCUMENTO",
   },
   {
     accessorKey: "direccion",

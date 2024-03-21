@@ -1,6 +1,7 @@
 import Button from "@/components/button";
 import CheckboxController from "@/components/checkbox/CheckboxController";
 import InputController from "@/components/fields/InputController";
+import InputDocumentController from "@/components/fields/InputDocumentController";
 import SelectController from "@/components/select/SelectController";
 import CreateEnterpriseSchema from "@/data/validations/create-enterprise-schema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -25,7 +26,7 @@ const EnterpriseForm = ({
       email: "",
       phone: "",
       sector: "",
-      rif: "",
+      document: "",
       address: "",
     },
     resolver: yupResolver(CreateEnterpriseSchema),
@@ -94,13 +95,13 @@ const EnterpriseForm = ({
           error={errors.sector?.message}
           isError={!!errors.sector}
         />
-        <InputController
-          id="rif"
-          label="Rif"
+        <InputDocumentController
+          id="document"
+          label="Documento"
           disabled={isReadOnly}
           control={control}
-          error={errors.rif?.message}
-          isError={!!errors.rif}
+          error={errors.document?.message}
+          isError={!!errors.document}
         />
         <InputController
           id="address"
