@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import CreateUsersSchema from "@/data/validations/Create-users-schema";
 import { useRouter } from "next/navigation";
 import SelectController from "@/components/select/SelectController";
+import InputDocumentController from "@/components/fields/InputDocumentController";
 
 type Props = {
   isReadOnly?: boolean;
@@ -16,13 +17,14 @@ type Props = {
 const UsersForm = (props: Props) => {
   const form = useForm({
     defaultValues: {
-      nombre: "",
-      apellido: "",
+      name: "",
+      lastName: "",
       email: "",
       userName: "",
       password: "",
       sede: "",
       rol: "",
+      document: "",
     },
     resolver: yupResolver(CreateUsersSchema),
   });
@@ -51,16 +53,16 @@ const UsersForm = (props: Props) => {
           disabled={isReadOnly}
           label="Nombre"
           control={control}
-          isError={!!errors.nombre}
-          error={errors.nombre?.message}
+          isError={!!errors.name}
+          error={errors.name?.message}
         />
         <InputController
           id="apellido"
           disabled={isReadOnly}
           label="Apellido"
           control={control}
-          isError={!!errors.apellido}
-          error={errors.apellido?.message}
+          isError={!!errors.lastName}
+          error={errors.lastName?.message}
         />
         <div>
           <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
@@ -113,6 +115,14 @@ const UsersForm = (props: Props) => {
           control={control}
           isError={!!errors.password}
           error={errors.password?.message}
+        />
+        <InputDocumentController
+          id="document"
+          label="Documento"
+          disabled={isReadOnly}
+          control={control}
+          isError={!!errors.document}
+          error={errors.document?.message}
         />
         {/* Agregar input de calendario */}
         {/* <InputController
