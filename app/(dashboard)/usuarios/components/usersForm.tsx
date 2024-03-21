@@ -7,6 +7,7 @@ import CreateUsersSchema from "@/data/validations/Create-users-schema";
 import { useRouter } from "next/navigation";
 import SelectController from "@/components/select/SelectController";
 import InputDocumentController from "@/components/fields/InputDocumentController";
+import InputPhoneController from "@/components/fields/InputPhoneController";
 
 type Props = {
   isReadOnly?: boolean;
@@ -21,6 +22,7 @@ const UsersForm = (props: Props) => {
       lastName: "",
       email: "",
       userName: "",
+      phone: "",
       password: "",
       sede: "",
       rol: "",
@@ -123,6 +125,13 @@ const UsersForm = (props: Props) => {
           control={control}
           isError={!!errors.document}
           error={errors.document?.message}
+        />
+        <InputPhoneController
+          id="phone"
+          label="Telefono"
+          control={control}
+          isError={!!errors.phone}
+          error={errors.phone?.message}
         />
         {/* Agregar input de calendario */}
         {/* <InputController

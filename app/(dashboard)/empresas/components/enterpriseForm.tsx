@@ -2,6 +2,7 @@ import Button from "@/components/button";
 import CheckboxController from "@/components/checkbox/CheckboxController";
 import InputController from "@/components/fields/InputController";
 import InputDocumentController from "@/components/fields/InputDocumentController";
+import InputPhoneController from "@/components/fields/InputPhoneController";
 import SelectController from "@/components/select/SelectController";
 import CreateEnterpriseSchema from "@/data/validations/create-enterprise-schema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -79,13 +80,12 @@ const EnterpriseForm = ({
           error={errors.email?.message}
           isError={!!errors.email}
         />
-        <InputController
+        <InputPhoneController
           id="phone"
           label="Telefono"
-          disabled={isReadOnly}
           control={control}
-          error={errors.phone?.message}
           isError={!!errors.phone}
+          error={errors.phone?.message}
         />
         <InputController
           id="sector"

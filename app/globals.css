@@ -31,7 +31,8 @@ select {
   display: block;
   border-left: 2px solid white;
   border-bottom: 2px solid white;
-  transform: rotate(-45deg); /* Giramos el cuadrado */
+  transform: rotate(-45deg);
+  /* Giramos el cuadrado */
   transition: all 0.25s ease;
 }
 
@@ -45,6 +46,15 @@ input.defaultCheckbox::before {
   left: 39%;
   bottom: 35%;
   transform: translate(-50%, 0px);
+}
+
+.form-control:focus {
+  border-color: #4318FF !important;
+
+}
+
+.form-control.flag-dropdown .open {
+  background-color: "#ffffff00";
 }
 
 input:checked.defaultCheckbox::before {
@@ -75,4 +85,5 @@ input:checked.defaultCheckbox::before {
   background: #868cff;
   cursor: pointer;
 }
+
 /* END SCROLLBAR */
