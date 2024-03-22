@@ -86,6 +86,7 @@ const EnterpriseForm = ({
           control={control}
           isError={!!errors.phone}
           error={errors.phone?.message}
+          disabled={isReadOnly}
         />
         <InputController
           id="sector"

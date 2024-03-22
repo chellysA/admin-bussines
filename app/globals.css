@@ -87,3 +87,23 @@ input:checked.defaultCheckbox::before {
 }
 
 /* END SCROLLBAR */
+
+.inputPhone .country:hover,
+.inputPhone .country.highlight,
+.inputPhone .selected-flag.open {
+  background-color: #101527 !important;
+}
+
+.inputPhone .selected-flag:hover {
+  background-color: transparent !important;
+}
+
+.inputPhone .dial-code {
+  color: white !important
+}
+
+.react-tel-input :disabled {
+  background-color: rgb(255 255 255 / 0.05) !important;
+  border: none !important;
+  color: rgba(255, 255, 255, 0.650) !important
+}

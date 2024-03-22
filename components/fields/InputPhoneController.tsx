@@ -9,6 +9,7 @@ interface IInputPhoneProps {
   control: Control<any>;
   isError: boolean;
   error: string | undefined;
+  disabled?: boolean;
 }
 
 const InputPhoneController = ({
@@ -17,6 +18,7 @@ const InputPhoneController = ({
   control,
   isError,
   error,
+  disabled = false,
 }: IInputPhoneProps) => {
   const { field } = useController({ name: id, control });
 
@@ -32,33 +34,17 @@ const InputPhoneController = ({
       )}
       <div>
         <PhoneInput
+          disabled={disabled}
           country={"ve"}
+          disableCountryGuess
+          disableDropdown
+          placeholder=""
           value={field.value}
           onChange={field.onChange}
-          buttonStyle={{
-            backgroundColor: "#ffffff00",
-            borderRadius: "10px",
-            borderColor: "#feffff1a",
-            borderWidth: "1px",
-          }}
-          inputStyle={{
-            backgroundColor: "#ffffff00",
-            borderColor: isError ? "#f87171" : "#feffff1a",
-            borderWidth: "1px",
-            borderRadius: "10px",
-            width: "100%",
-            height: "48px",
-            color: "#ffffff",
-          }}
-          containerClass="inputPhone"
-          dropdownStyle={{
-            backgroundColor: "#0b1437",
-          }}
-          containerStyle={{
-            width: "100%",
-            height: "48px",
-            marginTop: "12px",
-          }}
+          buttonClass="!bg-transparent !border-transparent"
+          dropdownClass="!bg-[#0b1437] text-white"
+          inputClass={`${disabled && "!border-none !bg-gray-100 dark:!bg-white/5 dark:placeholder:!text-[rgba(255,255,255,0.15)]"} !bg-transparent border !border-white/10 !w-full !h-[48px] !rounded-[12px] text-white ${isError && "!border-red-400"}`}
+          containerClass={`inputPhone mt-3 `}
         />
       </div>
       {isError && (
