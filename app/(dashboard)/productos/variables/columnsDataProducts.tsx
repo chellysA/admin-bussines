@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
+import { IoMdEye } from "react-icons/io";
 import {
   MdCancel,
   MdCheckCircle,
   MdDeleteForever,
   MdEdit,
-  MdSearch,
 } from "react-icons/md";
 
 export const columnsDataProducts = (deleteOnClick: (arg0: string) => void) => [
@@ -74,7 +74,7 @@ export const columnsDataProducts = (deleteOnClick: (arg0: string) => void) => [
           className="text-[22px] text-gray-900 dark:text-white"
           title="Detalles"
         >
-          <MdSearch className="cursor-pointer" />
+          <IoMdEye className="cursor-pointer" />
         </Link>
         <MdDeleteForever
           className="cursor-pointer text-[22px] text-gray-900 dark:text-white"
