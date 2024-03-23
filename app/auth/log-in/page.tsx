@@ -8,7 +8,6 @@ import InputController from "@/components/fields/InputController";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LogInSchema from "@/data/validations/Log-in-schema";
 import { useRouter } from "next/navigation";
-import { useLogIn } from "@/hooks/useLogIn";
 import { useAuth } from "@/providers/AuthProvider";
 
 type Props = {};

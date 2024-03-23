@@ -151,7 +151,7 @@ const ColumnsUsersTable = (props: Props) => {
             <Select
               id="page"
               options={[10, 20, 30, 40, 50]}
-              label=""
+              placeholder=""
               onChange={(value) => {
                 tableInstance.setPageSize(Number(value));
               }}
