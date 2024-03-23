@@ -39,6 +39,8 @@ const CreateUsersSchema = yup.object({
   rol: yup.string().required("El cargo es obligatorio"),
 
   document: yup.string().required("El documento es obligatorio"),
+
+  phone: yup.string().required("El numero telefonico es obligatorio"),
 });
 
 export default CreateUsersSchema;

@@ -7,6 +7,11 @@ const useChangeTitleLayoutAdmin = (title: string) => {
 
   useEffect(() => {
     changeRoute && changeRoute(title);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   }, [title, changeRoute]);
 };
 

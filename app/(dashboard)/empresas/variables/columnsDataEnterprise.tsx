@@ -2,27 +2,36 @@
 import Link from "next/link";
 import { MdDeleteForever, MdEdit, MdSearch } from "react-icons/md";
 
-export const columnsDataUsers = (deleteOnClick: (arg0: string) => void) => [
+export const columnsDataEnterprise = (
+  deleteOnClick: (arg0: string) => void,
+) => [
   {
-    accessorKey: "nombre",
-    header: "NOMBRE",
+    accessorKey: "nombre de la empresa",
+    header: "NOMBRE DE LA EMPRESA",
   },
   {
-    accessorKey: "cargo",
-    header: "CARGO",
+    accessorKey: "nombre del representante",
+    header: "NOMBRE DEL REPRESENTANTE",
   },
-
   {
     accessorKey: "email",
     header: "EMAIL",
+  },
+  {
+    accessorKey: "telefono",
+    header: "TELEFONO",
+  },
+  {
+    accessorKey: "sector",
+    header: "SECTOR",
   },
   {
     accessorKey: "documento",
     header: "DOCUMENTO",
   },
   {
-    accessorKey: "telefono",
-    header: "TELEFONO",
+    accessorKey: "direccion",
+    header: "DIRECCION",
   },
   {
     accessorKey: "acciones",
@@ -30,7 +39,7 @@ export const columnsDataUsers = (deleteOnClick: (arg0: string) => void) => [
     cell: (props: any) => (
       <div className="flex gap-3">
         <Link
-          href={`/usuarios/${props.row.original.id}/editar`}
+          href={`/empresa/${props.row.original.id}/editar`}
           className="text-[22px] text-gray-900 dark:text-white"
           title="Editar"
         >
@@ -38,7 +47,7 @@ export const columnsDataUsers = (deleteOnClick: (arg0: string) => void) => [
         </Link>
 
         <Link
-          href={`/usuarios/${props.row.original.id}/detalles`}
+          href={`/empresa/${props.row.original.id}/detalles`}
           className="text-[22px] text-gray-900 dark:text-white"
           title="Detalles"
         >

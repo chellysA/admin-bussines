@@ -88,7 +88,7 @@ const ColumnsUsersTable = (props: Props) => {
                   {row.getVisibleCells().map((cell, index) => {
                     return (
                       <td
-                        className="pt-[14px] pb-[20px] sm:text-[14px]"
+                        className="pt-[14px] pb-[20px] pr-6 sm:text-[14px]"
                         key={index}
                       >
                         <div>
