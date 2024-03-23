@@ -41,7 +41,7 @@ const EnterpriseForm = ({
   const onSubmit = async (data: any) => {
     try {
       console.log("Datos válidos:", data);
-      router.push("/empresa");
+      router.push("/empresas");
     } catch (error) {
       console.error("Error de validación:");
     }
