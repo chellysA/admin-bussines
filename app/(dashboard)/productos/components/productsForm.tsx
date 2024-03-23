@@ -1,6 +1,7 @@
 import Button from "@/components/button";
 import CheckboxController from "@/components/checkbox/CheckboxController";
 import InputController from "@/components/fields/InputController";
+import InputDocumentController from "@/components/fields/InputDocumentController";
 import SelectController from "@/components/select/SelectController";
 import ProductsSchema from "@/data/validations/Products-schema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -20,12 +21,12 @@ const ProductsForm = ({
 }: Props) => {
   const form = useForm({
     defaultValues: {
-      nombre: "",
-      categoria: "",
+      name: "",
+      categorie: "",
       sede: "",
-      presentacion: "",
-      precio: "",
-      almacen: "",
+      presentation: "",
+      price: "",
+      warehouse: "",
       stock: "",
     },
     resolver: yupResolver(ProductsSchema),
@@ -50,62 +51,50 @@ const ProductsForm = ({
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-8">
         <InputController
-          id="nombre"
+          id="name"
           label="Nombre"
           disabled={isReadOnly}
           control={control}
-          error={errors.nombre?.message}
-          isError={!!errors.nombre}
+          error={errors.name?.message}
+          isError={!!errors.name}
         />
-        <div>
-          <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
-            Categoria
-          </p>
-          <SelectController
-            id="categoria"
-            options={["Alimentos", "hogar", "Higiene"]}
-            label="Categoria"
-            disabled={isReadOnly}
-            control={control}
-            error={errors.categoria?.message}
-            isError={!!errors.categoria}
-          />
-        </div>
-        <div>
-          <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
-            Sede
-          </p>
-          <SelectController
-            id="sede"
-            label="Sede 1"
-            options={["1", "2"]}
-            disabled={isReadOnly}
-            control={control}
-            error={errors.sede?.message}
-            isError={!!errors.sede}
-          />
-        </div>
-        <div>
-          <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
-            Presentación
-          </p>
-          <SelectController
-            id="presentacion"
-            label="Kg"
-            options={["Unidad", "Docena"]}
-            disabled={isReadOnly}
-            control={control}
-            isError={!!errors.presentacion}
-            error={errors.presentacion?.message}
-          />
-        </div>
+        <SelectController
+          id="categorie"
+          options={["Alimentos", "hogar", "Higiene"]}
+          label="Categoria"
+          placeholder="Selecciona una categoria"
+          disabled={isReadOnly}
+          control={control}
+          error={errors.categorie?.message}
+          isError={!!errors.categorie}
+        />
+        <SelectController
+          id="sede"
+          label="Sede 1"
+          options={["1", "2"]}
+          disabled={isReadOnly}
+          placeholder="Selecciona una sede"
+          control={control}
+          error={errors.sede?.message}
+          isError={!!errors.sede}
+        />
+        <SelectController
+          id="presentation"
+          label="Presentación"
+          options={["Unidad", "Docena"]}
+          placeholder="Selecciona una presentación"
+          disabled={isReadOnly}
+          control={control}
+          isError={!!errors.presentation}
+          error={errors.presentation?.message}
+        />
         <InputController
-          id="precio"
+          id="price"
           label="Precio"
           disabled={isReadOnly}
           control={control}
-          isError={!!errors.precio}
-          error={errors.precio?.message}
+          isError={!!errors.price}
+          error={errors.price?.message}
         />
         {/* <CheckboxController
           id="iva"
@@ -120,12 +109,12 @@ const ProductsForm = ({
           error={errors.iva?.message}
         /> */}
         <InputController
-          id="almacen"
+          id="warehouse"
           label="Cantidad en almacén"
           disabled={isReadOnly}
           control={control}
-          isError={!!errors.almacen}
-          error={errors.almacen?.message}
+          isError={!!errors.warehouse}
+          error={errors.warehouse?.message}
         />
         <InputController
           id="stock"

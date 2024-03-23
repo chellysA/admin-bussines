@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 const CreateUsersSchema = yup.object({
-  nombre: yup
+  name: yup
     .string()
     .matches(
       /^[a-zA-Z\s]*$/,
@@ -10,7 +10,7 @@ const CreateUsersSchema = yup.object({
     .required("El nombre es obligatorio")
     .min(2, "El nombre debe tener al menos 2 caracteres"),
 
-  apellido: yup
+  lastName: yup
     .string()
     .matches(
       /^[a-zA-Z\s]*$/,
@@ -37,6 +37,8 @@ const CreateUsersSchema = yup.object({
   sede: yup.string().required("La sede es obligatoria"),
 
   rol: yup.string().required("El cargo es obligatorio"),
+
+  document: yup.string().required("El documento es obligatorio"),
 });
 
 export default CreateUsersSchema;

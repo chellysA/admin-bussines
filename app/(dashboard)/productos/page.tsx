@@ -101,7 +101,7 @@ const Productos = () => {
           <div className="h-10">
             <Select
               options={["Unidad", "Kg"]}
-              label="Presentación"
+              placeholder="Presentación"
               id="presentacion"
             />
           </div>

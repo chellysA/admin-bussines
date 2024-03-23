@@ -11,6 +11,7 @@ const SelectController = ({
   options,
   label,
   disabled,
+  placeholder,
   isError,
   isSuccess,
   onChange,
@@ -29,6 +30,7 @@ const SelectController = ({
       isSuccess={isSuccess}
       onChange={field.onChange}
       error={error}
+      placeholder={placeholder}
     />
   );
 };

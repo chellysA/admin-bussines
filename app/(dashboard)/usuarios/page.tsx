@@ -66,7 +66,7 @@ const Usuarios = () => {
           <InputField placeholder="Email" id="email" />
           <Select
             options={["Administrador", "Gerente", "Cajero", "Vendedor"]}
-            label="Cargo"
+            placeholder="Cargo"
             id="cargo"
           />
         </div>
