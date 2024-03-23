@@ -58,48 +58,36 @@ const ProductsForm = ({
           error={errors.name?.message}
           isError={!!errors.name}
         />
-        <div>
-          <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
-            Categoria
-          </p>
-          <SelectController
-            id="categorie"
-            options={["Alimentos", "hogar", "Higiene"]}
-            label="Categoria"
-            disabled={isReadOnly}
-            control={control}
-            error={errors.categorie?.message}
-            isError={!!errors.categorie}
-          />
-        </div>
-        <div>
-          <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
-            Sede
-          </p>
-          <SelectController
-            id="sede"
-            label="Sede 1"
-            options={["1", "2"]}
-            disabled={isReadOnly}
-            control={control}
-            error={errors.sede?.message}
-            isError={!!errors.sede}
-          />
-        </div>
-        <div>
-          <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
-            Presentación
-          </p>
-          <SelectController
-            id="presentation"
-            label="Kg"
-            options={["Unidad", "Docena"]}
-            disabled={isReadOnly}
-            control={control}
-            isError={!!errors.presentation}
-            error={errors.presentation?.message}
-          />
-        </div>
+        <SelectController
+          id="categorie"
+          options={["Alimentos", "hogar", "Higiene"]}
+          label="Categoria"
+          placeholder="Selecciona una categoria"
+          disabled={isReadOnly}
+          control={control}
+          error={errors.categorie?.message}
+          isError={!!errors.categorie}
+        />
+        <SelectController
+          id="sede"
+          label="Sede 1"
+          options={["1", "2"]}
+          disabled={isReadOnly}
+          placeholder="Selecciona una sede"
+          control={control}
+          error={errors.sede?.message}
+          isError={!!errors.sede}
+        />
+        <SelectController
+          id="presentation"
+          label="Presentación"
+          options={["Unidad", "Docena"]}
+          placeholder="Selecciona una presentación"
+          disabled={isReadOnly}
+          control={control}
+          isError={!!errors.presentation}
+          error={errors.presentation?.message}
+        />
         <InputController
           id="price"
           label="Precio"

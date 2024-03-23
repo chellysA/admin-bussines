@@ -64,34 +64,26 @@ const UsersForm = (props: Props) => {
           isError={!!errors.lastName}
           error={errors.lastName?.message}
         />
-        <div>
-          <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
-            Cargo
-          </p>
-          <SelectController
-            id="rol"
-            label="Administrador"
-            options={["1", "2"]}
-            disabled={isReadOnly}
-            control={control}
-            isError={!!errors.rol}
-            error={errors.rol?.message}
-          />
-        </div>
-        <div>
-          <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
-            Sede
-          </p>
-          <SelectController
-            id="sede"
-            label="Sede 1"
-            options={["1", "2"]}
-            disabled={isReadOnly}
-            control={control}
-            isError={!!errors.sede}
-            error={errors.sede?.message}
-          />
-        </div>
+        <SelectController
+          id="rol"
+          placeholder="Selecciona un cargo"
+          label="Cargo"
+          options={["1", "2"]}
+          disabled={isReadOnly}
+          control={control}
+          isError={!!errors.rol}
+          error={errors.rol?.message}
+        />
+        <SelectController
+          id="sede"
+          placeholder="Selecciona una sede"
+          label="Sede"
+          options={["1", "2"]}
+          disabled={isReadOnly}
+          control={control}
+          isError={!!errors.sede}
+          error={errors.sede?.message}
+        />
         <InputController
           id="email"
           disabled={isReadOnly}
