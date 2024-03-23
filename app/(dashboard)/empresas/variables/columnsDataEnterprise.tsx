@@ -22,10 +22,6 @@ export const columnsDataEnterprise = (
     header: "TELEFONO",
   },
   {
-    accessorKey: "sector",
-    header: "SECTOR",
-  },
-  {
     accessorKey: "rif",
     header: "DOCUMENTO",
   },

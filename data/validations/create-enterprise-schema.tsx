@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 const CreateEnterpriseSchema = yup.object({
-  enterpriseName: yup
+  name: yup
     .string()
     .matches(
       /^[a-zA-Z\s]*$/,
@@ -10,7 +10,7 @@ const CreateEnterpriseSchema = yup.object({
     .required("El nombre es obligatorio")
     .min(2, "El nombre debe tener al menos 2 caracteres"),
 
-  nameOfRepresentatives: yup
+  representativeName: yup
     .string()
     .matches(
       /^[a-zA-Z\s]*$/,

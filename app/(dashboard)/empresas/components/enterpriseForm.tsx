@@ -1,10 +1,9 @@
 import Button from "@/components/button";
-import CheckboxController from "@/components/checkbox/CheckboxController";
 import InputController from "@/components/fields/InputController";
 import InputDocumentController from "@/components/fields/InputDocumentController";
 import InputPhoneController from "@/components/fields/InputPhoneController";
-import SelectController from "@/components/select/SelectController";
 import CreateEnterpriseSchema from "@/data/validations/create-enterprise-schema";
+import { useCreateEnterprise } from "@/hooks/useCreateEnterprise";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -22,8 +21,8 @@ const EnterpriseForm = ({
 }: Props) => {
   const form = useForm({
     defaultValues: {
-      enterpriseName: "",
-      nameOfRepresentatives: "",
+      name: "",
+      representativeName: "",
       email: "",
       phone: "",
       sector: "",
@@ -38,11 +37,19 @@ const EnterpriseForm = ({
     formState: { errors },
   } = form;
   const router = useRouter();
+  const { mutate: createEnterprise } = useCreateEnterprise();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (formValues: any) => {
     try {
-      console.log("Datos válidos:", data);
-      router.push("/empresa");
+      createEnterprise(
+        { ...formValues, rif: formValues.document },
+        {
+          onSuccess: (data) => {
+            router.push("/empresas");
+            console.log({ data });
+          },
+        },
+      );
     } catch (error) {
       console.error("Error de validación:");
     }
@@ -52,24 +59,24 @@ const EnterpriseForm = ({
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-8">
         <InputController
-          id="enterpriseName"
+          id="name"
           label="Nombre de la Empresa"
           disabled={isReadOnly}
           control={control}
-          error={errors.enterpriseName?.message}
-          isError={!!errors.enterpriseName}
+          error={errors.name?.message}
+          isError={!!errors.name}
         />
         <div>
           <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
             Nombre del Representante
           </p>
           <InputController
-            id="nameOfRepresentatives"
+            id="representativeName"
             label=""
             disabled={isReadOnly}
             control={control}
-            error={errors.nameOfRepresentatives?.message}
-            isError={!!errors.nameOfRepresentatives}
+            error={errors.representativeName?.message}
+            isError={!!errors.representativeName}
           />
         </div>
         <InputController
