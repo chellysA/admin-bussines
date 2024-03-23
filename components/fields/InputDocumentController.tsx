@@ -58,7 +58,7 @@ const InputDocumentController = ({
         <div className="w-[120px] mr-2">
           <Select
             id={id}
-            options={["J", "Ve", "Ex"]}
+            options={["J", "V", "E"]}
             placeholder="Tipo"
             disabled={disabled}
             onChange={(e) => setSelectValue(e)}
