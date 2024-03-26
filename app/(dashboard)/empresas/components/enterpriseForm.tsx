@@ -45,9 +45,8 @@ const EnterpriseForm = ({
       createEnterprise(
         { ...formValues, rif: formValues.document },
         {
-          onSuccess: async (data) => {
+          onSuccess: (data) => {
             toast.success(data.info.message);
-            await new Promise((resolve) => setTimeout(resolve, 3000));
             router.push("/empresas");
             console.log({ data });
           },

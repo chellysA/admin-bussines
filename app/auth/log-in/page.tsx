@@ -33,9 +33,8 @@ const LogIn: FC<Props> = () => {
   const onSubmit = async (data: any) => {
     console.log(data);
     login(data, {
-      onSuccess: async () => {
+      onSuccess: () => {
         toast.success("Bienvenido!");
-        await new Promise((resolve) => setTimeout(resolve, 3000));
         router.push("/dashboard");
       },
     });
