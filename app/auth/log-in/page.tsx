@@ -1,5 +1,5 @@
 "use client";
-import { FC } from "react";
+import { FC, useState } from "react";
 import Checkbox from "@/components/checkbox/Checkbox";
 import Button from "@/components/button";
 import Link from "next/link";
@@ -10,12 +10,14 @@ import LogInSchema from "@/data/validations/Log-in-schema";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/providers/AuthProvider";
 import toast from "react-hot-toast";
+import Spinner from "@/components/spinner/Spinner";
 
 type Props = {};
 
 const LogIn: FC<Props> = () => {
   const router = useRouter();
   const { login } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm({
     defaultValues: {
       email: "",
@@ -31,9 +33,9 @@ const LogIn: FC<Props> = () => {
   } = form;
 
   const onSubmit = async (data: any) => {
-    console.log(data);
     login(data, {
       onSuccess: () => {
+        setIsLoading(true);
         toast.success("Bienvenido!");
         router.push("/dashboard");
       },
@@ -42,6 +44,7 @@ const LogIn: FC<Props> = () => {
 
   return (
     <>
+      {isLoading && <Spinner />}
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Sign in section */}
 
