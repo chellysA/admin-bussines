@@ -7,6 +7,7 @@ import { useCreateEnterprise } from "@/hooks/useCreateEnterprise";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 type Props = {
   isReadOnly?: boolean;
@@ -44,7 +45,9 @@ const EnterpriseForm = ({
       createEnterprise(
         { ...formValues, rif: formValues.document },
         {
-          onSuccess: (data) => {
+          onSuccess: async (data) => {
+            toast.success(data.info.message);
+            await new Promise((resolve) => setTimeout(resolve, 3000));
             router.push("/empresas");
             console.log({ data });
           },

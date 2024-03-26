@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import LogInSchema from "@/data/validations/Log-in-schema";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/providers/AuthProvider";
+import toast from "react-hot-toast";
 
 type Props = {};
 
@@ -30,8 +31,11 @@ const LogIn: FC<Props> = () => {
   } = form;
 
   const onSubmit = async (data: any) => {
+    console.log(data);
     login(data, {
-      onSuccess: () => {
+      onSuccess: async () => {
+        toast.success("Bienvenido!");
+        await new Promise((resolve) => setTimeout(resolve, 3000));
         router.push("/dashboard");
       },
     });
