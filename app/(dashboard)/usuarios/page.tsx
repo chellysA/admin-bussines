@@ -19,6 +19,7 @@ import DeleteConfirmationModal from "@/components/modal/DeleteConfirmationModal"
 const Usuarios = () => {
   const [openModal, setOpenModal] = useState(false);
   const [userNameToBeDeleted, setUserNameToBeDeleted] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   useChangeTitleLayoutAdmin("Usuarios");
 
   const form = useForm({
@@ -58,6 +59,12 @@ const Usuarios = () => {
     !openModal && handleReset();
   }, [handleReset, openModal]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
   return (
     <>
       <div className="mt-3 grid grid-cols-1 md:gap-5 md:grid-cols-3">
@@ -85,6 +92,7 @@ const Usuarios = () => {
       </div>
       <div className="mt-8">
         <BasicTable
+          isLoading={isLoading}
           columnsData={columnsDataUsers(handleDelete)}
           tableData={tableDataUsers}
           title="Lista de Usuarios"
