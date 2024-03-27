@@ -26,8 +26,8 @@ const EnterpriseForm = ({
       representativeName: "",
       email: "",
       phone: "",
-      sector: "",
-      document: "",
+      documentNumber: "",
+      documentType: "",
       address: "",
     },
     resolver: yupResolver(CreateEnterpriseSchema),
@@ -41,17 +41,15 @@ const EnterpriseForm = ({
   const { mutate: createEnterprise } = useCreateEnterprise();
 
   const onSubmit = async (formValues: any) => {
+    console.log(formValues);
     try {
-      createEnterprise(
-        { ...formValues, rif: formValues.document },
-        {
-          onSuccess: (data) => {
-            toast.success(data.info.message);
-            router.push("/empresas");
-            console.log({ data });
-          },
+      createEnterprise(formValues, {
+        onSuccess: (data) => {
+          toast.success(data.info.message);
+          router.push("/empresas");
+          console.log(data);
         },
-      );
+      });
     } catch (error) {
       console.error("Error de validación:");
     }
@@ -68,19 +66,14 @@ const EnterpriseForm = ({
           error={errors.name?.message}
           isError={!!errors.name}
         />
-        <div>
-          <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
-            Nombre del Representante
-          </p>
-          <InputController
-            id="representativeName"
-            label=""
-            disabled={isReadOnly}
-            control={control}
-            error={errors.representativeName?.message}
-            isError={!!errors.representativeName}
-          />
-        </div>
+        <InputController
+          id="representativeName"
+          label="Nombre del Representante"
+          disabled={isReadOnly}
+          control={control}
+          error={errors.representativeName?.message}
+          isError={!!errors.representativeName}
+        />
         <InputController
           id="email"
           label="Email"
@@ -97,21 +90,16 @@ const EnterpriseForm = ({
           error={errors.phone?.message}
           disabled={isReadOnly}
         />
-        <InputController
-          id="sector"
-          label="Sector"
-          disabled={isReadOnly}
-          control={control}
-          error={errors.sector?.message}
-          isError={!!errors.sector}
-        />
         <InputDocumentController
-          id="document"
+          id="documentNumber"
+          idType="documentType"
           label="Documento"
           disabled={isReadOnly}
           control={control}
-          error={errors.document?.message}
-          isError={!!errors.document}
+          error={errors.documentNumber?.message}
+          isError={!!errors.documentNumber}
+          errorType={errors.documentType?.message}
+          isErrorType={!!errors.documentType}
         />
         <InputController
           id="address"

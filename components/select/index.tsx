@@ -11,6 +11,7 @@ const Select = ({
   isError,
   error,
   isSuccess,
+  className,
   onChange,
 }: ISelectProps) => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -23,7 +24,7 @@ const Select = ({
   };
 
   return (
-    <>
+    <div>
       <div>
         {label && (
           <label
@@ -38,7 +39,7 @@ const Select = ({
             id={id}
             value={selectedOption}
             onChange={handleChange}
-            className={`flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none duration-300 ${
+            className={`${className} flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none duration-300 ${
               disabled
                 ? "!border-none !bg-gray-100 dark:!bg-white/5 dark:placeholder:!text-[rgba(255,255,255,0.15)] text-white"
                 : isError
@@ -72,7 +73,7 @@ const Select = ({
       {isError && (
         <p className="text-red-500 dark:!text-red-400 text-sm">{`* ${error}`}</p>
       )}
-    </>
+    </div>
   );
 };
 

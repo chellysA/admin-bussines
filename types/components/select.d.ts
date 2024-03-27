@@ -7,5 +7,6 @@ export interface ISelectProps {
   isError?: boolean;
   error?: string;
   isSuccess?: boolean;
+  className?: string;
   onChange?: (value: string) => void;
 }

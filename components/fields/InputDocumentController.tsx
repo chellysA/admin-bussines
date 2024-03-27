@@ -2,9 +2,13 @@ import { Control, useController } from "react-hook-form";
 import { IInputProps } from "@/types/components/input";
 import Select from "../select";
 import { useState } from "react";
+import InputField from "./InputField";
 
 interface InputDocumentControllerProps extends IInputProps {
   control: Control<any>;
+  idType: string;
+  errorType?: string;
+  isErrorType?: boolean;
 }
 
 const InputDocumentController = ({
@@ -13,14 +17,18 @@ const InputDocumentController = ({
   label,
   placeholder,
   id,
+  idType,
   type = "text",
   control,
   error,
   isError,
   disabled,
-  isSuccess,
+  isErrorType,
+  errorType,
 }: InputDocumentControllerProps) => {
-  const { field } = useController({ name: id, control });
+  const { field: inputField } = useController({ name: id, control });
+  const { field: selectField } = useController({ name: idType, control });
+
   const [selectValue, setSelectValue] = useState("");
 
   const addPointToValue = (n: string) => {
@@ -28,7 +36,7 @@ const InputDocumentController = ({
   };
 
   const handleOnChange = (e: any) => {
-    if (selectValue !== "J" || "") {
+    if (selectField.value !== "J" || "") {
       const numericalValue = e.target.value.replace(/\D/g, "");
       const formattedValue =
         numericalValue === "" ? "" : addPointToValue(numericalValue);
@@ -36,14 +44,14 @@ const InputDocumentController = ({
         ...e,
         target: { ...e.target, value: formattedValue },
       };
-      field.onChange(formattedResult);
+      inputField.onChange(formattedResult);
     } else {
-      field.onChange(e);
+      inputField.onChange(e);
     }
   };
 
   return (
-    <div className={className}>
+    <div>
       {label && (
         <label
           htmlFor={id}
@@ -54,37 +62,29 @@ const InputDocumentController = ({
           {label}
         </label>
       )}
-      <div className={`flex ${label ? "mt-2" : "mt-0"}`}>
-        <div className="w-[120px] mr-2">
-          <Select
-            id={id}
-            options={["J", "V", "E"]}
-            placeholder="Tipo"
-            disabled={disabled}
-            onChange={(e) => setSelectValue(e)}
-          />
-        </div>
-        <input
+
+      <div className="flex mt-2">
+        <Select
+          id={idType}
+          options={["J", "V", "E"]}
+          placeholder="Tipo"
+          disabled={disabled}
+          onChange={selectField.onChange}
+          className="w-[110px] mr-2"
+          isError={isErrorType}
+          error={errorType}
+        />
+        <InputField
+          id={id}
           disabled={disabled}
           type={type}
-          value={field.value}
+          value={inputField.value}
           onChange={handleOnChange}
-          id={id}
           placeholder={placeholder}
-          className={`relative ${className} flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none duration-300 ${
-            disabled
-              ? "!border-none !bg-gray-100 dark:!bg-white/5 dark:placeholder:!text-[rgba(255,255,255,0.15)]"
-              : isError
-                ? "border-red-500 text-red-500 placeholder:text-red-500 dark:!border-red-400 dark:!text-red-400 dark:placeholder:!text-red-400"
-                : isSuccess
-                  ? "border-green-500 text-green-500 placeholder:text-green-500 dark:!border-green-400 dark:!text-green-400 dark:placeholder:!text-green-400"
-                  : "border-gray-200 dark:border-white/10 focus:border-blueSecondary dark:focus:border-blueSecondary dark:text-white"
-          }`}
+          isError={isError}
+          error={error}
         />
       </div>
-      {isError && (
-        <p className="text-red-500 dark:!text-red-400 text-sm">{`* ${error}`}</p>
-      )}
     </div>
   );
 };

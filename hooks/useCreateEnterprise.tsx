@@ -4,12 +4,12 @@ import { useMutation } from "@tanstack/react-query";
 
 export interface IPayLoadCreateEnterprise {
   name: string;
-  rif: string;
+  documentType: "ve" | "e" | "rif";
+  documentNumber: string;
+  email: string;
   phone: string;
   address: string | null;
   representativeName: string;
-  email: string;
-  document: string;
 }
 
 const fetchCreateEnterprise = async (
