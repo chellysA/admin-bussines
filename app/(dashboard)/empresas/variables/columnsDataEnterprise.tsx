@@ -7,11 +7,11 @@ export const columnsDataEnterprise = (
   deleteOnClick: (arg0: string) => void,
 ) => [
   {
-    accessorKey: "nombre de la empresa",
+    accessorKey: "name",
     header: "NOMBRE DE LA EMPRESA",
   },
   {
-    accessorKey: "nombre del representante",
+    accessorKey: "representativeName",
     header: "NOMBRE DEL REPRESENTANTE",
   },
   {
@@ -19,19 +19,15 @@ export const columnsDataEnterprise = (
     header: "EMAIL",
   },
   {
-    accessorKey: "telefono",
+    accessorKey: "phone",
     header: "TELEFONO",
   },
   {
-    accessorKey: "sector",
-    header: "SECTOR",
-  },
-  {
-    accessorKey: "documento",
+    accessorKey: "rif",
     header: "DOCUMENTO",
   },
   {
-    accessorKey: "direccion",
+    accessorKey: "address",
     header: "DIRECCION",
   },
   {
@@ -40,7 +36,7 @@ export const columnsDataEnterprise = (
     cell: (props: any) => (
       <div className="flex gap-3">
         <Link
-          href={`/empresa/${props.row.original.id}/editar`}
+          href={`/empresas/${props.row.original._id}/editar`}
           className="text-[22px] text-gray-900 dark:text-white"
           title="Editar"
         >
@@ -48,7 +44,7 @@ export const columnsDataEnterprise = (
         </Link>
 
         <Link
-          href={`/empresa/${props.row.original.id}/detalles`}
+          href={`/empresas/${props.row.original._id}/detalles`}
           className="text-[22px] text-gray-900 dark:text-white"
           title="Detalles"
         >
@@ -57,7 +53,7 @@ export const columnsDataEnterprise = (
         <MdDeleteForever
           className="cursor-pointer text-[22px] text-gray-900 dark:text-white"
           title="Eliminar"
-          onClick={() => deleteOnClick(props.row.original.nombre)}
+          onClick={() => deleteOnClick(props.row.original.name)}
         />
       </div>
     ),

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { enviroments } from "./enviroments";
-import { IResponseServices } from "@/types/request";
 
 const AxiosInstance = axios.create({
   baseURL: enviroments.BASE_URL,

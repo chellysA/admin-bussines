@@ -8,8 +8,8 @@ import InputController from "@/components/fields/InputController";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LogInSchema from "@/data/validations/Log-in-schema";
 import { useRouter } from "next/navigation";
-import { useLogIn } from "@/hooks/useLogIn";
 import { useAuth } from "@/providers/AuthProvider";
+import toast from "react-hot-toast";
 
 type Props = {};
 
@@ -31,8 +31,10 @@ const LogIn: FC<Props> = () => {
   } = form;
 
   const onSubmit = async (data: any) => {
+    console.log(data);
     login(data, {
       onSuccess: () => {
+        toast.success("Bienvenido!");
         router.push("/dashboard");
       },
     });

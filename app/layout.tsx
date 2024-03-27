@@ -4,6 +4,7 @@ import "./globals.css";
 import "@/components/calendar/MiniCalendar.css";
 import ThemeProvider from "@/providers/ThemeProvider";
 import Providers from "@/providers";
+import ToasterComponent from "@/components/toaster/ToasterComponent";
 
 export const metadata: Metadata = {
   title: "Génesis",
