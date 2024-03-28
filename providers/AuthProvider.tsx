@@ -10,6 +10,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import toast from "react-hot-toast";
 
 export const USER_TOKEN = "USER_TOKEN";
 
@@ -63,6 +64,9 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         saveUserToken(dataResponse.jwt);
         setAuthorizationHeader(dataResponse.jwt);
         options?.onSuccess && options?.onSuccess();
+      },
+      onError: () => {
+        toast.error("Datos invalidos!");
       },
     });
   };

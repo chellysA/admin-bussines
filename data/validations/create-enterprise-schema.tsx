@@ -26,9 +26,9 @@ const CreateEnterpriseSchema = yup.object({
 
   phone: yup.string().required("El numero telefonico es obligatorio"),
 
-  document: yup.string().required("El documento es obligatorio"),
+  documentNumber: yup.string().required("El documento es obligatorio"),
 
-  sector: yup.string().required("El sector es obligatorio"),
+  documentType: yup.string().required("Obligatorio"),
 
   address: yup.string().required("La direccion es obligatoria"),
 });
