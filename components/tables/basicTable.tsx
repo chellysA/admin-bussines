@@ -13,8 +13,8 @@ import CardMenu from "@/components/card/CardMenu";
 import Card from "@/components/card";
 import Button from "@/components/button";
 import Select from "@/components/select";
-import Skeleton from "react-loading-skeleton";
 import SkeletonComponent from "../loading/SkeletonComponent";
+import { IReactTable } from "@/types/react-table";
 
 interface CellProps {
   row: {
@@ -25,11 +25,7 @@ interface CellProps {
 }
 
 type Props = {
-  columnsData: {
-    accessorKey: string;
-    header: string;
-    cell?: (props: CellProps) => JSX.Element;
-  }[];
+  columnsData: IReactTable[];
   tableData: any[];
   title?: string;
   isLoading: boolean;
