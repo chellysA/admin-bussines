@@ -4,8 +4,10 @@ import InputDocumentController from "@/components/fields/InputDocumentController
 import InputPhoneController from "@/components/fields/InputPhoneController";
 import CreateEnterpriseSchema from "@/data/validations/create-enterprise-schema";
 import { useCreateEnterprise } from "@/hooks/useCreateEnterprise";
+import { useGetEnterpriseDetail } from "@/hooks/useGetEnterpriseDetail";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
@@ -26,8 +28,8 @@ const EnterpriseForm = ({
       representativeName: "",
       email: "",
       phone: "",
-      sector: "",
-      document: "",
+      documentNumber: "",
+      documentType: "",
       address: "",
     },
     resolver: yupResolver(CreateEnterpriseSchema),
@@ -36,26 +38,42 @@ const EnterpriseForm = ({
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = form;
+
   const router = useRouter();
+  const params = useParams();
   const { mutate: createEnterprise } = useCreateEnterprise();
+  const { data: enterpriseDetail } = useGetEnterpriseDetail(
+    params?.enterpriseId,
+  );
 
   const onSubmit = async (formValues: any) => {
     try {
-      createEnterprise(
-        { ...formValues, rif: formValues.document },
-        {
-          onSuccess: (data) => {
-            toast.success(data.info.message);
-            router.push("/empresas");
-            console.log({ data });
-          },
+      createEnterprise(formValues, {
+        onSuccess: (data) => {
+          toast.success(data.info.message);
+          router.push("/empresas");
         },
-      );
+      });
     } catch (error) {
       console.error("Error de validación:");
     }
   };
+
+  useEffect(() => {
+    if (params?.enterpriseId && enterpriseDetail) {
+      reset({
+        name: enterpriseDetail.name,
+        representativeName: enterpriseDetail.representativeName,
+        documentType: enterpriseDetail.documentType,
+        email: enterpriseDetail.email,
+        documentNumber: enterpriseDetail.documentNumber,
+        phone: enterpriseDetail.phone,
+        address: enterpriseDetail.address,
+      });
+    }
+  }, [params, enterpriseDetail]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -68,19 +86,14 @@ const EnterpriseForm = ({
           error={errors.name?.message}
           isError={!!errors.name}
         />
-        <div>
-          <p className="mb-3 ml-3 text-sm text-navy-700 dark:text-white font-bold">
-            Nombre del Representante
-          </p>
-          <InputController
-            id="representativeName"
-            label=""
-            disabled={isReadOnly}
-            control={control}
-            error={errors.representativeName?.message}
-            isError={!!errors.representativeName}
-          />
-        </div>
+        <InputController
+          id="representativeName"
+          label="Nombre del Representante"
+          disabled={isReadOnly}
+          control={control}
+          error={errors.representativeName?.message}
+          isError={!!errors.representativeName}
+        />
         <InputController
           id="email"
           label="Email"
@@ -97,21 +110,16 @@ const EnterpriseForm = ({
           error={errors.phone?.message}
           disabled={isReadOnly}
         />
-        <InputController
-          id="sector"
-          label="Sector"
-          disabled={isReadOnly}
-          control={control}
-          error={errors.sector?.message}
-          isError={!!errors.sector}
-        />
         <InputDocumentController
-          id="document"
+          id="documentNumber"
+          idType="documentType"
           label="Documento"
           disabled={isReadOnly}
           control={control}
-          error={errors.document?.message}
-          isError={!!errors.document}
+          error={errors.documentNumber?.message}
+          isError={!!errors.documentNumber}
+          errorType={errors.documentType?.message}
+          isErrorType={!!errors.documentType}
         />
         <InputController
           id="address"

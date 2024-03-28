@@ -13,10 +13,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import DeleteEnterpriseConfirmationSchema from "@/data/validations/Delete-enterprise-confirmation-schema";
 import { useGetEnterprise } from "@/hooks/useGetEnterprise";
+import SkeletonComponent from "@/components/loading/SkeletonComponent";
 
 const Empresas = () => {
   const [openModal, setOpenModal] = useState(false);
   const [enterpriseToBeDeleted, setEnterpriseToBeDeleted] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
   const { data: enterprisesData } = useGetEnterprise();
 
   useChangeTitleLayoutAdmin("Empresa");
@@ -58,6 +61,16 @@ const Empresas = () => {
     !openModal && handleReset();
   }, [handleReset, openModal]);
 
+  useEffect(() => {
+    enterprisesData ? (
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000)
+    ) : (
+      <SkeletonComponent />
+    );
+  }, [enterprisesData]);
+
   return (
     <>
       <div className="mt-3 grid grid-cols-1 md:gap-5 md:grid-cols-3">
@@ -95,6 +108,7 @@ const Empresas = () => {
       </DeleteConfirmationModal>
       <div className="mt-8">
         <BasicTable
+          isLoading={isLoading}
           columnsData={columnsDataEnterprise(handleDelete)}
           tableData={enterprisesData || []}
           title="Lista de Empresas"
