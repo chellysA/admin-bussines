@@ -1,11 +1,12 @@
 "use client";
+import { IReactTable } from "@/types/react-table";
 import Link from "next/link";
 import { IoMdEye } from "react-icons/io";
 import { MdDeleteForever, MdEdit, MdSearch } from "react-icons/md";
 
-export const columnsDataEnterprise = (
+export const columnsDataEnterprise: (
   deleteOnClick: (arg0: string) => void,
-) => [
+) => IReactTable[] = (deleteOnClick) => [
   {
     accessorKey: "name",
     header: "NOMBRE DE LA EMPRESA",
@@ -33,10 +34,10 @@ export const columnsDataEnterprise = (
   {
     accessorKey: "acciones",
     header: "ACCIONES",
-    cell: (props: any) => (
+    cell: ({ row }) => (
       <div className="flex gap-3">
         <Link
-          href={`/empresas/${props.row.original._id}/editar`}
+          href={`/empresas/${row.original._id}/editar`}
           className="text-[22px] text-gray-900 dark:text-white"
           title="Editar"
         >
@@ -44,7 +45,7 @@ export const columnsDataEnterprise = (
         </Link>
 
         <Link
-          href={`/empresas/${props.row.original._id}/detalles`}
+          href={`/empresas/${row.original._id}/detalles`}
           className="text-[22px] text-gray-900 dark:text-white"
           title="Detalles"
         >
@@ -53,7 +54,7 @@ export const columnsDataEnterprise = (
         <MdDeleteForever
           className="cursor-pointer text-[22px] text-gray-900 dark:text-white"
           title="Eliminar"
-          onClick={() => deleteOnClick(props.row.original.name)}
+          onClick={() => deleteOnClick(row.original.name)}
         />
       </div>
     ),
