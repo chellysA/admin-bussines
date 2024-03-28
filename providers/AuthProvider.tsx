@@ -30,6 +30,7 @@ interface IAuthContext {
   deleteUserToken: () => void;
   login: TLogin;
   getUserToken: () => string | undefined;
+  isLoadingLogin: boolean;
 }
 
 const AuthContext = createContext<IAuthContext>({
@@ -39,10 +40,11 @@ const AuthContext = createContext<IAuthContext>({
   deleteUserToken: () => {},
   login: () => {},
   getUserToken: () => "",
+  isLoadingLogin: false,
 });
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { mutate: mutateLogin } = useLogIn();
+  const { mutate: mutateLogin, isPending: isLoadingLogin } = useLogIn();
 
   const [user, setUser] = useState();
 
@@ -87,6 +89,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         deleteUserToken,
         login,
         getUserToken,
+        isLoadingLogin,
       }}
     >
       {children}
