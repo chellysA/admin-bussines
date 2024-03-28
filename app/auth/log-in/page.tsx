@@ -16,8 +16,8 @@ type Props = {};
 
 const LogIn: FC<Props> = () => {
   const router = useRouter();
-  const { login } = useAuth();
-  const [isLoading, setIsLoading] = useState(false);
+  const { login, isLoadingLogin } = useAuth();
+
   const form = useForm({
     defaultValues: {
       email: "",
@@ -35,7 +35,6 @@ const LogIn: FC<Props> = () => {
   const onSubmit = async (data: any) => {
     login(data, {
       onSuccess: () => {
-        setIsLoading(true);
         toast.success("Bienvenido!");
         router.push("/dashboard");
       },
@@ -44,7 +43,7 @@ const LogIn: FC<Props> = () => {
 
   return (
     <>
-      {isLoading && <Spinner />}
+      {isLoadingLogin && <Spinner />}
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Sign in section */}
 
