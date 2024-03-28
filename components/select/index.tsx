@@ -13,16 +13,8 @@ const Select = ({
   isSuccess,
   className,
   onChange,
+  value,
 }: ISelectProps) => {
-  const [selectedOption, setSelectedOption] = useState("");
-
-  const handleChange = (event: any) => {
-    setSelectedOption(event.target.value);
-    if (onChange) {
-      onChange(event.target.value);
-    }
-  };
-
   return (
     <div>
       <div>
@@ -37,8 +29,9 @@ const Select = ({
         <div className={`content-select relative ${label && "mt-2"}`}>
           <select
             id={id}
-            value={selectedOption}
-            onChange={handleChange}
+            defaultValue=""
+            value={value}
+            onChange={onChange}
             className={`${className} flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none duration-300 ${
               disabled
                 ? "!border-none !bg-gray-100 dark:!bg-white/5 dark:placeholder:!text-[rgba(255,255,255,0.15)] text-white"

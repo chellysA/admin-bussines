@@ -8,5 +8,6 @@ export interface ISelectProps {
   error?: string;
   isSuccess?: boolean;
   className?: string;
-  onChange?: (value: string) => void;
+  value?: string;
+  onChange?: ChangeEventHandler<HTMLSelectElement>;
 }

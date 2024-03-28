@@ -63,14 +63,14 @@ const InputDocumentController = ({
         </label>
       )}
 
-      <div className="flex mt-2">
+      <div className="flex mt-2 mr-2">
         <Select
           id={idType}
           options={["J", "V", "E"]}
           placeholder="Tipo"
           disabled={disabled}
           onChange={selectField.onChange}
-          className="w-[110px] mr-2"
+          className="w-[80px] mr-2"
           isError={isErrorType}
           error={errorType}
         />

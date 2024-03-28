@@ -4,8 +4,10 @@ import InputDocumentController from "@/components/fields/InputDocumentController
 import InputPhoneController from "@/components/fields/InputPhoneController";
 import CreateEnterpriseSchema from "@/data/validations/create-enterprise-schema";
 import { useCreateEnterprise } from "@/hooks/useCreateEnterprise";
+import { useGetEnterpriseDetail } from "@/hooks/useGetEnterpriseDetail";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
@@ -36,24 +38,42 @@ const EnterpriseForm = ({
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = form;
+
   const router = useRouter();
+  const params = useParams();
   const { mutate: createEnterprise } = useCreateEnterprise();
+  const { data: enterpriseDetail } = useGetEnterpriseDetail(
+    params?.enterpriseId,
+  );
 
   const onSubmit = async (formValues: any) => {
-    console.log(formValues);
     try {
       createEnterprise(formValues, {
         onSuccess: (data) => {
           toast.success(data.info.message);
           router.push("/empresas");
-          console.log(data);
         },
       });
     } catch (error) {
       console.error("Error de validación:");
     }
   };
+
+  useEffect(() => {
+    if (params?.enterpriseId && enterpriseDetail) {
+      reset({
+        name: enterpriseDetail.name,
+        representativeName: enterpriseDetail.representativeName,
+        documentType: enterpriseDetail.documentType,
+        email: enterpriseDetail.email,
+        documentNumber: enterpriseDetail.documentNumber,
+        phone: enterpriseDetail.phone,
+        address: enterpriseDetail.address,
+      });
+    }
+  }, [params, enterpriseDetail]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
