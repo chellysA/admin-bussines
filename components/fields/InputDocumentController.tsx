@@ -69,7 +69,7 @@ const InputDocumentController = ({
             disabled={disabled}
             value={selectField.value}
             onChange={selectField.onChange}
-            className={`w-full ${disabled ? "mr-0 text-center" : "mr-2"}`}
+            className={`w-[90px] ${disabled ? "mr-0 text-center" : "mr-2"}`}
             isError={isErrorType}
             error={errorType}
           />

@@ -1,0 +1,33 @@
+import AxiosInstance from "@/constants/AxiosInstance";
+import { IResponseServices } from "@/types/request";
+import { useMutation } from "@tanstack/react-query";
+
+export interface IPayLoadCreateBusines {
+  name: string;
+  documentType: "ve" | "e" | "rif";
+  documentNumber: string;
+  phone: string;
+  address: string | null;
+}
+
+const fetchCreateBusiness = async (
+  payload: IPayLoadCreateBusines,
+): Promise<IResponseServices<any>> => {
+  const res = await AxiosInstance.post("/business/create", {
+    ...payload,
+    enterpriseId: "6605f80c4a463e5e83f7d840",
+  });
+
+  try {
+    // TODO Mejorar el typescript
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const useCreateBusiness = () => {
+  return useMutation({
+    mutationFn: fetchCreateBusiness,
+  });
+};

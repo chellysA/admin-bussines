@@ -2,9 +2,9 @@ import Button from "@/components/button";
 import InputController from "@/components/fields/InputController";
 import InputDocumentController from "@/components/fields/InputDocumentController";
 import InputPhoneController from "@/components/fields/InputPhoneController";
-import CreateEnterpriseSchema from "@/data/validations/Create-enterprise-schema";
-import { useCreateEnterprise } from "@/hooks/useCreateEnterprise";
-import { useGetEnterpriseById } from "@/hooks/useGetEnterpriseById";
+import CreateBussinessSchema from "@/data/validations/Create-bussiness-schema";
+import { useCreateBusiness } from "@/hooks/useCreateBusiness";
+import { useGetBusinessById } from "@/hooks/useGetBusinessById";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -17,7 +17,7 @@ type Props = {
   buttonTitle?: string;
 };
 
-const EnterpriseForm = ({
+const BusinessForm = ({
   isReadOnly = false,
   buttonLabel = "",
   buttonTitle,
@@ -25,14 +25,12 @@ const EnterpriseForm = ({
   const form = useForm({
     defaultValues: {
       name: "",
-      representativeName: "",
-      email: "",
       phone: "",
       documentNumber: "",
       documentType: "",
       address: "",
     },
-    resolver: yupResolver(CreateEnterpriseSchema),
+    resolver: yupResolver(CreateBussinessSchema),
   });
   const {
     handleSubmit,
@@ -43,15 +41,16 @@ const EnterpriseForm = ({
 
   const router = useRouter();
   const params = useParams();
-  const { mutate: createEnterprise } = useCreateEnterprise();
-  const { data: enterpriseDetail } = useGetEnterpriseById(params?.enterpriseId);
+  const { mutate: createBussiness } = useCreateBusiness();
+  const { data: businessDetail } = useGetBusinessById(params?.businessId);
 
   const onSubmit = async (formValues: any) => {
     try {
-      createEnterprise(formValues, {
+      createBussiness(formValues, {
         onSuccess: (data) => {
+          console.log({ data });
           toast.success(data.info.message);
-          router.push("/empresas");
+          router.push("/negocios");
         },
       });
     } catch (error) {
@@ -60,45 +59,27 @@ const EnterpriseForm = ({
   };
 
   useEffect(() => {
-    if (params?.enterpriseId && enterpriseDetail) {
+    if (params?.businessId && businessDetail) {
       reset({
-        name: enterpriseDetail.name,
-        representativeName: enterpriseDetail.representativeName,
-        documentType: enterpriseDetail.documentType,
-        email: enterpriseDetail.email,
-        documentNumber: enterpriseDetail.documentNumber,
-        phone: enterpriseDetail.phone,
-        address: enterpriseDetail.address,
+        name: businessDetail.name,
+        documentType: businessDetail.documentType,
+        documentNumber: businessDetail.documentNumber,
+        phone: businessDetail.phone,
+        address: businessDetail.address,
       });
     }
-  }, [params, enterpriseDetail]);
+  }, [params, businessDetail]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-8">
         <InputController
           id="name"
-          label="Nombre de la Empresa"
+          label="Nombre del Negocio"
           disabled={isReadOnly}
           control={control}
           error={errors.name?.message}
           isError={!!errors.name}
-        />
-        <InputController
-          id="representativeName"
-          label="Nombre del Representante"
-          disabled={isReadOnly}
-          control={control}
-          error={errors.representativeName?.message}
-          isError={!!errors.representativeName}
-        />
-        <InputController
-          id="email"
-          label="Email"
-          disabled={isReadOnly}
-          control={control}
-          error={errors.email?.message}
-          isError={!!errors.email}
         />
         <InputPhoneController
           id="phone"
@@ -142,4 +123,4 @@ const EnterpriseForm = ({
     </form>
   );
 };
-export default EnterpriseForm;
+export default BusinessForm;

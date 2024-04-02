@@ -5,6 +5,7 @@ import {
   MdOutlineSupervisorAccount,
   MdBusinessCenter,
   MdDomain,
+  MdStore,
 } from "react-icons/md";
 
 const routes: IRoute[] = [
@@ -32,6 +33,12 @@ const routes: IRoute[] = [
     layout: "/empresas",
     path: "empresas",
     icon: <MdDomain className="h-6 w-6" />,
+  },
+  {
+    name: "Nogocios",
+    layout: "/negocios",
+    path: "negocios",
+    icon: <MdStore className="h-6 w-6" />,
   },
   // {
   //   name: "NFT Marketplace",

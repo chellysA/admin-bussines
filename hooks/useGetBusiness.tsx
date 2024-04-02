@@ -1,8 +1,8 @@
 import AxiosInstance from "@/constants/AxiosInstance";
 import { useQuery } from "@tanstack/react-query";
 
-const fetchGetEnterprise = async (): Promise<any[]> => {
-  const res = await AxiosInstance.get("/enterprise");
+const fetchGetBusiness = async (): Promise<any[]> => {
+  const res = await AxiosInstance.get("/business");
 
   try {
     // TODO Mejorar el typescript
@@ -13,9 +13,9 @@ const fetchGetEnterprise = async (): Promise<any[]> => {
   }
 };
 
-export const useGetEnterprise = () => {
+export const useGetBusiness = () => {
   return useQuery({
-    queryKey: ["enterprise"],
-    queryFn: fetchGetEnterprise,
+    queryKey: ["business"],
+    queryFn: fetchGetBusiness,
   });
 };

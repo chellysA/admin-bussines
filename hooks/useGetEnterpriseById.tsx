@@ -13,7 +13,7 @@ interface IEnterprises {
   representativeName: string;
 }
 
-const fetchGetEnterpriseDetail = async (
+const fetchGetEnterpriseById = async (
   enterpriseId: string,
 ): Promise<IResponseServices<IEnterprises>> => {
   const res = await AxiosInstance.get<IResponseServices<IEnterprises>>(
@@ -30,10 +30,10 @@ const fetchGetEnterpriseDetail = async (
   }
 };
 
-export const useGetEnterpriseDetail = (enterpriseId: string) => {
+export const useGetEnterpriseById = (enterpriseId: string) => {
   return useQuery({
-    queryKey: ["enterpriseDetail"],
-    queryFn: () => fetchGetEnterpriseDetail(enterpriseId),
+    queryKey: ["enterpriseById"],
+    queryFn: () => fetchGetEnterpriseById(enterpriseId),
     enabled: !!enterpriseId,
   });
 };
