@@ -16,7 +16,6 @@ import TaskCard from "./components/TaskCard";
 import tableDataCheck from "./variables/tableDataCheck.json";
 import tableDataComplex from "./variables/tableDataComplex.json";
 import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
-import Skeleton from "react-loading-skeleton";
 
 const MiniCalendar = dynamic(
   () => import("@/components/calendar/MiniCalendar"),
@@ -29,53 +28,39 @@ const MiniCalendar = dynamic(
 type Props = {};
 
 const DashboardPage: FC<Props> = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
   useChangeTitleLayoutAdmin("Dashboard");
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
 
   return (
     <>
       {/* Card widget */}
       <div className="mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
         <Widget
-          isLoading={isLoading}
           icon={<MdBarChart className="h-7 w-7" />}
           title={"Earnings"}
           subtitle={"$340.5"}
         />
 
         <Widget
-          isLoading={isLoading}
           icon={<IoDocuments className="h-6 w-6" />}
           title={"Spend this month"}
           subtitle={"$642.39"}
         />
         <Widget
-          isLoading={isLoading}
           icon={<MdBarChart className="h-7 w-7" />}
           title={"Sales"}
           subtitle={"$574.34"}
         />
         <Widget
-          isLoading={isLoading}
           icon={<MdDashboard className="h-6 w-6" />}
           title={"Your Balance"}
           subtitle={"$1,000"}
         />
         <Widget
-          isLoading={isLoading}
           icon={<MdBarChart className="h-7 w-7" />}
           title={"New Tasks"}
           subtitle={"145"}
         />
         <Widget
-          isLoading={isLoading}
           icon={<IoMdHome className="h-6 w-6" />}
           title={"Total Projects"}
           subtitle={"$2433"}
@@ -84,8 +69,8 @@ const DashboardPage: FC<Props> = () => {
 
       {/* Charts */}
       <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
-        <TotalSpent isLoading={isLoading} />
-        <WeeklyRevenue isLoading={isLoading} />
+        <TotalSpent />
+        <WeeklyRevenue />
       </div>
 
       {/* Tables & Charts */}
@@ -93,7 +78,6 @@ const DashboardPage: FC<Props> = () => {
         {/* Check Table */}
         <div>
           <CheckTable
-            isLoading={isLoading}
             columnsData={columnsDataCheck}
             tableData={tableDataCheck}
           />
@@ -101,22 +85,21 @@ const DashboardPage: FC<Props> = () => {
 
         {/* Traffic chart & Pie Chart */}
         <div className="grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
-          <DailyTraffic isLoading={isLoading} />
-          <PieChartCard isLoading={isLoading} />
+          <DailyTraffic />
+          <PieChartCard />
         </div>
 
         {/* Complex Table , Task & Calendar */}
         <ComplexTable
-          isLoading={isLoading}
           columnsData={columnsDataComplex}
           tableData={tableDataComplex}
         />
 
         {/* Task chart & Calendar */}
         <div className="grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
-          <TaskCard isLoading={isLoading} />
+          <TaskCard />
           <div className="grid grid-cols-1 rounded-[20px]">
-            {isLoading ? <Skeleton /> : <MiniCalendar />}
+            <MiniCalendar />
           </div>
         </div>
       </div>

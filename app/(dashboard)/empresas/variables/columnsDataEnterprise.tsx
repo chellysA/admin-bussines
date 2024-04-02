@@ -12,20 +12,12 @@ export const columnsDataEnterprise: (
     header: "NOMBRE DE LA EMPRESA",
   },
   {
-    accessorKey: "representativeName",
-    header: "NOMBRE DEL REPRESENTANTE",
-  },
-  {
     accessorKey: "email",
     header: "EMAIL",
   },
   {
     accessorKey: "phone",
     header: "TELEFONO",
-  },
-  {
-    accessorKey: "rif",
-    header: "DOCUMENTO",
   },
   {
     accessorKey: "address",

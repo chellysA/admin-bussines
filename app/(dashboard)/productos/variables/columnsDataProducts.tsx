@@ -18,14 +18,6 @@ export const columnsDataProducts = (deleteOnClick: (arg0: string) => void) => [
     header: "CATEGORIA",
   },
   {
-    accessorKey: "sede",
-    header: "SEDE",
-  },
-  {
-    accessorKey: "presentacion",
-    header: "PRESENTACION",
-  },
-  {
     accessorKey: "precio",
     header: "PRECIO",
   },
@@ -47,14 +39,6 @@ export const columnsDataProducts = (deleteOnClick: (arg0: string) => void) => [
         )}
       </div>
     ),
-  },
-  {
-    accessorKey: "cantidad en almacen",
-    header: "CANTIDAD EN ALMACEN",
-  },
-  {
-    accessorKey: "stock",
-    header: "STOCK",
   },
   {
     accessorKey: "acciones",

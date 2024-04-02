@@ -1,32 +1,28 @@
 "use client";
 import { FC, ReactNode, useEffect, useState } from "react";
 import Card from "@/components/card";
-import Skeleton from "react-loading-skeleton";
 
 type Props = {
   icon?: ReactNode | string;
   title?: string;
   subtitle?: string;
-  isLoading: boolean;
 };
 
-const Widget: FC<Props> = ({ icon, title, subtitle, isLoading }) => {
+const Widget: FC<Props> = ({ icon, title, subtitle }) => {
   return (
     <Card className="!flex-row flex-grow items-center rounded-[20px]">
       <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
         <div className="rounded-full bg-lightPrimary p-3 dark:bg-navy-700">
           <span className="flex items-center text-brand-500 dark:text-white">
-            {isLoading ? <Skeleton /> : icon}
+            {icon}
           </span>
         </div>
       </div>
 
       <div className="h-50 ml-4 flex w-auto flex-col justify-center">
-        <p className="font-dm text-sm font-medium text-gray-600">
-          {isLoading ? <Skeleton /> : title}
-        </p>
+        <p className="font-dm text-sm font-medium text-gray-600">{title}</p>
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
-          {isLoading ? <Skeleton /> : subtitle}
+          {subtitle}
         </h4>
       </div>
     </Card>
