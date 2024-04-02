@@ -18,10 +18,6 @@ export const columnsDataUsers = (deleteOnClick: (arg0: string) => void) => [
     header: "EMAIL",
   },
   {
-    accessorKey: "documento",
-    header: "DOCUMENTO",
-  },
-  {
     accessorKey: "telefono",
     header: "TELEFONO",
   },

@@ -23,7 +23,6 @@ const Productos = () => {
   const [deleteConfirmationOpenModal, setDeleteConfirmationOpenModal] =
     useState(false);
   const [productToBeDeleted, setproductToBeDeleted] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
 
   useChangeTitleLayoutAdmin("Productos");
 
@@ -93,12 +92,6 @@ const Productos = () => {
     !deleteConfirmationOpenModal && deleteConfirmationHandleReset();
   }, [deleteConfirmationHandleReset, deleteConfirmationOpenModal]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
-
   return (
     <>
       <div className="mt-3 grid grid-cols-1 md:gap-5 md:grid-cols-3">
@@ -144,7 +137,6 @@ const Productos = () => {
       </div>
       <div className="mt-8">
         <BasicTable
-          isLoading={isLoading}
           columnsData={columnsDataProducts(handleDelete)}
           tableData={tableDataProducts}
           title="Lista de Productos"

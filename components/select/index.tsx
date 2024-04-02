@@ -60,7 +60,7 @@ const Select = ({
               </option>
             ))}
           </select>
-          <i></i>
+          {!disabled && <i></i>}
         </div>
       </div>
       {isError && (

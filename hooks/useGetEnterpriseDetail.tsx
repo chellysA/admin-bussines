@@ -31,7 +31,6 @@ const fetchGetEnterpriseDetail = async (
 };
 
 export const useGetEnterpriseDetail = (enterpriseId: string) => {
-  console.log({ enterpriseId });
   return useQuery({
     queryKey: ["enterpriseDetail"],
     queryFn: () => fetchGetEnterpriseDetail(enterpriseId),
