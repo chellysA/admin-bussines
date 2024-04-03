@@ -5,8 +5,9 @@ import InputPhoneController from "@/components/fields/InputPhoneController";
 import CreateBussinessSchema from "@/data/validations/Create-bussiness-schema";
 import { useCreateBusiness } from "@/hooks/useCreateBusiness";
 import { useGetBusinessById } from "@/hooks/useGetBusinessById";
+import { useUpdateBusiness } from "@/hooks/useUpdateBusiness";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -29,6 +30,8 @@ const BusinessForm = ({
       documentNumber: "",
       documentType: "",
       address: "",
+      email: "",
+      representativeName: "",
     },
     resolver: yupResolver(CreateBussinessSchema),
   });
@@ -43,16 +46,28 @@ const BusinessForm = ({
   const params = useParams();
   const { mutate: createBussiness } = useCreateBusiness();
   const { data: businessDetail } = useGetBusinessById(params?.businessId);
+  const { mutate: updateBusiness } = useUpdateBusiness();
 
   const onSubmit = async (formValues: any) => {
     try {
-      createBussiness(formValues, {
-        onSuccess: (data) => {
-          console.log({ data });
-          toast.success(data.info.message);
-          router.push("/negocios");
-        },
-      });
+      if (params?.editar) {
+        updateBusiness(
+          { businessId: params?.businessId, updatedData: formValues },
+          {
+            onSuccess: (data) => {
+              toast.success(data.info.message);
+              router.push("/negocios");
+            },
+          },
+        );
+      } else {
+        createBussiness(formValues, {
+          onSuccess: (data) => {
+            toast.success(data.info.message);
+            router.push("/negocios");
+          },
+        });
+      }
     } catch (error) {
       console.error("Error de validación:");
     }
@@ -66,9 +81,11 @@ const BusinessForm = ({
         documentNumber: businessDetail.documentNumber,
         phone: businessDetail.phone,
         address: businessDetail.address,
+        email: businessDetail.email,
+        representativeName: businessDetail.representativeName,
       });
     }
-  }, [params, businessDetail]);
+  }, [params.businessId, businessDetail]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -80,6 +97,22 @@ const BusinessForm = ({
           control={control}
           error={errors.name?.message}
           isError={!!errors.name}
+        />
+        <InputController
+          id="representativeName"
+          label="Nombre del Representante"
+          disabled={isReadOnly}
+          control={control}
+          error={errors.representativeName?.message}
+          isError={!!errors.representativeName}
+        />
+        <InputController
+          id="email"
+          label="Email"
+          disabled={isReadOnly}
+          control={control}
+          error={errors.email?.message}
+          isError={!!errors.email}
         />
         <InputPhoneController
           id="phone"
