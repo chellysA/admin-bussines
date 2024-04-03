@@ -47,13 +47,14 @@ const Empresas = () => {
       if (data.bussinesName === bussinesToBeDeleted) {
         deleteBusiness(businesId, {
           onSuccess: (data) => {
-            console.log({ data });
             toast.success(data.info.message);
             refetch();
             setOpenModal(false);
             handleReset();
           },
         });
+      } else {
+        toast.error("El nombre del negocio no coincide.");
       }
     } catch (error) {
       console.error("Error de validación:");
