@@ -15,14 +15,18 @@ import DeleteBussinesConfirmationSchema from "@/data/validations/Delete-bussines
 import { columnsDataBusiness } from "./variables/columnsDataBusiness";
 import { useGetBusiness } from "@/hooks/useGetBusiness";
 import { useDeleteBusiness } from "@/hooks/useDeleteBusiness";
-import { useParams } from "next/navigation";
+import toast from "react-hot-toast";
 
 const Empresas = () => {
-  const params = useParams();
   const [openModal, setOpenModal] = useState(false);
   const [bussinesToBeDeleted, setBussinesToBeDeleted] = useState("");
-  const { data: businessData, isPending: isLoading } = useGetBusiness();
-  const { data } = useDeleteBusiness("");
+  const [businesId, setBusinesId] = useState("");
+  const {
+    data: businessData,
+    isPending: isLoading,
+    refetch,
+  } = useGetBusiness();
+  const { mutate: deleteBusiness } = useDeleteBusiness();
 
   useChangeTitleLayoutAdmin("Negocio");
 
@@ -41,9 +45,15 @@ const Empresas = () => {
   const onSubmit = async (data: any) => {
     try {
       if (data.bussinesName === bussinesToBeDeleted) {
-        console.log("Datos válidos:", data);
-        setOpenModal(false);
-        handleReset();
+        deleteBusiness(businesId, {
+          onSuccess: (data) => {
+            console.log({ data });
+            toast.success(data.info.message);
+            refetch();
+            setOpenModal(false);
+            handleReset();
+          },
+        });
       }
     } catch (error) {
       console.error("Error de validación:");
@@ -54,11 +64,10 @@ const Empresas = () => {
     reset({ bussinesName: "" });
   }, [reset]);
 
-  const handleDelete = (name: string) => {
+  const handleDelete = (name: string, id: string) => {
     setOpenModal(true);
     setBussinesToBeDeleted(name);
-    console.log(data);
-    useDeleteBusiness(params?.businessId);
+    setBusinesId(id);
   };
 
   useEffect(() => {
