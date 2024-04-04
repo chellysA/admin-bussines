@@ -2,6 +2,7 @@ import Button from "@/components/button";
 import InputController from "@/components/fields/InputController";
 import InputDocumentController from "@/components/fields/InputDocumentController";
 import InputPhoneController from "@/components/fields/InputPhoneController";
+import Skeleton from "@/components/skeleton";
 import CreateBussinessSchema from "@/data/validations/Create-bussiness-schema";
 import { useCreateBusiness } from "@/hooks/useCreateBusiness";
 import { useGetBusinessById } from "@/hooks/useGetBusinessById";
@@ -11,6 +12,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import BusinessFormSkeleton from "./businessFormSkeleton";
 
 type Props = {
   isReadOnly?: boolean;
@@ -45,7 +47,9 @@ const BusinessForm = ({
   const router = useRouter();
   const params = useParams();
   const { mutate: createBussiness } = useCreateBusiness();
-  const { data: businessDetail } = useGetBusinessById(params?.businessId);
+  const { data: businessDetail, isPending: isLoading } = useGetBusinessById(
+    params?.businessId,
+  );
   const { mutate: updateBusiness } = useUpdateBusiness();
 
   const onSubmit = async (formValues: any) => {
@@ -88,72 +92,78 @@ const BusinessForm = ({
   }, [params.businessId, businessDetail]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-8">
-        <InputController
-          id="name"
-          label="Nombre del Negocio"
-          disabled={isReadOnly}
-          control={control}
-          error={errors.name?.message}
-          isError={!!errors.name}
-        />
-        <InputController
-          id="representativeName"
-          label="Nombre del Representante"
-          disabled={isReadOnly}
-          control={control}
-          error={errors.representativeName?.message}
-          isError={!!errors.representativeName}
-        />
-        <InputController
-          id="email"
-          label="Email"
-          disabled={isReadOnly}
-          control={control}
-          error={errors.email?.message}
-          isError={!!errors.email}
-        />
-        <InputPhoneController
-          id="phone"
-          label="Telefono"
-          control={control}
-          isError={!!errors.phone}
-          error={errors.phone?.message}
-          disabled={isReadOnly}
-        />
-        <InputDocumentController
-          id="documentNumber"
-          idType="documentType"
-          label="Documento"
-          disabled={isReadOnly}
-          control={control}
-          error={errors.documentNumber?.message}
-          isError={!!errors.documentNumber}
-          errorType={errors.documentType?.message}
-          isErrorType={!!errors.documentType}
-        />
-        <InputController
-          id="address"
-          label="Direccion"
-          disabled={isReadOnly}
-          control={control}
-          error={errors.address?.message}
-          isError={!!errors.address}
-        />
-      </div>
+    <>
+      {isLoading && businessDetail ? (
+        <BusinessFormSkeleton />
+      ) : (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-8">
+            <InputController
+              id="name"
+              label="Nombre del Negocio"
+              disabled={isReadOnly}
+              control={control}
+              error={errors.name?.message}
+              isError={!!errors.name}
+            />
+            <InputController
+              id="representativeName"
+              label="Nombre del Representante"
+              disabled={isReadOnly}
+              control={control}
+              error={errors.representativeName?.message}
+              isError={!!errors.representativeName}
+            />
+            <InputController
+              id="email"
+              label="Email"
+              disabled={isReadOnly}
+              control={control}
+              error={errors.email?.message}
+              isError={!!errors.email}
+            />
+            <InputPhoneController
+              id="phone"
+              label="Telefono"
+              control={control}
+              isError={!!errors.phone}
+              error={errors.phone?.message}
+              disabled={isReadOnly}
+            />
+            <InputDocumentController
+              id="documentNumber"
+              idType="documentType"
+              label="Documento"
+              disabled={isReadOnly}
+              control={control}
+              error={errors.documentNumber?.message}
+              isError={!!errors.documentNumber}
+              errorType={errors.documentType?.message}
+              isErrorType={!!errors.documentType}
+            />
+            <InputController
+              id="address"
+              label="Direccion"
+              disabled={isReadOnly}
+              control={control}
+              error={errors.address?.message}
+              isError={!!errors.address}
+            />
+          </div>
 
-      {!isReadOnly && (
-        <div className="flex justify-end mt-8">
-          <Button
-            label={buttonLabel}
-            className="px-8"
-            title={buttonTitle}
-            type="submit"
-          />
-        </div>
+          {!isReadOnly && (
+            <div className="flex justify-end mt-8">
+              <Button
+                label={buttonLabel}
+                className="px-8"
+                title={buttonTitle}
+                type="submit"
+              />
+            </div>
+          )}
+        </form>
       )}
-    </form>
+    </>
   );
 };
 export default BusinessForm;
