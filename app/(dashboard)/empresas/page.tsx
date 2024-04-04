@@ -14,11 +14,19 @@ import { useGetEnterprise } from "@/hooks/useGetEnterprise";
 import BasicTableSkeleton from "@/components/tables/basicTableSkeleton";
 import { columnsDataEnterprise } from "./variables/columnsDataEnterprise";
 import BasicTable from "@/components/tables/basicTable";
+import { useDeleteEnterprise } from "@/hooks/useDeleteEnterprise";
+import toast from "react-hot-toast";
 
 const Empresas = () => {
   const [openModal, setOpenModal] = useState(false);
   const [enterpriseToBeDeleted, setEnterpriseToBeDeleted] = useState("");
-  const { data: enterprisesData, isPending: isLoading } = useGetEnterprise();
+  const [enterpriseId, setEnterpriseId] = useState("");
+  const {
+    data: enterprisesData,
+    isPending: isLoading,
+    refetch,
+  } = useGetEnterprise();
+  const { mutate: deleteEnterprise } = useDeleteEnterprise();
 
   useChangeTitleLayoutAdmin("Empresa");
 
@@ -37,9 +45,16 @@ const Empresas = () => {
   const onSubmit = async (data: any) => {
     try {
       if (data.enterpriseName === enterpriseToBeDeleted) {
-        console.log("Datos válidos:", data);
+        deleteEnterprise(enterpriseId, {
+          onSuccess: (data) => {
+            toast.success(data.info.message);
+            refetch();
+          },
+        });
         setOpenModal(false);
         handleReset();
+      } else {
+        toast.error("El nombre de la empresa no coincide.");
       }
     } catch (error) {
       console.error("Error de validación:");
@@ -50,9 +65,10 @@ const Empresas = () => {
     reset({ enterpriseName: "" });
   }, [reset]);
 
-  const handleDelete = (name: string) => {
+  const handleDelete = (name: string, id: string) => {
     setOpenModal(true);
     setEnterpriseToBeDeleted(name);
+    setEnterpriseId(id);
   };
 
   useEffect(() => {
@@ -87,7 +103,7 @@ const Empresas = () => {
         buttonType="submit"
       >
         <InputController
-          id="enterpiseName"
+          id="enterpriseName"
           label="Ingresa el nombre de la empresa para continuar:"
           control={control}
           isError={!!errors.enterpriseName}

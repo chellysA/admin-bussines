@@ -1,9 +1,9 @@
 import AxiosInstance from "@/constants/AxiosInstance";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-const fetchDeleteBusiness = async (businessId: string): Promise<any> => {
+const fetchDeleteEnterprise = async (enterpriseId: string): Promise<any> => {
   try {
-    const res = await AxiosInstance.delete(`/business/${businessId}`);
+    const res = await AxiosInstance.delete(`/enterprise/${enterpriseId}`);
     // TODO Mejorar el typescript
 
     return res;
@@ -12,8 +12,8 @@ const fetchDeleteBusiness = async (businessId: string): Promise<any> => {
   }
 };
 
-export const useDeleteBusiness = () => {
+export const useDeleteEnterprise = () => {
   return useMutation({
-    mutationFn: fetchDeleteBusiness,
+    mutationFn: fetchDeleteEnterprise,
   });
 };
