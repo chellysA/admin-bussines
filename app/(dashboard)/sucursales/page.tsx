@@ -2,7 +2,7 @@
 import Button from "@/components/button";
 import InputField from "@/components/fields/InputField";
 import Link from "next/link";
-import { MdOutlineMapsHomeWork } from "react-icons/md";
+import { MdAddBusiness } from "react-icons/md";
 import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
 import DeleteConfirmationModal from "@/components/modal/DeleteConfirmationModal";
 import { useCallback, useEffect, useState } from "react";
@@ -88,7 +88,7 @@ const Sucursales = () => {
       <div className="flex justify-end">
         <Link href="/sucursales/agregar-sucursal">
           <Button
-            label={<MdOutlineMapsHomeWork className="text-[25px] mx-5" />}
+            label={<MdAddBusiness className="text-[25px] mx-5" />}
             className="mt-4"
             title="Agregar Negocio"
           />
