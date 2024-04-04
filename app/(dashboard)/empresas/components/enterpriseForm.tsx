@@ -5,6 +5,7 @@ import InputPhoneController from "@/components/fields/InputPhoneController";
 import CreateEnterpriseSchema from "@/data/validations/Create-enterprise-schema";
 import { useCreateEnterprise } from "@/hooks/useCreateEnterprise";
 import { useGetEnterpriseById } from "@/hooks/useGetEnterpriseById";
+import { useUpdateEnterprise } from "@/hooks/useUpdateEnterprise";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -45,22 +46,38 @@ const EnterpriseForm = ({
   const params = useParams();
   const { mutate: createEnterprise } = useCreateEnterprise();
   const { data: enterpriseDetail } = useGetEnterpriseById(params?.enterpriseId);
+  const { mutate: updateEnterprise } = useUpdateEnterprise();
 
   const onSubmit = async (formValues: any) => {
     try {
-      createEnterprise(formValues, {
-        onSuccess: (data) => {
-          toast.success(data.info.message);
-          router.push("/empresas");
-        },
-      });
+      if (params?.editar) {
+        updateEnterprise(
+          { enterpriseId: params?.enterpriseId, updatedData: formValues },
+          {
+            onSuccess: (data) => {
+              toast.success(data.info.message);
+              router.push("/empresas");
+            },
+          },
+        );
+      } else {
+        createEnterprise(formValues, {
+          onSuccess: (data) => {
+            toast.success(data.info.message);
+            router.push("/empresas");
+          },
+          onError: (data) => {
+            toast.error(data.info.message);
+          },
+        });
+      }
     } catch (error) {
       console.error("Error de validación:");
     }
   };
 
   useEffect(() => {
-    if (params?.enterpriseId && enterpriseDetail) {
+    if (enterpriseDetail) {
       reset({
         name: enterpriseDetail.name,
         representativeName: enterpriseDetail.representativeName,
@@ -71,7 +88,7 @@ const EnterpriseForm = ({
         address: enterpriseDetail.address,
       });
     }
-  }, [params, enterpriseDetail]);
+  }, [enterpriseDetail]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
