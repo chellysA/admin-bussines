@@ -9,6 +9,7 @@ interface IBusiness {
   documentNumber: string;
   phone: string;
   address: string;
+  representativeName: string;
 }
 
 const fetchGetBusinessById = async (

@@ -1,6 +1,8 @@
 import * as yup from "yup";
 
 const CreateBranchBussinessSchema = yup.object({
+  businessId: yup.string().required("El nombre del negocio es obligatorio"),
+
   name: yup
     .string()
     .matches(
@@ -11,11 +13,6 @@ const CreateBranchBussinessSchema = yup.object({
     .min(2, "El nombre debe tener al menos 2 caracteres"),
 
   phone: yup.string().required("El numero telefonico es obligatorio"),
-
-  email: yup
-    .string()
-    .email("Ingresa una dirección de correo electrónico válida")
-    .required("El correo electrónico es obligatorio"),
 
   address: yup.string().required("La direccion es obligatoria"),
 });

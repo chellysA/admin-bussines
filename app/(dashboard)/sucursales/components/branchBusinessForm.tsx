@@ -1,10 +1,9 @@
 import Button from "@/components/button";
 import InputController from "@/components/fields/InputController";
-import InputDocumentController from "@/components/fields/InputDocumentController";
 import InputPhoneController from "@/components/fields/InputPhoneController";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import CreateBranchBussinessSchema from "@/data/validations/Create-branch-business-schema";
@@ -12,6 +11,8 @@ import { useCreateBranchBusiness } from "@/hooks/useCreateBranchBusiness";
 import { useGetBranchBusinessById } from "@/hooks/useGetBranchBusinessById";
 import BranchBusinessFormSkeleton from "./brachBusinessSkeleton";
 import { useUpdateBranchBusiness } from "@/hooks/useUpdateBranchBusiness";
+import { useGetBusiness } from "@/hooks/useGetBusiness";
+import SelectController from "@/components/select/SelectController";
 
 type Props = {
   isReadOnly?: boolean;
@@ -29,6 +30,7 @@ const BranchBusinessForm = ({
       name: "",
       phone: "",
       address: "",
+      businessId: "",
     },
     resolver: yupResolver(CreateBranchBussinessSchema),
   });
@@ -41,10 +43,19 @@ const BranchBusinessForm = ({
 
   const router = useRouter();
   const params = useParams();
-  const { mutate: createBranchBussiness } = useCreateBranchBusiness();
+  const { mutate: createBranchBusiness } = useCreateBranchBusiness();
   const { data: branchBusinessDetail, isPending: isLoading } =
-    useGetBranchBusinessById(params?.businessId);
+    useGetBranchBusinessById(params?.branchBusinessId);
   const { mutate: updateBranchBusiness } = useUpdateBranchBusiness();
+  const { data: businessData } = useGetBusiness();
+
+  const businessOptions = useMemo(() => {
+    return businessData?.length
+      ? businessData?.map((business) => {
+          return { label: business.name, value: business._id };
+        })
+      : [];
+  }, [businessData]);
 
   const onSubmit = async (formValues: any) => {
     try {
@@ -62,7 +73,8 @@ const BranchBusinessForm = ({
           },
         );
       } else {
-        createBranchBussiness(formValues, {
+        console.log(formValues);
+        createBranchBusiness(formValues, {
           onSuccess: (data) => {
             toast.success(data.info.message);
             router.push("/sucursales");
@@ -75,12 +87,13 @@ const BranchBusinessForm = ({
   };
 
   useEffect(() => {
+    console.log(branchBusinessDetail);
     if (params?.branchBusinessId && branchBusinessDetail) {
       reset({
-        name: businessDetail.name,
-        phone: businessDetail.phone,
-        address: businessDetail.address,
-        email: businessDetail.email,
+        name: branchBusinessDetail.name,
+        phone: branchBusinessDetail.phone,
+        address: branchBusinessDetail.address,
+        businessId: branchBusinessDetail.business.name,
       });
     }
   }, [params.branchBusinessId, branchBusinessDetail]);
@@ -92,6 +105,16 @@ const BranchBusinessForm = ({
       ) : (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-8">
+            <SelectController
+              id="businessId"
+              label="Nombre del negocio"
+              placeholder=""
+              disabled={isReadOnly}
+              control={control}
+              error={errors.businessId?.message}
+              isError={!!errors.businessId}
+              options={businessOptions}
+            />
             <InputController
               id="name"
               label="Nombre de la Sucursal"

@@ -8,15 +8,14 @@ export interface IPayLoadCreateBusines {
   documentNumber: string;
   phone: string;
   address: string | null;
+  enterpriseId: string;
+  representativeName: string;
 }
 
 const fetchCreateBusiness = async (
   payload: IPayLoadCreateBusines,
 ): Promise<IResponseServices<any>> => {
-  const res = await AxiosInstance.post("/business/create", {
-    ...payload,
-    enterpriseId: "6605f80c4a463e5e83f7d840",
-  });
+  const res = await AxiosInstance.post("/business/create", { ...payload });
 
   try {
     // TODO Mejorar el typescript

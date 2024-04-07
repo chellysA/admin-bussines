@@ -15,7 +15,7 @@ const fetchGetBranchBusinessById = async (
   try {
     // TODO Mejorar el typescript
     const res = await AxiosInstance.get<IResponseServices<IBranchBusiness>>(
-      `/business/${branchBusinessId}`,
+      `/branchBusiness/${branchBusinessId}`,
     );
     return res.data;
   } catch (error) {

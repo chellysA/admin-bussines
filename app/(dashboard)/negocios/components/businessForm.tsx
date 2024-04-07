@@ -2,17 +2,18 @@ import Button from "@/components/button";
 import InputController from "@/components/fields/InputController";
 import InputDocumentController from "@/components/fields/InputDocumentController";
 import InputPhoneController from "@/components/fields/InputPhoneController";
-import Skeleton from "@/components/skeleton";
 import CreateBussinessSchema from "@/data/validations/Create-bussiness-schema";
 import { useCreateBusiness } from "@/hooks/useCreateBusiness";
 import { useGetBusinessById } from "@/hooks/useGetBusinessById";
 import { useUpdateBusiness } from "@/hooks/useUpdateBusiness";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import BusinessFormSkeleton from "./businessFormSkeleton";
+import SelectController from "@/components/select/SelectController";
+import { useGetEnterprise } from "@/hooks/useGetEnterprise";
 
 type Props = {
   isReadOnly?: boolean;
@@ -34,6 +35,7 @@ const BusinessForm = ({
       address: "",
       email: "",
       representativeName: "",
+      enterpriseId: "",
     },
     resolver: yupResolver(CreateBussinessSchema),
   });
@@ -51,6 +53,15 @@ const BusinessForm = ({
     params?.businessId,
   );
   const { mutate: updateBusiness } = useUpdateBusiness();
+  const { data: enterprises } = useGetEnterprise();
+
+  const enterprisesOptions = useMemo(() => {
+    return enterprises?.length
+      ? enterprises?.map((enterprise) => {
+          return { label: enterprise.name, value: enterprise._id };
+        })
+      : [];
+  }, [enterprises]);
 
   const onSubmit = async (formValues: any) => {
     try {
@@ -86,7 +97,8 @@ const BusinessForm = ({
         phone: businessDetail.phone,
         address: businessDetail.address,
         email: businessDetail.email,
-        representativeName: businessDetail.representativeName,
+        representativeName: businessDetail.enterpriseId[0].representativeName,
+        enterpriseId: businessDetail.enterpriseId[0].name,
       });
     }
   }, [params.businessId, businessDetail]);
@@ -98,6 +110,16 @@ const BusinessForm = ({
       ) : (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-8">
+            <SelectController
+              id="enterpriseId"
+              label="Nombre de la empresa"
+              placeholder=""
+              disabled={isReadOnly}
+              control={control}
+              error={errors.enterpriseId?.message}
+              isError={!!errors.enterpriseId}
+              options={enterprisesOptions}
+            />
             <InputController
               id="name"
               label="Nombre del Negocio"
