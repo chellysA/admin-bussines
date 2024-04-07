@@ -39,7 +39,7 @@ const routes: IRoute[] = [
     name: "Nogocios",
     layout: "/negocios",
     path: "negocios",
-    icon: <BsBuilding className="h-6 w-6" />,
+    icon: <BsBuilding className="h-5 w-5" />,
   },
   {
     name: "Sucursales",

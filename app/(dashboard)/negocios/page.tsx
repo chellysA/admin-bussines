@@ -88,7 +88,7 @@ const Empresas = () => {
       <div className="flex justify-end">
         <Link href="/negocios/agregar-negocio">
           <Button
-            label={<BsBuildingAdd className="text-[25px] mx-5" />}
+            label={<BsBuildingAdd className="text-[22px] mx-5" />}
             className="mt-4"
             title="Agregar Negocio"
           />
