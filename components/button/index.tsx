@@ -1,5 +1,4 @@
-import { ButtonHTMLAttributes, useMemo } from "react";
-import { JsxElement } from "typescript";
+import { useMemo } from "react";
 
 type Props = {
   label: string | React.ReactElement | React.ReactNode;
