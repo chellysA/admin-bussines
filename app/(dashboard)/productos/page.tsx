@@ -5,17 +5,13 @@ import BasicTable from "../../../components/tables/basicTable";
 import Select from "@/components/select";
 import Link from "next/link";
 import { MdAddCircle } from "react-icons/md";
-import { MdAddBox } from "react-icons/md";
 import { columnsDataProducts } from "./variables/columnsDataProducts";
 import tableDataProducts from "./variables/tableDataProducts.json";
 import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
-import Modal from "@/components/modal";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import CreateCategorieSchema from "@/data/validations/Create-categorie-schema";
-import InputController from "@/components/fields/InputController";
-import DeleteConfirmationModal from "@/components/modal/DeleteConfirmationModal";
+import CreateCategorieSchema from "@/data/validations/create-categorie-schema";
 import DeleteProductConfirmationSchema from "@/data/validations/Delete-product-confirmation-schema";
 
 const Productos = () => {
@@ -26,7 +22,7 @@ const Productos = () => {
 
   useChangeTitleLayoutAdmin("Productos");
 
-  const form: any = useForm({
+  const form = useForm({
     defaultValues: { categorie: "" },
     resolver: yupResolver(CreateCategorieSchema),
   });
@@ -35,7 +31,6 @@ const Productos = () => {
     defaultValues: { productName: "" },
     resolver: yupResolver(DeleteProductConfirmationSchema),
   });
-
   const {
     handleSubmit,
     control,
@@ -93,7 +88,7 @@ const Productos = () => {
   }, [deleteConfirmationHandleReset, deleteConfirmationOpenModal]);
 
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mt-3 grid grid-cols-1 md:gap-5 md:grid-cols-3">
         <div className="grid grid-cols-1 grid-rows-1 col-span-2 gap-5 md:grid-cols-3 md:mr-10 mt-2">
           <InputField placeholder="Nombre" id="nombre" />
@@ -142,7 +137,7 @@ const Productos = () => {
           title="Lista de Productos"
         />
       </div>
-    </>
+    </form>
   );
 };
 

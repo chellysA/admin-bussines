@@ -1,12 +1,15 @@
 import Button from "@/components/button";
 import CheckboxController from "@/components/checkbox/CheckboxController";
 import InputController from "@/components/fields/InputController";
-import InputDocumentController from "@/components/fields/InputDocumentController";
+import InputRadioController from "@/components/fields/InputRadioController";
 import SelectController from "@/components/select/SelectController";
 import ProductsSchema from "@/data/validations/Products-schema";
+import { useCreateProduct } from "@/hooks/useCreateProduct";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { DevTool } from "@hookform/devtools";
 
 type Props = {
   isReadOnly?: boolean;
@@ -19,29 +22,37 @@ const ProductsForm = ({
   buttonLabel = "",
   buttonTitle,
 }: Props) => {
+  const router = useRouter();
+
+  const { mutate: createProduct } = useCreateProduct();
+
   const form = useForm({
     defaultValues: {
+      // categoryId: "",
+      // businessId: "",
       name: "",
-      categorie: "",
-      sede: "",
       presentation: "",
       price: "",
-      warehouse: "",
-      stock: "",
+      with_iva: "",
     },
     resolver: yupResolver(ProductsSchema),
   });
+
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = form;
-  const router = useRouter();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (formValues: any) => {
+    console.log(formValues);
     try {
-      console.log("Datos válidos:", data);
-      router.push("/productos");
+      // createProduct(formValues, {
+      //   onSuccess: (data) => {
+      //     toast.success("Producto creado exitosamente!");
+      //   },
+      // });
+      // router.push("/productos");
     } catch (error) {
       console.error("Error de validación:");
     }
@@ -59,29 +70,12 @@ const ProductsForm = ({
           isError={!!errors.name}
         />
         <SelectController
-          id="categorie"
-          options={["Alimentos", "hogar", "Higiene"]}
-          label="Categoria"
-          placeholder="Selecciona una categoria"
-          disabled={isReadOnly}
-          control={control}
-          error={errors.categorie?.message}
-          isError={!!errors.categorie}
-        />
-        <SelectController
-          id="sede"
-          label="Sede 1"
-          options={["1", "2"]}
-          disabled={isReadOnly}
-          placeholder="Selecciona una sede"
-          control={control}
-          error={errors.sede?.message}
-          isError={!!errors.sede}
-        />
-        <SelectController
           id="presentation"
           label="Presentación"
-          options={["Unidad", "Docena"]}
+          options={[
+            { label: "Unidad", value: "unidad" },
+            { label: "Kg", value: "kg" },
+          ]}
           placeholder="Selecciona una presentación"
           disabled={isReadOnly}
           control={control}
@@ -96,33 +90,18 @@ const ProductsForm = ({
           isError={!!errors.price}
           error={errors.price?.message}
         />
-        {/* <CheckboxController
-          id="iva"
+        <InputRadioController
+          id="with_iva"
           label="Incluye Iva?"
-          checkboxes={[
-            { id: "1check", optionsLabel: "Si", name: "check1" },
-            { id: "check2", optionsLabel: "No", name: "check2" },
+          name="iva"
+          options={[
+            { value: "si", label: "si" },
+            { value: "no", label: "no" },
           ]}
           disabled={isReadOnly}
           control={control}
-          isError={!!errors.iva}
-          error={errors.iva?.message}
-        /> */}
-        <InputController
-          id="warehouse"
-          label="Cantidad en almacén"
-          disabled={isReadOnly}
-          control={control}
-          isError={!!errors.warehouse}
-          error={errors.warehouse?.message}
-        />
-        <InputController
-          id="stock"
-          label="Stock"
-          disabled={isReadOnly}
-          control={control}
-          isError={!!errors.stock}
-          error={errors.stock?.message}
+          isError={!!errors.with_iva}
+          error={errors.with_iva?.message}
         />
       </div>
       {!isReadOnly && (
@@ -134,7 +113,8 @@ const ProductsForm = ({
             type="submit"
           />
         </div>
-      )}
+      )}{" "}
+      <DevTool control={control} />
     </form>
   );
 };

@@ -8,4 +8,5 @@ export interface CheckboxProps {
   value?: string;
   error?: string;
   name?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
