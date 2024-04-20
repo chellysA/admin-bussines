@@ -78,6 +78,7 @@ const BusinessForm = ({
       } else {
         createBussiness(formValues, {
           onSuccess: (data) => {
+            console.log(data);
             toast.success(data.info.message);
             router.push("/negocios");
           },

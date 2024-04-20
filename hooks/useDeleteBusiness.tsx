@@ -1,5 +1,5 @@
 import AxiosInstance from "@/constants/AxiosInstance";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 const fetchDeleteBusiness = async (businessId: string): Promise<any> => {
   const res = await AxiosInstance.delete(`/business/${businessId}`);

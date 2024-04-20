@@ -1,5 +1,4 @@
 import Button from "@/components/button";
-import CheckboxController from "@/components/checkbox/CheckboxController";
 import InputController from "@/components/fields/InputController";
 import InputRadioController from "@/components/fields/InputRadioController";
 import SelectController from "@/components/select/SelectController";
@@ -9,7 +8,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { DevTool } from "@hookform/devtools";
+import { useGetCategory } from "@/hooks/useGetCategory";
+import { useMemo } from "react";
 
 type Props = {
   isReadOnly?: boolean;
@@ -25,18 +25,25 @@ const ProductsForm = ({
   const router = useRouter();
 
   const { mutate: createProduct } = useCreateProduct();
+  const { data: categories } = useGetCategory();
 
   const form = useForm({
     defaultValues: {
-      // categoryId: "",
-      // businessId: "",
+      categoryId: "",
       name: "",
       presentation: "",
       price: "",
-      with_iva: "",
     },
     resolver: yupResolver(ProductsSchema),
   });
+
+  const categoriesOptions = useMemo(() => {
+    return categories?.length
+      ? categories?.map((category) => {
+          return { label: category.name, value: category._id };
+        })
+      : [];
+  }, [categories]);
 
   const {
     handleSubmit,
@@ -47,12 +54,12 @@ const ProductsForm = ({
   const onSubmit = async (formValues: any) => {
     console.log(formValues);
     try {
-      // createProduct(formValues, {
-      //   onSuccess: (data) => {
-      //     toast.success("Producto creado exitosamente!");
-      //   },
-      // });
-      // router.push("/productos");
+      createProduct(formValues, {
+        onSuccess: (data) => {
+          toast.success(data.info.message);
+          router.push("/productos");
+        },
+      });
     } catch (error) {
       console.error("Error de validación:");
     }
@@ -82,6 +89,16 @@ const ProductsForm = ({
           isError={!!errors.presentation}
           error={errors.presentation?.message}
         />
+        <SelectController
+          id="categoryId"
+          label="Categoria"
+          options={categoriesOptions}
+          placeholder="Selecciona una categoria"
+          disabled={isReadOnly}
+          control={control}
+          isError={!!errors.categoryId}
+          error={errors.categoryId?.message}
+        />
         <InputController
           id="price"
           label="Precio"
@@ -95,8 +112,8 @@ const ProductsForm = ({
           label="Incluye Iva?"
           name="iva"
           options={[
-            { value: "si", label: "si" },
-            { value: "no", label: "no" },
+            { value: true, label: "si" },
+            { value: false, label: "no" },
           ]}
           disabled={isReadOnly}
           control={control}
@@ -113,8 +130,7 @@ const ProductsForm = ({
             type="submit"
           />
         </div>
-      )}{" "}
-      <DevTool control={control} />
+      )}
     </form>
   );
 };

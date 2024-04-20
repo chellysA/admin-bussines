@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const fetchGetProducts = async (): Promise<any[]> => {
   try {
-    const res = await AxiosInstance.get("/product");
+    const res = await AxiosInstance.get("/product/660d87f5fdfac837e6246c0f");
     return res.data;
   } catch (error) {
     throw error;
@@ -12,7 +12,7 @@ const fetchGetProducts = async (): Promise<any[]> => {
 
 export const useGetProducts = () => {
   return useQuery({
-    queryKey: ["business"],
+    queryKey: ["products"],
     queryFn: fetchGetProducts,
   });
 };

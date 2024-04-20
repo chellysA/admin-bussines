@@ -15,9 +15,12 @@ const fetchCreateProduct = async (
   payload: IPayLoadCreateProduct,
 ): Promise<IResponseServices<any>> => {
   try {
-    const res = await AxiosInstance.post("/product/create", { ...payload });
+    const res = await AxiosInstance.post("/product/create", {
+      ...payload,
+      businessId: "660d87f5fdfac837e6246c0f",
+    });
 
-    return res.data;
+    return res;
   } catch (error) {
     throw error;
   }

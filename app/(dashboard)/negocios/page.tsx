@@ -70,7 +70,7 @@ const Empresas = () => {
     setBussinesToBeDeleted(name);
     setBusinesId(id);
   };
-
+  console.log(businessData);
   useEffect(() => {
     !openModal && handleReset();
   }, [handleReset, openModal]);
