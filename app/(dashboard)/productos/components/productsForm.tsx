@@ -112,8 +112,8 @@ const ProductsForm = ({
           label="Incluye Iva?"
           name="iva"
           options={[
-            { value: true, label: "si" },
-            { value: false, label: "no" },
+            { value: true, label: "Si" },
+            { value: false, label: "No" },
           ]}
           disabled={isReadOnly}
           control={control}

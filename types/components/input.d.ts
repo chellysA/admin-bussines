@@ -8,7 +8,7 @@ export interface IInputProps {
   isError?: boolean;
   isSuccess?: boolean;
   disabled?: boolean;
-  value?: string | number;
+  value?: string | number | boolean;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   error?: string;
 }
