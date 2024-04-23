@@ -36,7 +36,7 @@ const routes: IRoute[] = [
     icon: <MdDomain className="h-6 w-6" />,
   },
   {
-    name: "Nogocios",
+    name: "Negocios",
     layout: "/negocios",
     path: "negocios",
     icon: <BsBuilding className="h-5 w-5" />,

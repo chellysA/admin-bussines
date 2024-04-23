@@ -16,18 +16,17 @@ import { useGetProducts } from "@/hooks/useGetProducts";
 import Modal from "@/components/modal";
 import InputController from "@/components/fields/InputController";
 import { useCreateCategory } from "@/hooks/useCreateCategory";
-import toast from "react-hot-toast";
+import toast, { Renderable, Toast, ValueFunction } from "react-hot-toast";
 import DeleteConfirmationModal from "@/components/modal/DeleteConfirmationModal";
 import { useDeleteProduct } from "@/hooks/useDeleteProduct";
-import { useGetProductById } from "@/hooks/useGetProductById";
 
 const Productos = () => {
   const [openModal, setOpenModal] = useState(false);
   const [deleteConfirmationOpenModal, setDeleteConfirmationOpenModal] =
     useState(false);
-  const [productToBeDeleted, setproductToBeDeleted] = useState("");
+  const [productToBeDeleted, setproductToBeDeleted] = useState(["", ""]);
 
-  const { data: products } = useGetProducts();
+  const { data: products, refetch } = useGetProducts();
   const { mutate: createCategory } = useCreateCategory();
   const { mutate: deleteProduct } = useDeleteProduct();
 
@@ -59,7 +58,9 @@ const Productos = () => {
   const onSubmit = async (formValues: any) => {
     try {
       createCategory(formValues, {
-        onSuccess: (data) => {
+        onSuccess: (data: {
+          info: { message: Renderable | ValueFunction<Renderable, Toast> };
+        }) => {
           toast.success(data.info.message);
           setOpenModal(false);
           handleReset();
@@ -71,10 +72,12 @@ const Productos = () => {
   };
   const deleteConfirmationOnSubmit = async (formValues: any) => {
     try {
-      if (formValues.name === productToBeDeleted) {
-        deleteProduct(formValues, {
+      if (formValues.name === productToBeDeleted[0]) {
+        deleteProduct(productToBeDeleted[1], {
           onSuccess: (data) => {
+            console.log("entro", data);
             toast.success(data.info.message);
+            refetch();
             setDeleteConfirmationOpenModal(false);
             deleteConfirmationReset();
           },
@@ -85,11 +88,10 @@ const Productos = () => {
     }
   };
 
-  const handleDelete = (name: any) => {
+  const handleDelete = (props: any) => {
     setDeleteConfirmationOpenModal(true);
-    setproductToBeDeleted(name);
+    setproductToBeDeleted([props.name, props._id]);
   };
-
   const handleReset = useCallback(() => {
     reset({ name: "" });
   }, [reset]);
@@ -115,7 +117,10 @@ const Productos = () => {
             <InputField placeholder="Categoria" id="categoria" />
             <div className="h-10">
               <Select
-                options={["Unidad", "Kg"]}
+                options={[
+                  { label: "Unidad", value: "unidad" },
+                  { label: "Kg", value: "kg" },
+                ]}
                 placeholder="Presentación"
                 id="presentacion"
               />
@@ -179,7 +184,7 @@ const Productos = () => {
         isOpen={deleteConfirmationOpenModal}
         closeModal={() => setDeleteConfirmationOpenModal(false)}
         onConfirm={deleteConfirmatioHandleSubmit(deleteConfirmationOnSubmit)}
-        objectToBeDeleted={productToBeDeleted}
+        objectToBeDeleted={productToBeDeleted[0]}
         buttonType="submit"
       >
         <InputController

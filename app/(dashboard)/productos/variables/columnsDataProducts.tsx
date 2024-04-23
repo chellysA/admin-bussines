@@ -68,7 +68,7 @@ export const columnsDataProducts = (deleteOnClick: (arg0: string) => void) => [
         <MdDeleteForever
           className="cursor-pointer text-[22px] text-gray-900 dark:text-white"
           title="Eliminar"
-          onClick={() => deleteOnClick(props.row.original.name)}
+          onClick={() => deleteOnClick(props.row.original)}
         />
       </div>
     ),

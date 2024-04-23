@@ -1,11 +1,11 @@
 import AxiosInstance from "@/constants/AxiosInstance";
 import { useMutation } from "@tanstack/react-query";
 
-const fetchDeleteProduct = async (): Promise<any> => {
+const fetchDeleteProduct = async (productId: string): Promise<any> => {
   try {
-    const res = await AxiosInstance.delete(`/product/660d87f5fdfac837e6246c0f`);
+    const res = await AxiosInstance.delete(`/product/${productId}`);
 
-    return res.data;
+    return res;
   } catch (error) {
     return error;
   }
