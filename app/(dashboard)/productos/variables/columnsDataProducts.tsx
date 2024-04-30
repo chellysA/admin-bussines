@@ -51,7 +51,7 @@ export const columnsDataProducts = (deleteOnClick: (arg0: string) => void) => [
     cell: (props: any) => (
       <div className="flex gap-3">
         <Link
-          href={`/productos/${props.row.original.id}/editar`}
+          href={`/productos/${props.row.original._id}/editar`}
           className="text-[22px] text-gray-900 dark:text-white"
           title="Editar"
         >
@@ -59,7 +59,7 @@ export const columnsDataProducts = (deleteOnClick: (arg0: string) => void) => [
         </Link>
 
         <Link
-          href={`/productos/${props.row.original.id}/detalles`}
+          href={`/productos/${props.row.original._id}/detalles`}
           className="text-[22px] text-gray-900 dark:text-white"
           title="Detalles"
         >

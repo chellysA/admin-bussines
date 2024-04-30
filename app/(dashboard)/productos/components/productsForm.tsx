@@ -5,11 +5,12 @@ import SelectController from "@/components/select/SelectController";
 import ProductsSchema from "@/data/validations/Products-schema";
 import { useCreateProduct } from "@/hooks/useCreateProduct";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useGetCategory } from "@/hooks/useGetCategory";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { useGetProductById } from "@/hooks/useGetProductById";
 
 type Props = {
   isReadOnly?: boolean;
@@ -23,9 +24,10 @@ const ProductsForm = ({
   buttonTitle,
 }: Props) => {
   const router = useRouter();
-
+  const params = useParams();
   const { mutate: createProduct } = useCreateProduct();
   const { data: categories } = useGetCategory();
+  const { data: productDetail } = useGetProductById("662bf5955c42cb436058bc9e");
 
   const form = useForm({
     defaultValues: {
@@ -49,10 +51,10 @@ const ProductsForm = ({
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = form;
 
   const onSubmit = async (formValues: any) => {
-    console.log(formValues);
     try {
       createProduct(formValues, {
         onSuccess: (data) => {
@@ -64,6 +66,18 @@ const ProductsForm = ({
       console.error("Error de validación:");
     }
   };
+
+  useEffect(() => {
+    if (params?.productsId && productDetail) {
+      reset({
+        name: productDetail.data?.name,
+        presentation: productDetail.data?.presentation,
+        categoryId: productDetail.data?.categoryId,
+        price: productDetail.data?.price,
+        with_iva: productDetail.data?.with_iva,
+      });
+    }
+  }, [params.productsId, productDetail]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

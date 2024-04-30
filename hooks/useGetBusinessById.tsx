@@ -9,7 +9,9 @@ interface IBusiness {
   documentNumber: string;
   phone: string;
   address: string;
+  email: string;
   representativeName: string;
+  enterpriseId: any;
 }
 
 const fetchGetBusinessById = async (
@@ -22,7 +24,7 @@ const fetchGetBusinessById = async (
   try {
     // TODO Mejorar el typescript
 
-    return res.data;
+    return res;
   } catch (error) {
     // @ts-ignore
     return error;

@@ -8,27 +8,27 @@ interface IProducts {
   presentation: string;
   price: string;
   with_iva: boolean;
+  categoryId: string;
+  businessId: string;
 }
 
 const fetchGetProductById = async (
-  productId: string,
+  productsId: string,
 ): Promise<IResponseServices<IProducts>> => {
   try {
     const res = await AxiosInstance.get<IResponseServices<IProducts>>(
-      `/product/${productId}`,
+      `/product/${productsId}`,
     );
-
     return res.data;
   } catch (error) {
-    // @ts-ignore
     throw error;
   }
 };
 
-export const useGetProductById = (productId: string) => {
+export const useGetProductById = (productsId: string) => {
   return useQuery({
     queryKey: ["productById"],
-    queryFn: () => fetchGetProductById(productId),
-    enabled: !!productId,
+    queryFn: () => fetchGetProductById(productsId),
+    enabled: !!productsId,
   });
 };

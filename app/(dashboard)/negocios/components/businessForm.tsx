@@ -92,14 +92,15 @@ const BusinessForm = ({
   useEffect(() => {
     if (params?.businessId && businessDetail) {
       reset({
-        name: businessDetail.name,
-        documentType: businessDetail.documentType,
-        documentNumber: businessDetail.documentNumber,
-        phone: businessDetail.phone,
-        address: businessDetail.address,
-        email: businessDetail.email,
-        representativeName: businessDetail.enterpriseId[0].representativeName,
-        enterpriseId: businessDetail.enterpriseId[0].name,
+        name: businessDetail.data?.name,
+        documentType: businessDetail.data?.documentType,
+        documentNumber: businessDetail.data?.documentNumber,
+        phone: businessDetail.data?.phone,
+        address: businessDetail.data?.address,
+        email: businessDetail.data?.email,
+        representativeName:
+          businessDetail.data?.enterpriseId[0].representativeName,
+        enterpriseId: businessDetail.data?.enterpriseId[0].name,
       });
     }
   }, [params.businessId, businessDetail]);

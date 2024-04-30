@@ -75,7 +75,6 @@ const Productos = () => {
       if (formValues.name === productToBeDeleted[0]) {
         deleteProduct(productToBeDeleted[1], {
           onSuccess: (data) => {
-            console.log("entro", data);
             toast.success(data.info.message);
             refetch();
             setDeleteConfirmationOpenModal(false);
@@ -122,7 +121,7 @@ const Productos = () => {
                   { label: "Kg", value: "kg" },
                 ]}
                 placeholder="Presentación"
-                id="presentacion"
+                id="presentation"
               />
             </div>
           </div>
