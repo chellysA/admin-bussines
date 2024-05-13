@@ -14,14 +14,14 @@ export interface IPayLoadCreateEnterprise {
 
 const fetchCreateEnterprise = async (
   payload: IPayLoadCreateEnterprise,
-): Promise<IResponseServices<any>> => {
-  const res = await AxiosInstance.post("/enterprise/create", payload);
-
+): Promise<IResponseServices<IPayLoadCreateEnterprise>> => {
   try {
-    // TODO Mejorar el typescript
+    const res = await AxiosInstance.post("/enterprise/create", payload);
+    // TODO Mejorar el typescriptc
+
     return res;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 

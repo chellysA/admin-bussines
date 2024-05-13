@@ -2,37 +2,37 @@
 import Button from "@/components/button";
 import InputField from "@/components/fields/InputField";
 import Link from "next/link";
-import { MdDomainAdd } from "react-icons/md";
+import { MdAddBusiness } from "react-icons/md";
 import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
 import DeleteConfirmationModal from "@/components/modal/DeleteConfirmationModal";
 import { useCallback, useEffect, useState } from "react";
 import InputController from "@/components/fields/InputController";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import DeleteEnterpriseConfirmationSchema from "@/data/validations/Delete-enterprise-confirmation-schema";
-import { useGetEnterprise } from "@/hooks/useGetEnterprise";
 import BasicTableSkeleton from "@/components/tables/basicTableSkeleton";
-import { columnsDataEnterprise } from "./variables/columnsDataEnterprise";
 import BasicTable from "@/components/tables/basicTable";
-import { useDeleteEnterprise } from "@/hooks/useDeleteEnterprise";
+import DeleteBussinesConfirmationSchema from "@/data/validations/Delete-bussines-confirmation-schema";
+import { columnsDataBusiness } from "./variables/columnsDataBusiness";
+import { useGetBusiness } from "@/hooks/useGetBusiness";
+import { useDeleteBusiness } from "@/hooks/useDeleteBusiness";
 import toast from "react-hot-toast";
 
 const Empresas = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [enterpriseToBeDeleted, setEnterpriseToBeDeleted] = useState("");
-  const [enterpriseId, setEnterpriseId] = useState("");
+  const [bussinesToBeDeleted, setBussinesToBeDeleted] = useState("");
+  const [businesId, setBusinesId] = useState("");
   const {
-    data: enterprisesData,
+    data: businessData,
     isPending: isLoading,
     refetch,
-  } = useGetEnterprise();
-  const { mutate: deleteEnterprise } = useDeleteEnterprise();
+  } = useGetBusiness();
+  const { mutate: deleteBusiness } = useDeleteBusiness();
 
-  useChangeTitleLayoutAdmin("Empresa");
+  useChangeTitleLayoutAdmin("Negocio");
 
   const form = useForm({
-    defaultValues: { enterpriseName: "" },
-    resolver: yupResolver(DeleteEnterpriseConfirmationSchema),
+    defaultValues: { bussinesName: "" },
+    resolver: yupResolver(DeleteBussinesConfirmationSchema),
   });
 
   const {
@@ -44,17 +44,17 @@ const Empresas = () => {
 
   const onSubmit = async (data: any) => {
     try {
-      if (data.enterpriseName === enterpriseToBeDeleted) {
-        deleteEnterprise(enterpriseId, {
+      if (data.bussinesName === bussinesToBeDeleted) {
+        deleteBusiness(businesId, {
           onSuccess: (data) => {
             toast.success(data.info.message);
             refetch();
+            setOpenModal(false);
+            handleReset();
           },
         });
-        setOpenModal(false);
-        handleReset();
       } else {
-        toast.error("El nombre de la empresa no coincide.");
+        toast.error("El nombre del negocio no coincide.");
       }
     } catch (error) {
       console.error("Error de validación:");
@@ -62,13 +62,13 @@ const Empresas = () => {
   };
 
   const handleReset = useCallback(() => {
-    reset({ enterpriseName: "" });
+    reset({ bussinesName: "" });
   }, [reset]);
 
   const handleDelete = (name: string, id: string) => {
     setOpenModal(true);
-    setEnterpriseToBeDeleted(name);
-    setEnterpriseId(id);
+    setBussinesToBeDeleted(name);
+    setBusinesId(id);
   };
 
   useEffect(() => {
@@ -82,32 +82,32 @@ const Empresas = () => {
           <InputField placeholder="Nombre" id="nombre" />
         </div>
         <div className="md:ml-12 mt-6 md:mt-2 grid grid-cols-1 col-span-1">
-          <Button label="Buscar" title="Buscar Empresa" />
+          <Button label="Buscar" title="Buscar Negocio" />
         </div>
       </div>
       <div className="flex justify-end">
-        <Link href="/empresas/agregar-empresa">
+        <Link href="/negocios/agregar-negocio">
           <Button
-            label={<MdDomainAdd className="text-[25px] mx-5" />}
+            label={<MdAddBusiness className="text-[25px] mx-5" />}
             className="mt-4"
-            title="Agregar Empresa"
+            title="Agregar Negocio"
           />
         </Link>
       </div>
       <DeleteConfirmationModal
-        title="Eliminar Empresa"
+        title="Eliminar Negocio"
         isOpen={openModal}
         closeModal={() => setOpenModal(false)}
-        objectToBeDeleted={enterpriseToBeDeleted}
+        objectToBeDeleted={bussinesToBeDeleted}
         onConfirm={handleSubmit(onSubmit)}
         buttonType="submit"
       >
         <InputController
-          id="enterpriseName"
-          label="Ingresa el nombre de la empresa para continuar:"
+          id="bussinesName"
+          label="Ingresa el nombre del negocio para continuar:"
           control={control}
-          isError={!!errors.enterpriseName}
-          error={errors.enterpriseName?.message}
+          isError={!!errors.bussinesName}
+          error={errors.bussinesName?.message}
         />
       </DeleteConfirmationModal>
       <div className="mt-8">
@@ -115,8 +115,8 @@ const Empresas = () => {
           <BasicTableSkeleton />
         ) : (
           <BasicTable
-            columnsData={columnsDataEnterprise(handleDelete)}
-            tableData={enterprisesData || []}
+            columnsData={columnsDataBusiness(handleDelete)}
+            tableData={businessData || []}
             title="Lista de Empresas"
           />
         )}
