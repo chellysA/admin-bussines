@@ -13,7 +13,7 @@ import Modal from "@/components/modal";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import CreateCategorieSchema from "@/data/validations/Create-Categorie-schema";
+import CreateCategorieSchema from "@/data/validations/Create-categorie-schema";
 import InputController from "@/components/fields/InputController";
 import DeleteConfirmationModal from "@/components/modal/DeleteConfirmationModal";
 import DeleteProductConfirmationSchema from "@/data/validations/Delete-product-confirmation-schema";
@@ -23,11 +23,10 @@ const Productos = () => {
   const [deleteConfirmationOpenModal, setDeleteConfirmationOpenModal] =
     useState(false);
   const [productToBeDeleted, setproductToBeDeleted] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
 
   useChangeTitleLayoutAdmin("Productos");
 
-  const form = useForm({
+  const form: any = useForm({
     defaultValues: { categorie: "" },
     resolver: yupResolver(CreateCategorieSchema),
   });
@@ -93,12 +92,6 @@ const Productos = () => {
     !deleteConfirmationOpenModal && deleteConfirmationHandleReset();
   }, [deleteConfirmationHandleReset, deleteConfirmationOpenModal]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
-
   return (
     <>
       <div className="mt-3 grid grid-cols-1 md:gap-5 md:grid-cols-3">
@@ -144,7 +137,6 @@ const Productos = () => {
       </div>
       <div className="mt-8">
         <BasicTable
-          isLoading={isLoading}
           columnsData={columnsDataProducts(handleDelete)}
           tableData={tableDataProducts}
           title="Lista de Productos"

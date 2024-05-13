@@ -53,14 +53,14 @@ const Select = ({
             {options.map((option, index) => (
               <option
                 key={index}
-                value={option}
+                value={option.value}
                 className="dark:bg-navy-900 bg-white text-[17px]"
               >
-                {option}
+                {option.label}
               </option>
             ))}
           </select>
-          <i></i>
+          {!disabled && <i></i>}
         </div>
       </div>
       {isError && (

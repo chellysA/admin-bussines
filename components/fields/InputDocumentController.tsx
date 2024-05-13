@@ -1,7 +1,6 @@
 import { Control, useController } from "react-hook-form";
 import { IInputProps } from "@/types/components/input";
 import Select from "../select";
-import { useState } from "react";
 import InputField from "./InputField";
 
 interface InputDocumentControllerProps extends IInputProps {
@@ -28,8 +27,6 @@ const InputDocumentController = ({
 }: InputDocumentControllerProps) => {
   const { field: inputField } = useController({ name: id, control });
   const { field: selectField } = useController({ name: idType, control });
-
-  const [selectValue, setSelectValue] = useState("");
 
   const addPointToValue = (n: string) => {
     return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -63,17 +60,24 @@ const InputDocumentController = ({
         </label>
       )}
 
-      <div className="flex mt-2 mr-2">
-        <Select
-          id={idType}
-          options={["J", "V", "E"]}
-          placeholder="Tipo"
-          disabled={disabled}
-          onChange={selectField.onChange}
-          className="w-[80px] mr-2"
-          isError={isErrorType}
-          error={errorType}
-        />
+      <div className="flex mt-2">
+        <div className="mr-2">
+          <Select
+            id={idType}
+            options={[
+              { label: "J", value: "J" },
+              { label: "V", value: "V" },
+              { label: "E", value: "E" },
+            ]}
+            placeholder="Tipo"
+            disabled={disabled}
+            value={selectField.value}
+            onChange={selectField.onChange}
+            className={`min-w-[80px] w-[90px] ${disabled ? "mr-0 text-center" : "mr-2"}`}
+            isError={isErrorType}
+            error={errorType}
+          />
+        </div>
         <InputField
           id={id}
           disabled={disabled}

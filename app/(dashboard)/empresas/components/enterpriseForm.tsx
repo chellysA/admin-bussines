@@ -2,9 +2,9 @@ import Button from "@/components/button";
 import InputController from "@/components/fields/InputController";
 import InputDocumentController from "@/components/fields/InputDocumentController";
 import InputPhoneController from "@/components/fields/InputPhoneController";
-import CreateEnterpriseSchema from "@/data/validations/create-enterprise-schema";
+import CreateEnterpriseSchema from "@/data/validations/Create-enterprise-schema";
 import { useCreateEnterprise } from "@/hooks/useCreateEnterprise";
-import { useGetEnterpriseDetail } from "@/hooks/useGetEnterpriseDetail";
+import { useGetEnterpriseById } from "@/hooks/useGetEnterpriseById";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -44,9 +44,7 @@ const EnterpriseForm = ({
   const router = useRouter();
   const params = useParams();
   const { mutate: createEnterprise } = useCreateEnterprise();
-  const { data: enterpriseDetail } = useGetEnterpriseDetail(
-    params?.enterpriseId,
-  );
+  const { data: enterpriseDetail } = useGetEnterpriseById(params?.enterpriseId);
 
   const onSubmit = async (formValues: any) => {
     try {

@@ -1,11 +1,9 @@
 "use client";
 import Button from "@/components/button";
 import InputField from "@/components/fields/InputField";
-import BasicTable from "../../../components/tables/basicTable";
 import Link from "next/link";
 import { MdDomainAdd } from "react-icons/md";
 import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
-import { columnsDataEnterprise } from "./variables/columnsDataEnterprise";
 import DeleteConfirmationModal from "@/components/modal/DeleteConfirmationModal";
 import { useCallback, useEffect, useState } from "react";
 import InputController from "@/components/fields/InputController";
@@ -13,14 +11,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import DeleteEnterpriseConfirmationSchema from "@/data/validations/Delete-enterprise-confirmation-schema";
 import { useGetEnterprise } from "@/hooks/useGetEnterprise";
-import SkeletonComponent from "@/components/loading/SkeletonComponent";
+import BasicTableSkeleton from "@/components/tables/basicTableSkeleton";
+import { columnsDataEnterprise } from "./variables/columnsDataEnterprise";
+import BasicTable from "@/components/tables/basicTable";
 
 const Empresas = () => {
   const [openModal, setOpenModal] = useState(false);
   const [enterpriseToBeDeleted, setEnterpriseToBeDeleted] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-
-  const { data: enterprisesData } = useGetEnterprise();
+  const { data: enterprisesData, isPending: isLoading } = useGetEnterprise();
 
   useChangeTitleLayoutAdmin("Empresa");
 
@@ -61,16 +59,6 @@ const Empresas = () => {
     !openModal && handleReset();
   }, [handleReset, openModal]);
 
-  useEffect(() => {
-    enterprisesData ? (
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000)
-    ) : (
-      <SkeletonComponent />
-    );
-  }, [enterprisesData]);
-
   return (
     <>
       <div className="mt-3 grid grid-cols-1 md:gap-5 md:grid-cols-3">
@@ -107,12 +95,15 @@ const Empresas = () => {
         />
       </DeleteConfirmationModal>
       <div className="mt-8">
-        <BasicTable
-          isLoading={isLoading}
-          columnsData={columnsDataEnterprise(handleDelete)}
-          tableData={enterprisesData || []}
-          title="Lista de Empresas"
-        />
+        {isLoading ? (
+          <BasicTableSkeleton />
+        ) : (
+          <BasicTable
+            columnsData={columnsDataEnterprise(handleDelete)}
+            tableData={enterprisesData || []}
+            title="Lista de Empresas"
+          />
+        )}
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 export interface ISelectProps {
   id: string;
-  options: string[] | number[];
+  options: { label: string; value: string | number }[];
   label?: string;
   disabled?: boolean;
   placeholder: string;

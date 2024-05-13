@@ -27,7 +27,8 @@ const UsersForm = (props: Props) => {
       password: "",
       sede: "",
       rol: "",
-      document: "",
+      documentNumber: "",
+      documentType: "",
     },
     resolver: yupResolver(CreateUsersSchema),
   });
@@ -112,12 +113,15 @@ const UsersForm = (props: Props) => {
           error={errors.password?.message}
         />
         <InputDocumentController
-          id="document"
+          id="documentNumber"
+          idType="documentType"
           label="Documento"
           disabled={isReadOnly}
           control={control}
-          isError={!!errors.document}
-          error={errors.document?.message}
+          isError={!!errors.documentNumber}
+          isErrorType={!!errors.documentType}
+          errorType={errors.documentType?.message}
+          error={errors.documentNumber?.message}
         />
         <InputPhoneController
           id="phone"

@@ -1,5 +1,4 @@
 import AxiosInstance from "@/constants/AxiosInstance";
-import { IResponseServices } from "@/types/request";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchGetEnterprise = async (): Promise<any[]> => {
