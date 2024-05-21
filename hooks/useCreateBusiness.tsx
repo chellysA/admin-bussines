@@ -15,13 +15,15 @@ export interface IPayLoadCreateBusines {
 const fetchCreateBusiness = async (
   payload: IPayLoadCreateBusines,
 ): Promise<IResponseServices<any>> => {
-  const res = await AxiosInstance.post("/business/create", { ...payload });
-
   try {
+    const res = await AxiosInstance.post("/business/create", {
+      ...payload,
+      enterpriseId: "6605f80c4a463e5e83f7d840",
+    });
     // TODO Mejorar el typescript
     return res;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 

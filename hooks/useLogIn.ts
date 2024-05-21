@@ -10,13 +10,11 @@ export interface IPayLoadLogIn {
 const fetchLogIn = async (
   payload: IPayLoadLogIn,
 ): Promise<IResponseServices<any>> => {
-  const res = await AxiosInstance.post("/auth/login", payload);
-
   try {
-    // TODO Mejorar el typescript
+    const res = await AxiosInstance.post("/auth/login", payload);
     return res;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 

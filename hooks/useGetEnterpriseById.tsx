@@ -16,17 +16,15 @@ interface IEnterprises {
 const fetchGetEnterpriseById = async (
   enterpriseId: string,
 ): Promise<IResponseServices<IEnterprises>> => {
-  const res = await AxiosInstance.get<IResponseServices<IEnterprises>>(
-    `/enterprise/${enterpriseId}`,
-  );
-
   try {
     // TODO Mejorar el typescript
-
+    const res = await AxiosInstance.get<IResponseServices<IEnterprises>>(
+      `/enterprise/${enterpriseId}`,
+    );
     return res.data;
   } catch (error) {
     // @ts-ignore
-    return error;
+    throw error;
   }
 };
 

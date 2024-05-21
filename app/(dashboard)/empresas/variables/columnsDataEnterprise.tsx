@@ -5,7 +5,7 @@ import { IoMdEye } from "react-icons/io";
 import { MdDeleteForever, MdEdit, MdSearch } from "react-icons/md";
 
 export const columnsDataEnterprise: (
-  deleteOnClick: (arg0: string) => void,
+  deleteOnClick: (arg0: string, arg1: string) => void,
 ) => IReactTable[] = (deleteOnClick) => [
   {
     accessorKey: "name",
@@ -46,7 +46,7 @@ export const columnsDataEnterprise: (
         <MdDeleteForever
           className="cursor-pointer text-[22px] text-gray-900 dark:text-white"
           title="Eliminar"
-          onClick={() => deleteOnClick(row.original.name)}
+          onClick={() => deleteOnClick(row.original.name, row.original._id)}
         />
       </div>
     ),

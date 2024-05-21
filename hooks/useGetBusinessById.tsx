@@ -17,17 +17,16 @@ interface IBusiness {
 const fetchGetBusinessById = async (
   businessId: string,
 ): Promise<IResponseServices<IBusiness>> => {
-  const res = await AxiosInstance.get<IResponseServices<IBusiness>>(
-    `/business/${businessId}`,
-  );
-
   try {
+    const res = await AxiosInstance.get<IResponseServices<IBusiness>>(
+      `/business/${businessId}`,
+    );
     // TODO Mejorar el typescript
 
     return res;
   } catch (error) {
     // @ts-ignore
-    return error;
+    throw error;
   }
 };
 
