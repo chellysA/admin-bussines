@@ -1,14 +1,14 @@
 "use client";
 import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
-import { MdAddBusiness, MdDomainAdd } from "react-icons/md";
 import BusinessForm from "../components/businessForm";
+import { BsBuildingAdd } from "react-icons/bs";
 
 const CreateBussiness = () => {
   useChangeTitleLayoutAdmin("Agregar Negocio");
   return (
     <div className="mt-10">
       <BusinessForm
-        buttonLabel={<MdAddBusiness className="text-[25px] mx-5" />}
+        buttonLabel={<BsBuildingAdd className="text-[25px] mx-5" />}
         buttonTitle="Agregar Negocio"
       />
     </div>

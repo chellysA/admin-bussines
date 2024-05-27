@@ -8,6 +8,8 @@ export interface IPayLoadCreateBusines {
   documentNumber: string;
   phone: string;
   address: string | null;
+  enterpriseId: string;
+  representativeName: string;
 }
 
 const fetchCreateBusiness = async (

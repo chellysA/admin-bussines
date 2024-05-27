@@ -10,23 +10,28 @@ import {
 
 export const columnsDataProducts = (deleteOnClick: (arg0: string) => void) => [
   {
-    accessorKey: "nombre",
+    accessorKey: "name",
     header: "NOMBRE",
   },
   {
-    accessorKey: "categoria",
+    accessorKey: "category",
     header: "CATEGORIA",
+    cell: (dataRow: any) => dataRow.row.original?.category?.name,
   },
   {
-    accessorKey: "precio",
+    accessorKey: "price",
     header: "PRECIO",
   },
   {
-    accessorKey: "iva",
+    accessorKey: "presentation",
+    header: "PRESENTACIÓN",
+  },
+  {
+    accessorKey: "with_iva",
     header: "IVA",
     cell: (props: any) => (
       <div>
-        {props.row.original.iva === "Incluye" ? (
+        {props.row.original.with_iva ? (
           <MdCheckCircle
             className="text-green-500 text-[28px] cursor-help"
             title="Incluye Iva"
@@ -46,7 +51,7 @@ export const columnsDataProducts = (deleteOnClick: (arg0: string) => void) => [
     cell: (props: any) => (
       <div className="flex gap-3">
         <Link
-          href={`/productos/${props.row.original.id}/editar`}
+          href={`/productos/${props.row.original._id}/editar`}
           className="text-[22px] text-gray-900 dark:text-white"
           title="Editar"
         >
@@ -54,7 +59,7 @@ export const columnsDataProducts = (deleteOnClick: (arg0: string) => void) => [
         </Link>
 
         <Link
-          href={`/productos/${props.row.original.id}/detalles`}
+          href={`/productos/${props.row.original._id}/detalles`}
           className="text-[22px] text-gray-900 dark:text-white"
           title="Detalles"
         >
@@ -63,7 +68,7 @@ export const columnsDataProducts = (deleteOnClick: (arg0: string) => void) => [
         <MdDeleteForever
           className="cursor-pointer text-[22px] text-gray-900 dark:text-white"
           title="Eliminar"
-          onClick={() => deleteOnClick(props.row.original.nombre)}
+          onClick={() => deleteOnClick(props.row.original)}
         />
       </div>
     ),

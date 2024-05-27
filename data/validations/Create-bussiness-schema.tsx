@@ -1,6 +1,8 @@
 import * as yup from "yup";
 
 const CreateBussinessSchema = yup.object({
+  enterpriseId: yup.string().required("El nombre de la empresa es requerido."),
+
   name: yup
     .string()
     .matches(

@@ -10,17 +10,15 @@ const ProductsSchema = yup.object({
     .required("El nombre es obligatorio")
     .min(2, "El nombre debe tener al menos 2 caracteres"),
 
-  categorie: yup.string().required("La categoria es obligatoria"),
+  categoryId: yup.string().required("La categoria es obligatoria"),
 
-  sede: yup.string().required("La sede es obligatoria"),
+  // businessId: yup.string().required(""),
 
   presentation: yup.string().required("La presentacion es obligatoria"),
 
   price: yup.string().required("El precio es requerido"),
 
-  warehouse: yup.string().required("La cantidad en almacen es obligatoria"),
-
-  stock: yup.string().required("El stock es obligatorio"),
+  with_iva: yup.boolean().required("obligatorio"),
 });
 
 export default ProductsSchema;

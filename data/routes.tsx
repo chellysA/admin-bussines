@@ -1,5 +1,6 @@
 // Icon Imports
 import { IRoute } from "@/types/routes";
+import { BsBuilding } from "react-icons/bs";
 import {
   MdHome,
   MdOutlineSupervisorAccount,
@@ -35,9 +36,15 @@ const routes: IRoute[] = [
     icon: <MdDomain className="h-6 w-6" />,
   },
   {
-    name: "Nogocios",
+    name: "Negocios",
     layout: "/negocios",
     path: "negocios",
+    icon: <BsBuilding className="h-5 w-5" />,
+  },
+  {
+    name: "Sucursales",
+    layout: "/sucursales",
+    path: "sucursales",
     icon: <MdStore className="h-6 w-6" />,
   },
   // {

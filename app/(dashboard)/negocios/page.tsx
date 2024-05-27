@@ -2,7 +2,6 @@
 import Button from "@/components/button";
 import InputField from "@/components/fields/InputField";
 import Link from "next/link";
-import { MdAddBusiness } from "react-icons/md";
 import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
 import DeleteConfirmationModal from "@/components/modal/DeleteConfirmationModal";
 import { useCallback, useEffect, useState } from "react";
@@ -16,6 +15,7 @@ import { columnsDataBusiness } from "./variables/columnsDataBusiness";
 import { useGetBusiness } from "@/hooks/useGetBusiness";
 import { useDeleteBusiness } from "@/hooks/useDeleteBusiness";
 import toast from "react-hot-toast";
+import { BsBuildingAdd } from "react-icons/bs";
 
 const Empresas = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -70,7 +70,7 @@ const Empresas = () => {
     setBussinesToBeDeleted(name);
     setBusinesId(id);
   };
-
+  console.log(businessData);
   useEffect(() => {
     !openModal && handleReset();
   }, [handleReset, openModal]);
@@ -88,7 +88,7 @@ const Empresas = () => {
       <div className="flex justify-end">
         <Link href="/negocios/agregar-negocio">
           <Button
-            label={<MdAddBusiness className="text-[25px] mx-5" />}
+            label={<BsBuildingAdd className="text-[22px] mx-5" />}
             className="mt-4"
             title="Agregar Negocio"
           />

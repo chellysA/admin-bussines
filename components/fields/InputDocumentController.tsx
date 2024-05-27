@@ -64,7 +64,11 @@ const InputDocumentController = ({
         <div className="mr-2">
           <Select
             id={idType}
-            options={["J", "V", "E"]}
+            options={[
+              { label: "J", value: "J" },
+              { label: "V", value: "V" },
+              { label: "E", value: "E" },
+            ]}
             placeholder="Tipo"
             disabled={disabled}
             value={selectField.value}

@@ -14,7 +14,6 @@ const SelectController = ({
   placeholder,
   isError,
   isSuccess,
-  onChange,
   control,
   error,
 }: ISelectControllerProps) => {
@@ -25,6 +24,7 @@ const SelectController = ({
       id={id}
       options={options}
       label={label}
+      value={field.value}
       disabled={disabled}
       isError={isError}
       isSuccess={isSuccess}

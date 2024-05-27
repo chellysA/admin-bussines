@@ -3,7 +3,7 @@ import useChangeTitleLayoutAdmin from "@/hooks/useChangeTiTleLayout";
 import ProductsForm from "../../components/productsForm";
 
 const Details = () => {
-  useChangeTitleLayoutAdmin("Dtalles del Producto");
+  useChangeTitleLayoutAdmin("Detalles del Producto");
   return (
     <div className="mt-10">
       <ProductsForm isReadOnly />
