@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 
 type Props = {
   isReadOnly?: boolean;
-  buttonLabel?: string | React.ReactElement;
+  buttonLabel?: string | React.ReactElement<any>;
   buttonTitle?: string;
 };
 

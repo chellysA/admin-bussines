@@ -1,3 +1,6 @@
+"use client";
+
+import { USER_TOKEN } from "@/constants/localstorage";
 import { IPayLoadLogIn, useLogIn } from "@/hooks/useLogIn";
 import { setAuthorizationHeader } from "@/utils/setAuthorizationHeader";
 import { setCookie, deleteCookie, getCookie } from "cookies-next";
@@ -11,8 +14,6 @@ import {
   useState,
 } from "react";
 import toast from "react-hot-toast";
-
-export const USER_TOKEN = "USER_TOKEN";
 
 type TLogin = (
   variables: IPayLoadLogIn,

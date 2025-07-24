@@ -16,7 +16,7 @@ import SelectController from "@/components/select/SelectController";
 
 type Props = {
   isReadOnly?: boolean;
-  buttonLabel?: string | React.ReactElement;
+  buttonLabel?: string | React.ReactElement<any>;
   buttonTitle?: string;
 };
 

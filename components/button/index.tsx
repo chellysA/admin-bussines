@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 
 type Props = {
-  label: string | React.ReactElement | React.ReactNode;
+  label: string | React.ReactElement<any> | React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
   variant?: "full" | "normal";

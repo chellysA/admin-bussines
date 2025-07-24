@@ -4,7 +4,7 @@ import FixedPlugin from "@/components/fixedPlugin/FixedPlugin";
 import Footer from "@/components/footer/Footer";
 
 export const metadata: Metadata = {
-  title: "Auth | Horizon UI by Ories",
+  title: "Auth | Horizon UI by Ories"
 };
 
 export default function AuthLayout({

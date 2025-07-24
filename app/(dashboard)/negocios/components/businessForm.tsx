@@ -17,7 +17,7 @@ import { useGetEnterprise } from "@/hooks/useGetEnterprise";
 
 type Props = {
   isReadOnly?: boolean;
-  buttonLabel?: string | React.ReactElement;
+  buttonLabel?: string | React.ReactElement<any>;
   buttonTitle?: string;
 };
 

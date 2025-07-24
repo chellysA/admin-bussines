@@ -15,7 +15,7 @@ import EnterpriseFormSkeleton from "./enterpriseFormSkeleton";
 
 type Props = {
   isReadOnly?: boolean;
-  buttonLabel?: string | React.ReactElement;
+  buttonLabel?: string | React.ReactElement<any>;
   buttonTitle?: string;
 };
 
